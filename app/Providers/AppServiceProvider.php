@@ -27,6 +27,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         Passport::routes();
-
+        \Carbon\Carbon::setLocale('pt_BR');
     }
 }

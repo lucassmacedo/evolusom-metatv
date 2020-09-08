@@ -175,5 +175,67 @@ html body.navbar-static .app-content .header-navbar {
   font-size: 19px;
   margin-right: 23px;
   margin-top: 3px;
+}
 
+// Novo Tema
+
+.evolusom-theme {
+  background: #cf252b;
+  background-image: url(/images/logo_background.png?03bf91f…);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  color: #fff;
+
+  .header-navbar, .header-navbar-shadow {
+    background: transparent !important;
+  }
+
+  .header-navbar.navbar-shadow {
+    box-shadow: none !important;
+  }
+
+  .content-header-title {
+    color: #fff !important;
+  }
+
+  .content-wrapper {
+    padding: calc(0.0rem - 0.4rem) 2.2rem 0 !important;
+  }
+
+  .card-body {
+    color: #2c2c2c;
+  }
+
+  .content-header-title {
+    border-bottom: 4px solid;
+    color: white;
+    border-image-slice: 5;
+    border-image-source: linear-gradient(to right, transparent, white, transparent);
+
+    padding-bottom: 8px;
+  }
+
+  .meta-equipes {
+    .progress:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .title-space {
+    margin-top: -29px;
+  }
+
+  .horizontal-menu.navbar-floating:not(.blank-page) .app-content {
+    padding-top: 0 !important;
+  }
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+.remove-padding-beside {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }

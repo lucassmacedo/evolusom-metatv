@@ -7,26 +7,37 @@ use Illuminate\Http\Request;
 class StaterkitController extends Controller
 {
 
+    /**
+     * @var \GuzzleHttp\Client
+     */
+    private $client;
+
+    /**
+     * StaterkitController constructor.
+     */
+    public function __construct()
+    {
+        $this->client = new \GuzzleHttp\Client(['base_uri' => env('APP_API_URL')]);
+    }
 
     // Fixed Layout
     public function ranking_vendas()
     {
-        $next = route('capilaridade');
+        $theme = 'evolusom';
+        $next  = route('capilaridade');
 
-        $response = Http::get('http://test.com');
+        $response = $this->client->get('vendas');
+        $data     = collect(json_decode($response->getBody()->getContents()));
 
-
-
-
-        return view('pages.ranking_vendas', compact('next'));
+        return view('pages.ranking_vendas', compact('next', 'data', 'theme'));
     }
 
     // Fixed Layout
     public function ranking_capilaridade()
     {
-        $next = route('produtos-mes');
-
-        return view('pages.ranking_capilaridade', compact('next'));
+        $next  = route('produtos-mes');
+        $theme = 'evolusom';
+        return view('pages.ranking_capilaridade', compact('next', 'theme'));
     }
 
     // Fixed Layout
@@ -50,14 +61,30 @@ class StaterkitController extends Controller
     {
         $title = "Meta Equipes";
         $next  = route('home');
-        return view('pages.meta_equipes', compact('title', 'next'));
+        $theme = 'evolusom';
+
+        $response = $this->client->get('equipes');
+
+        $data['items'] = collect(json_decode($response->getBody()->getContents()));
+
+        $data['geral'] = [
+            'faturado'           => $data['items']->sum('faturado'),
+            'meta'               => $data['items']->sum('meta'),
+            'meta_clientes'      => $data['items']->sum('meta_clientes'),
+            'clientes_atendidos' => $data['items']->sum('clientes_atendidos'),
+            'realizado'          => round($data['items']->sum('faturado') / $data['items']->sum('meta') * 100, 2),
+            'capilaridade'       => round($data['items']->sum('clientes_atendidos') / $data['items']->sum('meta_clientes') * 100, 2),
+        ];
+
+
+        return view('pages.meta_equipes', compact('title', 'next', 'theme', 'data'));
     }
 
     // Fixed Layout
     public function evos()
     {
         $title = "Meta Equipes";
-        $next = '';
+        $next  = '';
         return view('pages.evos', compact('title', 'next'));
     }
 

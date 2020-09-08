@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa7f0f68-3ac8-4653-8bb9-7ef0dac75a98" name="Default Changelist" comment="" />
+    <list default="true" id="fa7f0f68-3ac8-4653-8bb9-7ef0dac75a98" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Helpers/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/helpers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StaterkitController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StaterkitController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/custom-laravel.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/custom-laravel.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/horizontalDetachedLayoutMaster.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/horizontalDetachedLayoutMaster.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/meta_equipes.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/meta_equipes.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/ranking_vendas.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/ranking_vendas.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/panels/horizontalMenu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/panels/horizontalMenu.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,6 +26,9 @@
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -136,7 +152,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../../FleetCart" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../eduk-crawler" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="Laravel.SettingsForm" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -171,6 +187,10 @@
       <workItem from="1599066049146" duration="778000" />
       <workItem from="1599068854481" duration="5735000" />
       <workItem from="1599131725615" duration="1180000" />
+      <workItem from="1599133658668" duration="15696000" />
+      <workItem from="1599216672821" duration="11423000" />
+      <workItem from="1599565235934" duration="598000" />
+      <workItem from="1599570458338" duration="4348000" />
     </task>
     <servers />
   </component>
@@ -178,29 +198,29 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="494" y="155" width="424" height="491" key="FileChooserDialogImpl" timestamp="1599045642584">
+    <state x="494" y="155" width="424" height="491" key="FileChooserDialogImpl" timestamp="1599221493251">
       <screen x="56" y="27" width="1310" height="741" />
     </state>
-    <state x="494" y="155" width="424" height="491" key="FileChooserDialogImpl/56.27.1310.741/1366.0.1366.768@56.27.1310.741" timestamp="1599045642584" />
-    <state x="200" y="31" width="1022" height="737" key="SettingsEditor" timestamp="1598893589979">
+    <state x="494" y="155" width="424" height="491" key="FileChooserDialogImpl/56.27.1310.741/1366.0.1366.768@56.27.1310.741" timestamp="1599221493251" />
+    <state x="200" y="31" width="1022" height="737" key="SettingsEditor" timestamp="1599135003506">
       <screen x="56" y="27" width="1310" height="741" />
     </state>
-    <state x="200" y="31" width="1022" height="737" key="SettingsEditor/56.27.1310.741/1366.0.1366.768@56.27.1310.741" timestamp="1598893589979" />
-    <state x="402" y="136" width="618" height="522" key="find.popup" timestamp="1598985417365">
+    <state x="200" y="31" width="1022" height="737" key="SettingsEditor/56.27.1310.741/1366.0.1366.768@56.27.1310.741" timestamp="1599135003506" />
+    <state x="402" y="136" width="618" height="522" key="find.popup" timestamp="1599135333099">
       <screen x="56" y="27" width="1310" height="741" />
     </state>
-    <state x="402" y="136" width="618" height="522" key="find.popup/56.27.1310.741/1366.0.1366.768@56.27.1310.741" timestamp="1598985417365" />
-    <state x="374" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1599132628015">
+    <state x="402" y="136" width="618" height="522" key="find.popup/56.27.1310.741/1366.0.1366.768@56.27.1310.741" timestamp="1599135333099" />
+    <state x="374" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1599570593272">
       <screen x="56" y="27" width="1310" height="741" />
     </state>
-    <state x="374" y="89" width="672" height="678" key="search.everywhere.popup/56.27.1310.741/1366.0.1366.768@56.27.1310.741" timestamp="1599132628015" />
+    <state x="374" y="89" width="672" height="678" key="search.everywhere.popup/56.27.1310.741/1366.0.1366.768@56.27.1310.741" timestamp="1599570593272" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/pages/meta_equipes.blade.php</url>
-          <line>186</line>
+          <line>210</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
@@ -212,6 +232,11 @@
           <url>file://$PROJECT_DIR$/resources/views/pages/evos.blade.php</url>
           <line>127</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/pages/ranking_vendas.blade.php</url>
+          <line>49</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
