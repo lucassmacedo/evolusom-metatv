@@ -5,7 +5,7 @@
             <div class="d-flex justify-content-between logo">
                 <a href="{{ route('home') }}"><img
                             src="{{ str_contains(url()->full(), 'evos') ? asset('images/logo/evos.png') : asset('images/logo/evolusom-white.png') }}"
-                            height="50"
+                            height="60"
                             alt=""></a>
 
 

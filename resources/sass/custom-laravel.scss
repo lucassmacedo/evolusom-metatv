@@ -67,7 +67,7 @@ html body.navbar-static .app-content .header-navbar {
 }
 
 .horizontal-menu.navbar-floating:not(.blank-page) .app-content {
-  padding-top: 4.75rem;
+  padding-top: 0.75rem;
 }
 
 .header-navbar .navbar-wrapper {
@@ -80,7 +80,7 @@ html body.navbar-static .app-content .header-navbar {
 }
 
 .top-10-icon {
-  color: #636363 !important;
+  color: #fff !important;
   font-weight: bold;
   font-size: 21px !important;
 }
@@ -228,6 +228,9 @@ html body.navbar-static .app-content .header-navbar {
 
   .horizontal-menu.navbar-floating:not(.blank-page) .app-content {
     padding-top: 0 !important;
+  }
+  .header-title-avatar {
+    background: rgb(152 34 39) !important;
   }
 }
 

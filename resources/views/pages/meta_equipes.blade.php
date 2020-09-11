@@ -1,6 +1,6 @@
 @extends('layouts.horizontalDetachedLayoutMaster')
 
-@section('title', 'Fixed Layout')
+@section('title', 'Meta Equipes')
 
 @section('vendor-style')
 
@@ -11,6 +11,11 @@
             <div class="row breadcrumbs-top">
                 <div class="col-12">
                     <h2 class="content-header-title float-left mb-0">
+                        <div class="avatar header-title-avatar p-50">
+                            <div class="avatar-content">
+                                <i class="fa fa-trophy text-info font-large-1 top-10-icon "></i>
+                            </div>
+                        </div>
                         <i>Dashboard - META EQUIPES</i>
                     </h2>
                 </div>
@@ -27,7 +32,7 @@
                     <div class="card text-center">
                         <div class="card-content">
                             <div class="card-body">
-                                <div class="avatar bg-rgba-info p-50 m-0 mb-1">
+                                <div class="avatar  p-50 m-0 mb-1">
                                     <div class="avatar-content">
                                         <i class="feather icon-target text-info font-medium-5"></i>
                                     </div>

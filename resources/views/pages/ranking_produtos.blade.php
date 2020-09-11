@@ -18,14 +18,14 @@
       <div class="row breadcrumbs-top">
         <div class="col-12">
           <h2 class="content-header-title float-left mb-0">
-            <div class="avatar bg-rgba-success p-50 m-0">
+            <div class="avatar header-title-avatar p-50">
               <div class="avatar-content">
                 <i class="fa fa-trophy text-info font-large-1 top-10-icon "></i>
               </div>
             </div>
-            {{ $title }}
+            Dashboard - {{ $title }}
           </h2>
-          <span class="content-header-title float-right mt-1">(Atualização 31/08/2020 20:00hs)</span>
+{{--          <span class="content-header-title float-right mt-1">(Atualização 31/08/2020 20:00hs)</span>--}}
         </div>
       </div>
     </div>

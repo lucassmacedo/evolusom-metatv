@@ -1,6 +1,6 @@
 @extends('layouts.horizontalDetachedLayoutMaster')
 
-@section('title', 'Fixed Layout')
+@section('title', 'Ranking Vendas')
 
 @section('vendor-style')
 
@@ -11,14 +11,14 @@
             <div class="row breadcrumbs-top">
                 <div class="col-12">
                     <h2 class="content-header-title float-left mb-0">
-                        <div class="avatar bg-rgba-success p-50 m-0">
+                        <div class="avatar header-title-avatar p-50">
                             <div class="avatar-content">
                                 <i class="fa fa-trophy text-info font-large-1 top-10-icon "></i>
                             </div>
                         </div>
-                        TOP 10 Vendedores do Mês
+                        Dashboard - TOP 10 Vendedores do Mês
                     </h2>
-{{--                    <span class="content-header-title float-right mt-1">(<b>Atualização</b>: {{ \Helper::carbonize($data->first()->atualizacao)->diffForHumans() }})</span>--}}
+                    {{--                    <span class="content-header-title float-right mt-1">(<b>Atualização</b>: {{ \Helper::carbonize($data->first()->atualizacao)->diffForHumans() }})</span>--}}
 
                 </div>
             </div>
@@ -66,23 +66,26 @@
                                                     {{--                                                    <td {{ $loop->iteration > 3 ? "colspan=2' " : '' }} class="text-left">--}}
                                                     <td class="text-left">
                                                         @if($loop->index < 3)
-                                                            <h3 class="mb-0 secondary">{{ $item->nome }}</h3>
+                                                            <h3 class="mb-0 text-bold-700">{{ $item->nome }}</h3>
                                                         @else
                                                             <h5 class="mb-0">{{ $item->nome }}</h5>
                                                         @endif
                                                     </td>
                                                     <td class="text-center">
-                                                        <span class="btn btn-relief-success waves-effect waves-light black text-bold-700 " style="{{ $loop->index > 3 ? "font-size:14px;padding: 0.6rem 1.2rem" : ''  }}">
+                                                        <span class="btn btn-relief-success waves-effect waves-light black text-bold-700 "
+                                                              style="{{ $loop->index > 3 ? "font-size:14px;padding: 0.6rem 1.2rem" : ''  }}">
                                                            {{ $item->nclientes }} / {{ $item->nclientesm }}
                                                         </span>
                                                     </td>
                                                     <td class="text-center">
-                                                        <span class="btn btn-relief-success waves-effect waves-light black text-bold-700" style="{{ $loop->index > 3 ? "font-size:14px;padding: 0.6rem 1.2rem" : ''  }}"> {{ $item->parcial * 100 }}%</span>
+                                                        <span class="btn btn-relief-success waves-effect waves-light black text-bold-700"
+                                                              style="{{ $loop->index > 3 ? "font-size:14px;padding: 0.6rem 1.2rem" : ''  }}"> {{ $item->parcial * 100 }}%</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="6" class="text-center">
-                                                        <div class="progress progress-bar-success progress-xl" style="margin-bottom: 15px;">
+                                                        <div class="progress progress-bar-success progress-xl"
+                                                             style="margin-bottom: 15px;">
                                                             <div class="progress-bar progress-bar-striped"
                                                                  role="progressbar" aria-valuenow="20"
                                                                  aria-valuemin="20"

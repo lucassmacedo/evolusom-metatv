@@ -35,25 +35,32 @@ class StaterkitController extends Controller
     // Fixed Layout
     public function ranking_capilaridade()
     {
-        $next  = route('produtos-mes');
-        $theme = 'evolusom';
-        return view('pages.ranking_capilaridade', compact('next', 'theme'));
+        $next     = route('produtos-mes');
+        $theme    = 'evolusom';
+        $response = $this->client->get('vendas');
+        $data     = collect(json_decode($response->getBody()->getContents()));
+
+        return view('pages.ranking_capilaridade', compact('data', 'next', 'theme'));
     }
 
     // Fixed Layout
     public function produtos_mes()
     {
+        $theme = 'evolusom';
+
         $title = "TOP 10 Produtos mais vendidos no Mês";
         $next  = route('produtos-dia');
-        return view('pages.ranking_produtos', compact('title', 'next'));
+        return view('pages.ranking_produtos', compact('title', 'next', 'theme'));
     }
 
     // Fixed Layout
     public function produtos_dia()
     {
+        $theme = 'evolusom';
+
         $title = "TOP 10 Produtos mais vendidos no Dia";
         $next  = route('meta_equipes');
-        return view('pages.ranking_produtos', compact('title', 'next'));
+        return view('pages.ranking_produtos', compact('title', 'next', 'theme'));
     }
 
     // Fixed Layout
