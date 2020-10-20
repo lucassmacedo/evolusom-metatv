@@ -16,5 +16,5 @@ Route::get('/capilaridade', 'StaterkitController@ranking_capilaridade')->name('c
 Route::get('/produtos-mes', 'StaterkitController@produtos_mes')->name('produtos-dia');
 Route::get('/produtos-dia', 'StaterkitController@produtos_dia')->name('produtos-mes');
 Route::get('/meta-equipes', 'StaterkitController@meta_equipes')->name('meta_equipes');
-Route::get('/evos', 'StaterkitController@evos')->name('evos');
+Route::get('/evus', 'StaterkitController@evos')->name('evos');
 

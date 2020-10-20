@@ -1,86 +1,25 @@
-const mix = require('laravel-mix');
-const exec = require('child_process').exec;
-require('dotenv').config();
+<div id="kt_header_mobile" class="header-mobile bg-primary  header-mobile-fixed ">
+    <!--begin::Logo-->
+    <a href="index.html">
+        <img alt="Logo" src="/media/logos/logo-letter-9.png" class="max-h-30px">
+    </a>
+    <!--end::Logo-->
 
-/*
- |--------------------------------------------------------------------------
- | Mix Asset Management
- |--------------------------------------------------------------------------
- |
- | Mix provides a clean, fluent API for defining some Webpack build steps
- | for your Laravel application. By default, we are compiling the Sass
- | file for the application as well as bundling up all the JS files.
- |
- */
+    <!--begin::Toolbar-->
+    <div class="d-flex align-items-center">
 
-const glob = require('glob')
-const path = require('path')
+        <button class="btn p-0 burger-icon burger-icon-left ml-4" id="kt_header_mobile_toggle">
+            <span></span>
+        </button>
 
-/*
- |--------------------------------------------------------------------------
- | Vendor assets
- |--------------------------------------------------------------------------
- */
-
-function mixAssetsDir(query, cb) {
-    (glob.sync('resources/' + query) || []).forEach(f => {
-        f = f.replace(/[\\\/]+/g, '/');
-        cb(f, f.replace('resources', 'public'));
-    });
-}
-
-const sassOptions = {
-    precision: 5
-};
-
-// plugins Core stylesheets
-mixAssetsDir('sass/plugins/**/!(_)*.scss', (src, dest) => mix.sass(src, dest.replace(/(\\|\/)sass(\\|\/)/, '$1css$2').replace(/\.scss$/, '.css'), sassOptions));
-
-// themes Core stylesheets
-mixAssetsDir('sass/themes/**/!(_)*.scss', (src, dest) => mix.sass(src, dest.replace(/(\\|\/)sass(\\|\/)/, '$1css$2').replace(/\.scss$/, '.css'), sassOptions));
-
-// pages Core stylesheets
-mixAssetsDir('sass/pages/**/!(_)*.scss', (src, dest) => mix.sass(src, dest.replace(/(\\|\/)sass(\\|\/)/, '$1css$2').replace(/\.scss$/, '.css'), sassOptions));
-
-// Core stylesheets
-mixAssetsDir('sass/core/**/!(_)*.scss', (src, dest) => mix.sass(src, dest.replace(/(\\|\/)sass(\\|\/)/, '$1css$2').replace(/\.scss$/, '.css'), sassOptions));
-
-// script js
-mixAssetsDir('js/scripts/**/*.js', (src, dest) => mix.scripts(src, dest));
-
-/*
- |--------------------------------------------------------------------------
- | Application assets
- |--------------------------------------------------------------------------
- */
-
-mixAssetsDir('vendors/js/**/*.js', (src, dest) => mix.scripts(src, dest));
-mixAssetsDir('vendors/css/**/*.css', (src, dest) => mix.copy(src, dest));
-mixAssetsDir('vendors/css/editors/quill/fonts/', (src, dest) => mix.copy(src, dest));
-mix.copyDirectory('resources/images', 'public/images');
-
-
-
-
-mix.js('resources/js/core/app-menu.js', 'public/js/core')
-.js('resources/js/core/app.js', 'public/js/core')
-.sass('resources/sass/bootstrap.scss', 'public/css')
-.sass('resources/sass/bootstrap-extended.scss', 'public/css')
-.sass('resources/sass/colors.scss', 'public/css')
-.sass('resources/sass/components.scss', 'public/css')
-.sass('resources/sass/custom-rtl.scss', 'public/css')
-.sass('resources/sass/custom-laravel.scss', 'public/css');
-
-mix.then(() => {
-  if(process.env.MIX_CONTENT_DIRECTION === "rtl"){
-    let command = `node ${path.resolve('node_modules/rtlcss/bin/rtlcss.js')} -d -e ".css" ./public/css/ ./public/css/`;
-    exec(command, function(err, stdout, stderr) {
-      if(err !== null){
-        console.log(err);
-      }
-    });
-    // exec('./node_modules/rtlcss/bin/rtlcss.js -d -e ".css" ./public/css/ ./public/css/');
-  }
-});
-
-mix.version();
+        <button class="btn p-0 ml-2" id="kt_header_mobile_topbar_toggle">
+            <span class="svg-icon svg-icon-xl"><!--begin::Svg Icon | path:/media/svg/icons/General/User.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <polygon points="0 0 24 0 24 24 0 24"></polygon>
+                    <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
+                    <path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" fill="#000000" fill-rule="nonzero"></path>
+                </g>
+            </svg><!--end::Svg Icon--></span></button>
+    </div>
+    <!--end::Toolbar-->
+</div>
