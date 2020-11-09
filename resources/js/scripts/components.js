@@ -65,20 +65,34 @@
     })
 
 
-    let timeLeft = 30;
-    let elem = document.getElementById('item-timer');
+    // let timeLeft = 30;
+    // let elem = document.getElementById('item-timer');
+    //
+    // let timerId = setInterval(countdown, 1000);
+    //
+    // function countdown() {
+    //     if (timeLeft === -1) {
+    //         window.location.href = window.next;
+    //
+    //     } else {
+    //         elem.innerHTML = timeLeft ;
+    //         timeLeft--;
+    //     }
+    // }
+    // countdown();
 
-    let timerId = setInterval(countdown, 1000);
+  function pageScroll() {
+    window.scrollBy(0, 1);
+    scrolldelay = setTimeout(pageScroll, 100);
+  }
 
-    function countdown() {
-        if (timeLeft === -1) {
-            window.location.href = window.next;
-
-        } else {
-            elem.innerHTML = timeLeft ;
-            timeLeft--;
-        }
+  $(window).scroll(function () {
+    if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+      setTimeout(() => {
+        window.location.href = window.next;
+      }, 100)
     }
-    countdown();
+  });
+  pageScroll();
 
 })(window, document, jQuery);

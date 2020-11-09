@@ -137,6 +137,54 @@ Route::get('/vendas', function () {
             'nclientesm'         => 51,
             'cabeca'             => 0000000000,
             'atualizacao'        => now()->toDateTimeString(),
+        ],
+        [
+
+            'nome'               => 'JANAINA FRIGERI',
+            'atendente'          => 12,
+            'parcial'            => 3.137,
+            'mensal'             => 0.309,
+            'representatividade' => 0.251,
+            'nclientes'          => 9,
+            'nclientesm'         => 51,
+            'cabeca'             => 0000000000,
+            'atualizacao'        => now()->toDateTimeString(),
+        ],
+        [
+
+            'nome'               => 'JANAINA FRIGERI',
+            'atendente'          => 12,
+            'parcial'            => 3.137,
+            'mensal'             => 0.309,
+            'representatividade' => 0.251,
+            'nclientes'          => 9,
+            'nclientesm'         => 51,
+            'cabeca'             => 0000000000,
+            'atualizacao'        => now()->toDateTimeString(),
+        ],
+        [
+
+            'nome'               => 'JANAINA FRIGERI',
+            'atendente'          => 12,
+            'parcial'            => 3.137,
+            'mensal'             => 0.309,
+            'representatividade' => 0.251,
+            'nclientes'          => 9,
+            'nclientesm'         => 51,
+            'cabeca'             => 0000000000,
+            'atualizacao'        => now()->toDateTimeString(),
+        ],
+        [
+
+            'nome'               => 'JANAINA FRIGERI',
+            'atendente'          => 12,
+            'parcial'            => 3.137,
+            'mensal'             => 0.309,
+            'representatividade' => 0.251,
+            'nclientes'          => 9,
+            'nclientesm'         => 51,
+            'cabeca'             => 0000000000,
+            'atualizacao'        => now()->toDateTimeString(),
         ]
     ];
 });

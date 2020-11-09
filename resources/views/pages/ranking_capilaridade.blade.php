@@ -93,29 +93,90 @@
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="row">
 
-                        <div class="col-sm-12 ">
-                            <div class="card bg-analytics text-white" style="height: 230px">
-                                <div class="card-content">
-                                    <div class="card-body text-center">
-                                        <img src="{{ asset('images/elements/decore-left.png') }}" class="img-left"
-                                             alt="card-img-left">
-                                        <img src="{{ asset('images/elements/decore-right.png') }}" class="img-right"
-                                             alt="card-img-right">
+                      <div class="row">
 
-                                        <div class="avatar avatar-xl bg-primary shadow mt-0">
-                                            <div class="avatar-content">
-                                                <i class="feather icon-award white font-large-1"></i>
-                                            </div>
-                                        </div>
-                                        <div class="text-center">
-                                            <h1 class="mb-2 text-white">Parabéns <b>Luciano Otávio</b></h1>
-                                            <p class="m-auto">Até o momento o melhor vendedor do mês com
-                                                <strong>420.4%</strong> da meta atingido.</p>
-                                        </div>
-                                    </div>
+                        <div class="col-sm-12 ">
+                          <div class="card bg-analytics text-white" style="height: 230px">
+                            <div class="card-content">
+                              <div class="card-body text-center text-white">
+                                <img src="{{ asset('images/elements/decore-left.png') }}" class="img-left"
+                                     alt="card-img-left">
+                                <img src="{{ asset('images/elements/decore-right.png') }}" class="img-right"
+                                     alt="card-img-right">
+
+                                <div class="avatar bg-success bg-transparent  avatar-xl shadow mt-0">
+                                  <div class="avatar-content">
+                                    <span class="fa fa-circle-o fa-stack-2x"></span>
+                                    <!-- a strong element with the custom content, in this case a number -->
+                                    <strong class="fa-stack-1x">
+                                      1
+                                    </strong>
+                                  </div>
                                 </div>
+                                <div class="text-center">
+                                  <h1 class="mb-2 text-white"><b>Luciano Otávio</b></h1>
+                                  <p class="m-auto">Até o momento o melhor vendedor do mês com
+                                    <strong>420.4%</strong> da meta atingido.</p>
+                                </div>
+                              </div>
                             </div>
+                          </div>
                         </div>
+                        <div class="col-sm-12 ">
+                          <div class="card bg-analytics text-white" >
+                            <div class="card-content">
+                              <div class="card-body text-center text-white">
+                                <img src="{{ asset('images/elements/decore-left.png') }}" class="img-left"
+                                     alt="card-img-left">
+                                <img src="{{ asset('images/elements/decore-right.png') }}" class="img-right"
+                                     alt="card-img-right">
+
+                                <div class="avatar bg-success bg-transparent  avatar-xl shadow mt-0">
+                                  <div class="avatar-content">
+                                    <span class="fa fa-circle-o fa-stack-2x"></span>
+                                    <!-- a strong element with the custom content, in this case a number -->
+                                    <strong class="fa-stack-1x">
+                                      2
+                                    </strong>
+                                  </div>
+                                </div>
+                                <div class="text-center">
+                                  <h1 class="mb-2 text-white"><b>Luciano Otávio</b></h1>
+                                  {{--                      <p class="m-auto">Até o momento o melhor vendedor do mês com--}}
+                                  {{--                        <strong>420.4%</strong> da meta atingido.</p>--}}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-12 ">
+                          <div class="card bg-analytics text-white" >
+                            <div class="card-content">
+                              <div class="card-body text-center text-white">
+                                <img src="{{ asset('images/elements/decore-left.png') }}" class="img-left"
+                                     alt="card-img-left">
+                                <img src="{{ asset('images/elements/decore-right.png') }}" class="img-right"
+                                     alt="card-img-right">
+
+                                <div class="avatar bg-success bg-transparent  avatar-xl shadow mt-0">
+                                  <div class="avatar-content">
+                                    <span class="fa fa-circle-o fa-stack-2x"></span>
+                                    <!-- a strong element with the custom content, in this case a number -->
+                                    <strong class="fa-stack-1x">
+                                      3
+                                    </strong>
+                                  </div>
+                                </div>
+                                <div class="text-center">
+                                  <h1 class="mb-2 text-white"><b>Luciano Otávio</b></h1>
+                                  {{--                      <p class="m-auto">Até o momento o melhor vendedor do mês com--}}
+                                  {{--                        <strong>420.4%</strong> da meta atingido.</p>--}}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <div class="row">
                         <div class="col">
