@@ -92,13 +92,17 @@
       if ($(window).scrollTop() + $(window).height() == $(document).height()) {
         setTimeout(() => {
           window.location.href = window.next;
-        }, 100)
+        }, 2000)
       }
     });
 
     setTimeout(() => {
       pageScroll();
-    }, 100)
+    }, 2000)
+  } else {
+    setTimeout(() => {
+      window.location.href = window.next;
+    }, 10000)
   }
 
   $(window).scroll(function () {
