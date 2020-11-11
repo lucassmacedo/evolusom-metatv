@@ -63,6 +63,7 @@ mix.copyDirectory('resources/images', 'public/images');
 mix.js('resources/js/core/app-menu.js', 'public/js/core')
   .js('resources/js/core/app.js', 'public/js/core')
   .js('resources/js/scripts/components.js', 'public/js/scripts/components.js')
+  .js('resources/js/scripts/charts/chart-chartjs.js', 'public/js/scripts/charts/chart-chartjs.js')
   .sass('resources/sass/bootstrap.scss', 'public/css')
   .sass('resources/sass/bootstrap-extended.scss', 'public/css')
   .sass('resources/sass/colors.scss', 'public/css')

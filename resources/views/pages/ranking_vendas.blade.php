@@ -6,7 +6,7 @@
 
 @endsection
 @section('content')
-  <div class="content-header row">
+  <div class="content-header row" id="navTitle">
     <div class="content-header-left col-md-12 col-12 mb-2">
       <div class="row breadcrumbs-top">
         <div class="col-12">
@@ -16,14 +16,13 @@
                 <i class="fa fa-trophy text-info font-large-1 top-10-icon "></i>
               </div>
             </div>
-            Dashboard - Ranking Vendedores do Mês
+            Dashboard - Ranking Vendedores da Semana ({{$dates['starts']}} á {{$dates['ends']}} )
           </h2>
           {{--                    <span class="content-header-title float-right mt-1">(<b>Atualização</b>: {{ \Helper::carbonize($data->first()->atualizacao)->diffForHumans() }})</span>--}}
 
         </div>
       </div>
     </div>
-
   </div>
   <div class="content-body">
 
@@ -46,7 +45,7 @@
                       </tr>
                       </thead>
                       <tbody>
-                      @foreach($data as $key => $item)
+                      @foreach($data['porcentagem'] as $key => $item)
                         <tr>
                           <td width="10">
                             @if($loop->index < 3)
@@ -72,26 +71,30 @@
                             @endif
                           </td>
                           <td class="text-center">
-                                                        <span
-                                                          class="btn btn-relief-success waves-effect waves-light black text-bold-700 "
-                                                          style="{{ $loop->index > 3 ? "font-size:14px;padding: 0.6rem 1.2rem" : ''  }}">
-                                                           {{ $item->nclientes }} / {{ $item->nclientesm }}
-                                                        </span>
+                                <span
+                                  class="btn btn-relief-{{ \App\Helpers\Helper::getClassProgressBar($item->atingido) }} waves-effect waves-light black text-bold-700 "
+                                  style="{{ $loop->index > 3 ? "font-size:14px;padding: 0.6rem 1.2rem" : ''  }}">
+                                   {{ $item->numCliAtendidos }} / {{ round($item->numCliPrev )}}
+                                </span>
                           </td>
                           <td class="text-center">
-                                                        <span
-                                                          class="btn btn-relief-success waves-effect waves-light black text-bold-700"
-                                                          style="{{ $loop->index > 3 ? "font-size:14px;padding: 0.6rem 1.2rem" : ''  }}"> {{ $item->parcial * 100 }}%</span>
+                            <span
+                              class="btn btn-relief-{{ \App\Helpers\Helper::getClassProgressBar($item->atingido) }} waves-effect waves-light black text-bold-700"
+                              style="{{ $loop->index > 3 ? "font-size:14px;padding: 0.6rem 1.2rem" : ''  }}">
+                              {{ $item->vlVenda > 0  && $item->vlMeta > 0 ? round(($item->vlVenda / $item->vlMeta) * 100,2) : 0 }}
+                              %</span>
                           </td>
                         </tr>
                         <tr>
                           <td colspan="6" class="text-center">
-                            <div class="progress progress-bar-success progress-xl"
-                                 style="margin-bottom: 15px;">
+                            <div
+                              class="progress progress-xl progress-bar-{{ \App\Helpers\Helper::getClassProgressBar($item->atingido) }}"
+                              style="margin-bottom: 15px;">
                               <div class="progress-bar progress-bar-striped"
-                                   role="progressbar" aria-valuenow="20"
-                                   aria-valuemin="20"
-                                   aria-valuemax="100" style="width:80%;"></div>
+                                   role="progressbar"
+                                   aria-valuenow="{{$item->atingido}}"
+                                   aria-valuemin="0"
+                                   aria-valuemax="100" style="width:{{$item->atingido}}%;"></div>
                             </div>
                           </td>
                         </tr>
@@ -172,88 +175,40 @@
 
         <div class="col-lg-4 col-md-12 col-sm-12">
           <div class="row">
+            @foreach($data['vendas'] as $key => $item)
 
-            <div class="col-sm-12 ">
-              <div class="card bg-analytics text-white" style="height: 230px">
-                <div class="card-content">
-                  <div class="card-body text-center text-white">
-                    <img src="{{ asset('images/elements/decore-left.png') }}" class="img-left"
-                         alt="card-img-left">
-                    <img src="{{ asset('images/elements/decore-right.png') }}" class="img-right"
-                         alt="card-img-right">
+              <div class="col-sm-12 ">
+                <div class="card bg-analytics text-white">
+                  <div class="card-content">
+                    <div class="card-body text-center text-white">
+                      <img src="{{ asset('images/elements/decore-left.png') }}" class="img-left"
+                           alt="card-img-left">
+                      <img src="{{ asset('images/elements/decore-right.png') }}" class="img-right"
+                           alt="card-img-right">
 
-                    <div class="avatar bg-success bg-transparent  avatar-xl shadow mt-0">
-                      <div class="avatar-content">
-                        <span class="fa fa-circle-o fa-stack-2x"></span>
-                        <!-- a strong element with the custom content, in this case a number -->
-                        <strong class="fa-stack-1x">
-                          1
-                        </strong>
+                      <div class="avatar bg-success bg-transparent  avatar-xl shadow mt-0">
+                        <div class="avatar-content">
+                          <span class="fa fa-circle-o fa-stack-2x"></span>
+                          <!-- a strong element with the custom content, in this case a number -->
+                          <strong class="fa-stack-1x">
+                            {{$loop->index + 1}}
+                          </strong>
+                        </div>
                       </div>
-                    </div>
-                    <div class="text-center">
-                      <h1 class="mb-2 text-white"><b>Luciano Otávio</b></h1>
-                      <p class="m-auto">Até o momento o melhor vendedor do mês com
-                        <strong>420.4%</strong> da meta atingido.</p>
+                      <div class="text-center">
+                        <h1 class="mb-2 text-white"><b>{{$item->nome}}</b></h1>
+                        <p class="m-auto">
+                          @if ($loop->first)
+                            Até o momento o vendedor com mais vendas.
+                          @endif
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-sm-12 ">
-              <div class="card bg-analytics text-white" >
-                <div class="card-content">
-                  <div class="card-body text-center text-white">
-                    <img src="{{ asset('images/elements/decore-left.png') }}" class="img-left"
-                         alt="card-img-left">
-                    <img src="{{ asset('images/elements/decore-right.png') }}" class="img-right"
-                         alt="card-img-right">
 
-                    <div class="avatar bg-success bg-transparent  avatar-xl shadow mt-0">
-                      <div class="avatar-content">
-                        <span class="fa fa-circle-o fa-stack-2x"></span>
-                        <!-- a strong element with the custom content, in this case a number -->
-                        <strong class="fa-stack-1x">
-                          2
-                        </strong>
-                      </div>
-                    </div>
-                    <div class="text-center">
-                      <h1 class="mb-2 text-white"><b>Luciano Otávio</b></h1>
-{{--                      <p class="m-auto">Até o momento o melhor vendedor do mês com--}}
-{{--                        <strong>420.4%</strong> da meta atingido.</p>--}}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-12 ">
-              <div class="card bg-analytics text-white" >
-                <div class="card-content">
-                  <div class="card-body text-center text-white">
-                    <img src="{{ asset('images/elements/decore-left.png') }}" class="img-left"
-                         alt="card-img-left">
-                    <img src="{{ asset('images/elements/decore-right.png') }}" class="img-right"
-                         alt="card-img-right">
-
-                    <div class="avatar bg-success bg-transparent  avatar-xl shadow mt-0">
-                      <div class="avatar-content">
-                        <span class="fa fa-circle-o fa-stack-2x"></span>
-                        <!-- a strong element with the custom content, in this case a number -->
-                        <strong class="fa-stack-1x">
-                          3
-                        </strong>
-                      </div>
-                    </div>
-                    <div class="text-center">
-                      <h1 class="mb-2 text-white"><b>Luciano Otávio</b></h1>
-{{--                      <p class="m-auto">Até o momento o melhor vendedor do mês com--}}
-{{--                        <strong>420.4%</strong> da meta atingido.</p>--}}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            @endforeach
           </div>
           <div class="row">
             <div class="col">
@@ -264,7 +219,6 @@
                 <div class="card-content">
                   <div class="card-body">
                     <canvas id="pie-chart" height="300"></canvas>
-
                   </div>
                 </div>
               </div>

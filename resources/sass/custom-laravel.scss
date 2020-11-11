@@ -308,3 +308,13 @@ html body.navbar-static .app-content .header-navbar {
 #dashboard-analytics .bg-analytics {
   background: #941114;
 }
+
+.sticky {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background: #cd252b;
+  z-index: 1;
+  padding-top: 20px;
+}
+

@@ -36,19 +36,23 @@ $(document).ready(function () {
       display: false
     },
     legend: {
-      position: 'bottom'
+      position: 'bottom',
+      fullWidth: true
     },
+
   };
 
   // Chart Data
-  var piechartData = {
-    labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-    datasets: [{
-      label: "My First dataset",
-      data: [2478, 5267, 734, 784, 433],
-      backgroundColor: themeColors,
-    }]
-  };
+  // var piechartData = {
+  //   labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+  //   datasets: [
+  //     {
+  //       label: "My First dataset",
+  //       data: [2478, 5267, 734, 784, 433],
+  //       backgroundColor: themeColors,
+  //     }
+  //   ]
+  // };
 
   var pieChartconfig = {
     type: 'pie',
@@ -56,11 +60,14 @@ $(document).ready(function () {
     // Chart Options
     options: piechartOptions,
 
-    data: piechartData
+    data: window.pieChart
   };
 
-  // Create the chart
-  var pieSimpleChart = new Chart(pieChartctx, pieChartconfig);
+  if(window.pieChart){
+    // Create the chart
+    console.log(window.pieChart)
+    var pieSimpleChart = new Chart(pieChartctx, pieChartconfig);
+  }
 
 
 });

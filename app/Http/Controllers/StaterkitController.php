@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use PHPUnit\Exception;
+use function foo\func;
 
 class StaterkitController extends Controller
 {
@@ -26,21 +28,97 @@ class StaterkitController extends Controller
     $theme = 'evolusom';
     $next = route('capilaridade');
 
-    $response = $this->client->get('vendas');
-    $data = collect(json_decode($response->getBody()->getContents()));
 
-    return view('pages.ranking_vendas', compact('next', 'data', 'theme'));
+    try {
+      $dates = [
+        'starts' => now()->startOfWeek()->format('d/m/Y'),
+        'ends'   => now()->endOfWeek()->format('d/m/Y')
+      ];
+
+
+      $query = [
+        'query' => [
+          'dataInicial' => $dates['starts'],
+          'dataFinal'   => $dates['ends']
+        ]
+      ];
+
+      $response = $this->client->get('metatvfaturamento', $query);
+      $response = collect(json_decode($response->getBody()->getContents()));
+
+      $data['porcentagem'] = $response->map(function ($item) {
+        $item->atingido = $item->vlVenda > 0 && $item->vlMeta > 0 ? round(($item->vlVenda / $item->vlMeta) * 100, 2) : 0;
+        return $item;
+      })->sortByDesc('atingido');
+
+
+      $data['vendas'] = $response->map(function ($item) {
+        $item->atingido = $item->vlVenda > 0 && $item->vlMeta > 0 ? round(($item->vlVenda / $item->vlMeta) * 100, 2) : 0;
+        return $item;
+      })->sortByDesc('vlVenda')
+        ->take(3);
+
+      $label = array_column($data['vendas']->toArray(), 'nome');
+      $values = array_column($data['vendas']->toArray(), 'vlVenda');
+      $pieChart = [
+        'labels'   => $label,
+        'datasets' => [
+          [
+            'data' => $values,
+
+            'backgroundColor' => [
+              '#7367F0',
+              '#28C76F',
+              '#FF9F43',
+            ]
+          ]
+        ],
+      ];
+
+
+    } catch (Exception $exception) {
+      dd($exception->getMessage());
+    }
+
+    return view('pages.ranking_vendas', compact('next', 'data', 'theme', 'pieChart', 'dates'));
   }
 
   // Fixed Layout
   public function ranking_capilaridade()
   {
-    $next = route('produtos-mes');
-    $theme = 'evolusom';
-    $response = $this->client->get('vendas');
-    $data = collect(json_decode($response->getBody()->getContents()));
+    $next = route('evus');
 
-    return view('pages.ranking_capilaridade', compact('data', 'next', 'theme'));
+    $theme = 'evolusom';
+
+    try {
+
+      $dates = [
+        'starts' => now()->startOfWeek()->format('d/m/Y'),
+        'ends'   => now()->endOfWeek()->format('d/m/Y')
+      ];
+
+
+      $query = [
+        'query' => [
+          'dataInicial' => $dates['starts'],
+          'dataFinal'   => $dates['ends']
+        ]
+      ];
+
+      $response = $this->client->get('metatvfaturamento', $query);
+      $response = collect(json_decode($response->getBody()->getContents()));
+
+      $data = $response->map(function ($item) {
+        $item->atingido = $item->vlVenda > 0 && $item->vlMeta > 0 ? round(($item->vlVenda / $item->vlMeta) * 100, 2) : 0;
+        return $item;
+      })->sortByDesc('numCliAtendidos');
+
+    } catch (Exception $exception) {
+      dd($exception->getMessage());
+    }
+
+
+    return view('pages.ranking_capilaridade', compact('data', 'next', 'theme', 'dates'));
   }
 
   // Fixed Layout
@@ -91,9 +169,37 @@ class StaterkitController extends Controller
   public function evos()
   {
     $theme = 'evus';
-    $title = "Meta Equipes";
-    $next = '';
-    return view('pages.evos', compact('title', 'next','theme'));
+    $title = "Meta Evus";
+    $next = route('home');
+    try {
+
+      $dates = [
+        'starts' => now()->startOfWeek()->format('d/m/Y'),
+        'ends'   => now()->endOfWeek()->format('d/m/Y')
+      ];
+
+
+      $query = [
+        'query' => [
+          'dataInicial' => $dates['starts'],
+          'dataFinal'   => $dates['ends']
+        ]
+      ];
+
+      $response = $this->client->get('metatvevus', $query);
+      $response = collect(json_decode($response->getBody()->getContents()));
+
+      $data['capilaridade'] = $response->sortByDesc('numCliAtendidos')->take(10);
+
+      $data['faturamento'] = $response->sortByDesc('faturamentoEvus')->take(10);
+      $data['pontuacao'] = $response->sortByDesc('pontuacao')->take(10);
+
+    } catch (Exception $exception) {
+      dd($exception->getMessage());
+    }
+
+
+    return view('pages.evos', compact('title', 'next', 'theme', 'data'));
   }
 
 }

@@ -6,7 +6,7 @@
 
 @endsection
 @section('content')
-  <div class="content-header row">
+  <div class="content-header row"  id="navTitle">
     <div class="content-header-left col-md-12 col-12 mb-2">
       <div class="row breadcrumbs-top">
         <div class="col-12">
@@ -34,15 +34,19 @@
           <div class="card text-center bg-evus">
             <div class="card-content">
               <div class="card-body">
-                <h2 class="text-bold-700 text-white text-italic" style="border-bottom: 2px solid #ffffff69;">CAPILARIDADE</h2>
+                <h2 class="text-bold-700 text-white text-italic" style="border-bottom: 2px solid #ffffff69;">
+                  CAPILARIDADE</h2>
 
-                <h2 class="text-bold-700 text-white">44.34%</h2>
-                <h2 class="text-bold-700 text-white">WILLIAN BADDINI</h2>
+                @if(!empty($data['capilaridade']))
+                  <h2 class="text-bold-700 text-white">{{($data['capilaridade']->first()->numCliAtendidos)}}</h2>
+                  <h2 class="text-bold-700 text-white">{{($data['capilaridade']->first()->nome)}}</h2>
+                @endif
 
-                <img src="{{ asset('images/icons/lider.png') }}" alt="" width="70" style="position: relative;margin-bottom: -50px">
-{{--                <div class="font-large-2 text-white pull-right">--}}
-{{--                    <i class="fa fa-share-alt"></i>--}}
-{{--                </div>--}}
+                <img src="{{ asset('images/icons/lider.png') }}" alt="" width="70"
+                     style="position: relative;margin-bottom: -50px">
+                {{--                <div class="font-large-2 text-white pull-right">--}}
+                {{--                    <i class="fa fa-share-alt"></i>--}}
+                {{--                </div>--}}
               </div>
             </div>
           </div>
@@ -52,14 +56,18 @@
             <div class="card-content">
               <div class="card-body">
 
-                <h2 class="text-bold-700 text-white text-italic" style="border-bottom: 2px solid #ffffff69;">FATURAMENTO</h2>
-                <h2 class="text-bold-700 text-white">R$ 14.727,36</h2>
-                <h2 class="text-bold-700 text-white">CASSIO TREVISAN</h2>
+                <h2 class="text-bold-700 text-white text-italic" style="border-bottom: 2px solid #ffffff69;">
+                  FATURAMENTO</h2>
+                @if(!empty($data['faturamento']))
+                  <h2 class="text-bold-700 text-white">R$ {{number_format($data['faturamento']->first()->faturamentoEvus,2,",",".")}}</h2>
+                  <h2 class="text-bold-700 text-white">{{($data['faturamento']->first()->nome)}}</h2>
+                @endif
 
-                <img src="{{ asset('images/icons/lider.png') }}" alt="" width="70" style="position: relative;margin-bottom: -50px">
-{{--                <div class="font-large-2 text-white pull-right">--}}
-{{--                    <i class="fa fa-share-alt"></i>--}}
-{{--                </div>--}}
+                <img src="{{ asset('images/icons/lider.png') }}" alt="" width="70"
+                     style="position: relative;margin-bottom: -50px">
+                {{--                <div class="font-large-2 text-white pull-right">--}}
+                {{--                    <i class="fa fa-share-alt"></i>--}}
+                {{--                </div>--}}
               </div>
             </div>
           </div>
@@ -69,14 +77,18 @@
             <div class="card-content">
               <div class="card-body">
 
-                <h2 class="text-bold-700 text-white text-italic " style="border-bottom: 2px solid #ffffff69;">MAIOR PONTUAÇÃO</h2>
-                <h2 class="text-bold-700 text-white">420</h2>
-                <h2 class="text-bold-700 text-white">WILLIAN BADDINI</h2>
+                <h2 class="text-bold-700 text-white text-italic " style="border-bottom: 2px solid #ffffff69;">MAIOR
+                  PONTUAÇÃO</h2>
+                @if(!empty($data['pontuacao']))
+                  <h2 class="text-bold-700 text-white">{{($data['pontuacao']->first()->pontuacao)}}</h2>
+                  <h2 class="text-bold-700 text-white">{{($data['pontuacao']->first()->nome)}}</h2>
+                @endif
 
-                <img src="{{ asset('images/icons/lider.png') }}" alt="" width="70" style="position: relative;margin-bottom: -50px">
-{{--                <div class="font-large-2 text-white pull-right">--}}
-{{--                    <i class="fa fa-share-alt"></i>--}}
-{{--                </div>--}}
+                <img src="{{ asset('images/icons/lider.png') }}" alt="" width="70"
+                     style="position: relative;margin-bottom: -50px">
+                {{--                <div class="font-large-2 text-white pull-right">--}}
+                {{--                    <i class="fa fa-share-alt"></i>--}}
+                {{--                </div>--}}
               </div>
             </div>
           </div>
@@ -99,46 +111,20 @@
             <div class="card-header d-flex align-items-start p-0">
               <table class="table table-borderless text-white">
                 <tbody>
-                <tr>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-4 text-bold"><b>2º</b></span>
-                  </td>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-5 text-bold">49 WILIAM BADDINI</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-4 text-bold"><b>3º</b></span>
-                  </td>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-4 text-bold">49 WILIAM BADDINI</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-4 text-bold"><b>4º</b></span>
-                  </td>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-4 text-bold">49 WILIAM BADDINI</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-4 text-bold"><b>5º</b></span>
-                  </td>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-4 text-bold">49 WILIAM BADDINI</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-4 text-bold"><b>6º</b></span>
-                  </td>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-4 text-bold">49 WILIAM BADDINI</span>
-                  </td>
-                </tr>
+                @if(!empty($data['pontuacao']))
+                  @foreach($data['capilaridade'] as $item)
+                    @if($loop->iteration > 1)
+                      <tr>
+                        <td class="text-left" height="40">
+                          <span class="mb-0 font-medium-4 text-bold"><b>{{$loop->iteration}}º</b></span>
+                        </td>
+                        <td class="text-left" height="40">
+                          <span class="mb-0 font-medium-3 text-bold-700">{{ $item->nome }}</span>
+                        </td>
+                      </tr>
+                    @endif
+                  @endforeach
+                @endif
                 </tbody>
               </table>
             </div>
@@ -160,46 +146,20 @@
             <div class="card-header d-flex align-items-start p-0">
               <table class="table table-borderless text-white">
                 <tbody>
-                <tr>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-4 text-bold"><b>2º</b></span>
-                  </td>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-5 text-bold">49 WILIAM BADDINI</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-4 text-bold"><b>3º</b></span>
-                  </td>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-4 text-bold">49 WILIAM BADDINI</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-4 text-bold"><b>4º</b></span>
-                  </td>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-4 text-bold">49 WILIAM BADDINI</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-4 text-bold"><b>5º</b></span>
-                  </td>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-4 text-bold">49 WILIAM BADDINI</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-4 text-bold"><b>6º</b></span>
-                  </td>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-4 text-bold">49 WILIAM BADDINI</span>
-                  </td>
-                </tr>
+                @if(!empty($data['pontuacao']))
+                  @foreach($data['faturamento'] as $item)
+                    @if($loop->iteration > 1)
+                      <tr>
+                        <td class="text-left" height="40">
+                          <span class="mb-0 font-medium-4 text-bold"><b>{{$loop->iteration}}º</b></span>
+                        </td>
+                        <td class="text-left" height="40">
+                          <span class="mb-0 font-medium-3 text-bold-700"> {{ $item->nome }}</span>
+                        </td>
+                      </tr>
+                    @endif
+                  @endforeach
+                @endif
                 </tbody>
               </table>
             </div>
@@ -221,46 +181,20 @@
             <div class="card-header d-flex align-items-start p-0">
               <table class="table table-borderless text-white">
                 <tbody>
-                <tr>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-4 text-bold"><b>2º</b></span>
-                  </td>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-5 text-bold">49 WILIAM BADDINI</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-4 text-bold"><b>3º</b></span>
-                  </td>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-4 text-bold">49 WILIAM BADDINI</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-4 text-bold"><b>4º</b></span>
-                  </td>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-4 text-bold">49 WILIAM BADDINI</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-4 text-bold"><b>5º</b></span>
-                  </td>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-4 text-bold">49 WILIAM BADDINI</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-4 text-bold"><b>6º</b></span>
-                  </td>
-                  <td class="text-left" height="40">
-                    <span class="mb-0 font-medium-4 text-bold">49 WILIAM BADDINI</span>
-                  </td>
-                </tr>
+                @if(!empty($data['pontuacao']))
+                  @foreach($data['pontuacao'] as $item)
+                    @if($loop->iteration > 1)
+                      <tr>
+                        <td class="text-left" height="40">
+                          <span class="mb-0 font-medium-4 text-bold"><b>{{$loop->iteration}}º</b></span>
+                        </td>
+                        <td class="text-left" height="40">
+                          <span class="mb-0 font-medium-3 text-bold-700"> {{ $item->nome }}</span>
+                        </td>
+                      </tr>
+                    @endif
+                  @endforeach
+                @endif
                 </tbody>
               </table>
             </div>
