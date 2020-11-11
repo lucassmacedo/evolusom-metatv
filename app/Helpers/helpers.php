@@ -158,11 +158,11 @@ class Helper
 
   public static function getClassProgressBar($value)
   {
-    if ($value > 80) {
+    if ($value >= 100) {
       return 'success';
-    } else if ($value > 40) {
+    } else if ($value > 60) {
       return 'warning';
-    }  else {
+    } else {
       return 'danger';
     }
   }

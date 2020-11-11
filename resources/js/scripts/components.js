@@ -80,10 +80,9 @@
   //     }
   // }
   // countdown();
+  var navbar = document.getElementById("navTitle");
 
-  alert(window.next)
-  if (window.next !== undefined) {
-
+  if (window.next !== undefined && navbar !== null) {
     function pageScroll() {
       window.scrollBy(0, 1);
       scrolldelay = setTimeout(pageScroll, 100);
@@ -103,9 +102,7 @@
   }
 
   $(window).scroll(function () {
-    var navbar = document.getElementById("navTitle");
     var sticky = navbar.offsetTop;
-
     if (window.pageYOffset > sticky + 40) {
       navbar.classList.add("sticky")
     } else {

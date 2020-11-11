@@ -37,7 +37,7 @@ $(document).ready(function () {
     },
     legend: {
       position: 'bottom',
-      fullWidth: true
+      align: 'left'
     },
 
   };
@@ -63,7 +63,7 @@ $(document).ready(function () {
     data: window.pieChart
   };
 
-  if(window.pieChart){
+  if (window.pieChart) {
     // Create the chart
     console.log(window.pieChart)
     var pieSimpleChart = new Chart(pieChartctx, pieChartconfig);

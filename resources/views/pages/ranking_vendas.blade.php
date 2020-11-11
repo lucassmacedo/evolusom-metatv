@@ -186,13 +186,10 @@
                       <img src="{{ asset('images/elements/decore-right.png') }}" class="img-right"
                            alt="card-img-right">
 
-                      <div class="avatar bg-success bg-transparent  avatar-xl shadow mt-0">
+                      <div class="avatar avatar-xl shadow mt-0">
                         <div class="avatar-content">
-                          <span class="fa fa-circle-o fa-stack-2x"></span>
-                          <!-- a strong element with the custom content, in this case a number -->
-                          <strong class="fa-stack-1x">
-                            {{$loop->index + 1}}
-                          </strong>
+                          <img src="http://evolusom.test:8088/metatv37/v/{{$item->codUsur}}.png"
+                               alt="" width="100">
                         </div>
                       </div>
                       <div class="text-center">

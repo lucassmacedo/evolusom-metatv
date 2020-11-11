@@ -31,8 +31,8 @@ class StaterkitController extends Controller
 
     try {
       $dates = [
-        'starts' => now()->startOfWeek()->format('d/m/Y'),
-        'ends'   => now()->endOfWeek()->format('d/m/Y')
+        'starts' => now()->startOfMonth()->format('d/m/Y'),
+        'ends'   => now()->endOfMonth()->format('d/m/Y')
       ];
 
 
@@ -93,8 +93,8 @@ class StaterkitController extends Controller
     try {
 
       $dates = [
-        'starts' => now()->startOfWeek()->format('d/m/Y'),
-        'ends'   => now()->endOfWeek()->format('d/m/Y')
+        'starts' => now()->startOfMonth()->format('d/m/Y'),
+        'ends'   => now()->endOfMonth()->format('d/m/Y')
       ];
 
 
@@ -109,7 +109,7 @@ class StaterkitController extends Controller
       $response = collect(json_decode($response->getBody()->getContents()));
 
       $data = $response->map(function ($item) {
-        $item->atingido = $item->vlVenda > 0 && $item->vlMeta > 0 ? round(($item->vlVenda / $item->vlMeta) * 100, 2) : 0;
+        $item->atingido = $item->numCliAtendidos > 0 && $item->numCliPrev > 0 ? round(($item->numCliAtendidos / $item->numCliPrev) * 100, 2) : 0;
         return $item;
       })->sortByDesc('numCliAtendidos');
 

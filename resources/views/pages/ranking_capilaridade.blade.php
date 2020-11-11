@@ -3,10 +3,16 @@
 @section('title', 'Ranking Vendas')
 
 @section('vendor-style')
-
+  <style>
+    .avatar.avatar-xl .avatar-content {
+      width: 100px;
+      height: 100px;
+    }
+  </style>
 @endsection
+
 @section('content')
-  <div class="content-header row"  id="navTitle">
+  <div class="content-header row" id="navTitle">
     <div class="content-header-left col-md-12 col-12 mb-2">
       <div class="row breadcrumbs-top">
         <div class="col-12">
@@ -42,7 +48,7 @@
                         <th></th>
                         <th>Nome</th>
                         <th class="text-center">Atendimentos</th>
-                        <th class="text-center">Obtido</th>
+                        {{--                        <th class="text-center">Obtido</th>--}}
                       </tr>
                       </thead>
                       <tbody>
@@ -55,41 +61,37 @@
                               <span style="font-size: 20px;font-width: bold;">{{$loop->iteration}}</span>
                             @endif
                           </td>
-                          {{--                                                    @if($loop->iteration <= 3)--}}
-                          {{--                                                        <td width="50">--}}
-                          {{--                                                            <div class="avatar">--}}
-                          {{--                                                                <img src="{{ asset('images/portrait/small/avatar-s-1.jpg') }}"--}}
-                          {{--                                                                     alt="avtar img holder" height="70" width="70">--}}
-                          {{--                                                            </div>--}}
-                          {{--                                                        </td>--}}
-                          {{--                                                    @endif--}}
-                          {{--                                                    <td {{ $loop->iteration > 3 ? "colspan=2' " : '' }} class="text-left">--}}
                           <td class="text-left">
+                 
                             @if($loop->index < 3)
-                              <h3 class="mb-0 text-bold-700">{{ $item->nome }}</h3>
+                              <h3 class="mb-0 text-bold-700">
+
+                                <img src="http://evolusom.test:8088/metatv37/v/{{$item->codUsur}}.png"
+                                     alt="avtar img holder" height="70" width="70">
+                                {{ $item->nome }}</h3>
                             @else
                               <h5 class="mb-0">{{ $item->nome }}</h5>
                             @endif
                           </td>
                           <td class="text-center">
-                                <span
-                                  class="btn btn-relief-success waves-effect waves-light black text-bold-700 "
-                                  style="{{ $loop->index > 3 ? "font-size:14px;padding: 0.6rem 1.2rem" : ''  }}">
+                                <span class="btn btn-relief-success waves-effect waves-light black text-bold-700 "
+                                      style="{{ $loop->index > 3 ? "font-size:14px;padding: 0.6rem 1.2rem" : ''  }}">
                                    {{ $item->numCliAtendidos }} / {{ round($item->numCliPrev )}}
                                 </span>
-{{--                          </td>--}}
-{{--                          <td class="text-center">--}}
-{{--                            <span--}}
-{{--                              class="btn btn-relief-success waves-effect waves-light black text-bold-700"--}}
-{{--                              style="{{ $loop->index > 3 ? "font-size:14px;padding: 0.6rem 1.2rem" : ''  }}">--}}
-{{--                              {{ $item->vlVenda > 0  && $item->vlMeta > 0 ? round(($item->vlVenda / $item->vlMeta) * 100,2) : 0 }}--}}
-{{--                              %</span>--}}
-{{--                          </td>--}}
+                          {{--                          </td>--}}
+                          {{--                          <td class="text-center">--}}
+                          {{--                            <span--}}
+                          {{--                              class="btn btn-relief-success waves-effect waves-light black text-bold-700"--}}
+                          {{--                              style="{{ $loop->index > 3 ? "font-size:14px;padding: 0.6rem 1.2rem" : ''  }}">--}}
+                          {{--                              {{ $item->vlVenda > 0  && $item->vlMeta > 0 ? round(($item->vlVenda / $item->vlMeta) * 100,2) : 0 }}--}}
+                          {{--                              %</span>--}}
+                          {{--                          </td>--}}
                         </tr>
                         <tr>
                           <td colspan="6" class="text-center">
-                            <div class="progress progress-bar-success progress-xl"
-                                 style="margin-bottom: 15px;">
+                            <div
+                              class="progress progress-bar-{{ \App\Helpers\Helper::getClassProgressBar($item->atingido) }} progress-xl"
+                              style="margin-bottom: 15px;">
                               <div class="progress-bar progress-bar-striped"
                                    role="progressbar" aria-valuenow="20"
                                    aria-valuemin="20"
