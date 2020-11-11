@@ -11,11 +11,17 @@
       <div class="row breadcrumbs-top">
         <div class="col-12">
           <h2 class="content-header-title float-left mb-0">
-            <div class="avatar header-title-avatar p-50 mb-1">
+            <a href="{{ route('home') }}"><img
+                src="{{ str_contains(url()->full(), 'evus') ? asset('images/logo/evus-02.png') : asset('images/logo/evolusom-white.png') }}"
+                height="60"
+                alt=""></a>
+
+            <div class="avatar header-title-avatar p-50 mb-0">
               <div class="avatar-content">
                 <i class="fa fa-trophy text-info font-large-1 top-10-icon "></i>
               </div>
             </div>
+
             Dashboard - Meta Evus
           </h2>
           {{--          <span class="content-header-title float-right mt-1">(Atualização 31/08/2020 20:00hs)</span>--}}
@@ -31,7 +37,7 @@
     <section id="dashboard-analytics">
       <div class="row">
         <div class="col-xl-4 col-md-4 col-sm-6">
-          <div class="card text-center bg-evus">
+          <div class="card text-center bg-evus" style="min-height: 296px">
             <div class="card-content">
               <div class="card-body">
                 <h2 class="text-bold-700 text-white text-italic" style="border-bottom: 2px solid #ffffff69;">
@@ -47,6 +53,7 @@
                     </div>
                     <div class="col-12">
                       <h3 class="text-bold-700 text-white">{{($data['capilaridade']->first()->nome)}}</h3>
+                      <h2 style="color: transparent"> a</h2>
                     </div>
                   </div>
                 @endif
@@ -61,7 +68,7 @@
           </div>
         </div>
         <div class="col-xl-4 col-md-4 col-sm-6">
-          <div class="card text-center bg-evus">
+          <div class="card text-center bg-evus" style="min-height: 296px">
             <div class="card-content">
               <div class="card-body">
 
@@ -77,6 +84,7 @@
                     </div>
                     <div class="col-12">
                       <h3 class="text-bold-700 text-white">{{($data['faturamento']->first()->nome)}}</h3>
+                      <h2 style="color: transparent"> a</h2>
                     </div>
                   </div>
                 @endif
@@ -106,8 +114,9 @@
                            width="120">
                     </div>
                     <div class="col-12">
-                      <h3 class="text-bold-700 text-white">{{($data['pontuacao']->first()->pontuacao)}}
-                        - {{($data['pontuacao']->first()->nome)}}</h3>
+                      <h3 class="text-bold-700 text-white">{{($data['pontuacao']->first()->nome)}}</h3>
+
+                      <h4 class="text-bold-700 text-white">{{($data['pontuacao']->first()->pontuacao)}} Pontos</h4>
                     </div>
                   </div>
                 @endif

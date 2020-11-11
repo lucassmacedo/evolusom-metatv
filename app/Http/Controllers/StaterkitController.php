@@ -25,9 +25,13 @@ class StaterkitController extends Controller
   // Fixed Layout
   public function ranking_vendas()
   {
+
+    if (env('APP_ENV') <> 'local') {
+      abort(404);
+    }
+
     $theme = 'evolusom';
     $next = route('capilaridade');
-
 
     try {
       $dates = [
@@ -86,6 +90,9 @@ class StaterkitController extends Controller
   // Fixed Layout
   public function ranking_capilaridade()
   {
+    if (env('APP_ENV') <> 'local') {
+      abort(404);
+    }
     $next = route('evus');
 
     $theme = 'evolusom';
@@ -111,7 +118,8 @@ class StaterkitController extends Controller
       $data = $response->map(function ($item) {
         $item->atingido = $item->numCliAtendidos > 0 && $item->numCliPrev > 0 ? round(($item->numCliAtendidos / $item->numCliPrev) * 100, 2) : 0;
         return $item;
-      })->sortByDesc('numCliAtendidos');
+      })
+        ->sortByDesc('numCliAtendidos');
 
     } catch (Exception $exception) {
       dd($exception->getMessage());
@@ -171,6 +179,7 @@ class StaterkitController extends Controller
     $theme = 'evus';
     $title = "Meta Evus";
     $next = route('home');
+    $next = null;
     try {
 
       $dates = [
@@ -189,10 +198,11 @@ class StaterkitController extends Controller
       $response = $this->client->get('metatvevus', $query);
       $response = collect(json_decode($response->getBody()->getContents()));
 
-      $data['capilaridade'] = $response->sortByDesc('numCliAtendidos')->take(10);
+      $data['capilaridade'] = $response->sortByDesc('numCliAtendidos')->whereNotIn('codUsur', [1])->take(10);
 
-      $data['faturamento'] = $response->sortByDesc('faturamentoEvus')->take(10);
-      $data['pontuacao'] = $response->sortByDesc('pontuacao')->take(10);
+      $data['faturamento'] = $response->sortByDesc('faturamentoEvus')->whereNotIn('codUsur', [1])->take(10);
+
+      $data['pontuacao'] = $response->sortByDesc('pontuacao')->whereNotIn('codUsur', [1])->take(10);
 
     } catch (Exception $exception) {
       dd($exception->getMessage());

@@ -11,12 +11,17 @@
       <div class="row breadcrumbs-top">
         <div class="col-12">
           <h2 class="content-header-title float-left mb-0">
-            <div class="avatar header-title-avatar p-50">
+            <a href="{{ route('home') }}"><img
+                src="{{ str_contains(url()->full(), 'evus') ? asset('images/logo/evus-02.png') : asset('images/logo/evolusom-white.png') }}"
+                height="60"
+                alt=""></a>
+
+            <div class="avatar header-title-avatar p-50 mb-0">
               <div class="avatar-content">
                 <i class="fa fa-trophy text-info font-large-1 top-10-icon "></i>
               </div>
             </div>
-            Dashboard - Ranking Vendedores da Semana ({{$dates['starts']}} á {{$dates['ends']}} )
+            <span style="margin-top: -100px!important;"> Dashboard - Ranking Vendedores da Semana ({{$dates['starts']}} á {{$dates['ends']}} )</span>
           </h2>
           {{--                    <span class="content-header-title float-right mt-1">(<b>Atualização</b>: {{ \Helper::carbonize($data->first()->atualizacao)->diffForHumans() }})</span>--}}
 
@@ -211,20 +216,7 @@
 
             @endforeach
           </div>
-          <div class="row">
-            <div class="col">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Gráfico de Participação</h4>
-                </div>
-                <div class="card-content">
-                  <div class="card-body">
-                    <canvas id="pie-chart" height="300"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+
         </div>
       </div>
     </section>

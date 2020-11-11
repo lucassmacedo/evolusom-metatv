@@ -102,7 +102,7 @@
   } else {
     setTimeout(() => {
       window.location.href = window.next;
-    }, 10000)
+    }, 30000)
   }
 
   $(window).scroll(function () {

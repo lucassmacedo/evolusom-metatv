@@ -12,9 +12,6 @@
 <script src="{{ asset(mix('js/core/app-menu.js')) }}"></script>
 <script src="{{ asset(mix('js/core/app.js')) }}"></script>
 <script src="{{ asset(mix('js/scripts/components.js')) }}"></script>
-<script src="{{ asset(mix('js/scripts/charts/chart-chartjs.js')) }}"></script>
-
-{{--<script src="{{ asset(mix('js/scripts/footer.js')) }}"></script>--}}
 
 {{-- page script --}}
 @yield('page-script')
