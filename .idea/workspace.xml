@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="8dbf150c-df37-4a71-b9c6-07fec63d7bc5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/evos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/evos.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/ranking_capilaridade.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/ranking_capilaridade.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/ranking_vendas.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/ranking_vendas.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +190,7 @@
       <workItem from="1604940351150" duration="6774000" />
       <workItem from="1605005935176" duration="9728000" />
       <workItem from="1605029908438" duration="10514000" />
-      <workItem from="1605092738908" duration="8708000" />
+      <workItem from="1605092738908" duration="11351000" />
     </task>
     <servers />
   </component>
@@ -200,13 +202,14 @@
       <screen x="56" y="27" width="1310" height="741" />
     </state>
     <state x="494" y="155" width="424" height="491" key="FileChooserDialogImpl/56.27.1310.741/1366.0.1366.768@56.27.1310.741" timestamp="1600364155415" />
-    <state x="150" y="127" width="1116" height="541" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1604668133849">
+    <state x="150" y="127" width="1116" height="541" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605116764665">
       <screen x="50" y="27" width="1316" height="741" />
     </state>
-    <state x="150" y="127" width="1116" height="541" key="com.intellij.history.integration.ui.views.FileHistoryDialog/50.27.1316.741/1366.0.1366.768@50.27.1316.741" timestamp="1604668133849" />
-    <state x="402" y="136" width="618" height="522" key="find.popup" timestamp="1603193617695">
-      <screen x="56" y="27" width="1310" height="741" />
+    <state x="150" y="127" width="1116" height="541" key="com.intellij.history.integration.ui.views.FileHistoryDialog/50.27.1316.741/1366.0.1366.768@50.27.1316.741" timestamp="1605116764665" />
+    <state x="398" y="136" width="621" height="522" key="find.popup" timestamp="1605116970432">
+      <screen x="50" y="27" width="1316" height="741" />
     </state>
+    <state x="398" y="136" width="621" height="522" key="find.popup/50.27.1316.741/1366.0.1366.768@50.27.1316.741" timestamp="1605116970432" />
     <state x="402" y="136" width="618" height="522" key="find.popup/56.27.1310.741/1366.0.1366.768@56.27.1310.741" timestamp="1603193617695" />
     <state x="371" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1605102460749">
       <screen x="50" y="27" width="1316" height="741" />

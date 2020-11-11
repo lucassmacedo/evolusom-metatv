@@ -67,7 +67,7 @@
                             @if($loop->index < 3)
                               <h3 class="mb-0 text-bold-700">
 
-                                <img src="http://evolusom.test:8088/metatv37/v/{{$item->codUsur}}.png"
+                                <img src="http://evolusom.com.br/metatv37/v/{{$item->codUsur}}.png"
                                      alt="avtar img holder" height="70" width="70">
                                 {{ $item->nome }}</h3>
                             @else
@@ -192,7 +192,7 @@
 
                       <div class="avatar avatar-xl shadow mt-0">
                         <div class="avatar-content">
-                          <img src="http://evolusom.test:8088/metatv37/v/{{$item->codUsur}}.png"
+                          <img src="http://evolusom.com.br/metatv37/v/{{$item->codUsur}}.png"
                                alt="" width="100">
                         </div>
                       </div>

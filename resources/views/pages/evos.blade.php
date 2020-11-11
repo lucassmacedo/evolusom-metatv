@@ -40,13 +40,13 @@
                 @if(!empty($data['capilaridade']))
                   <div class="row">
                     <div class="col-12">
-                      <img src="http://evolusom.test:8088/metatv37/v/{{$data['capilaridade']->first()->codUsur}}.png"
+                      <img src="http://evolusom.com.br/metatv37/v/{{$data['capilaridade']->first()->codUsur}}.png"
                            alt=""
                            class="img-fluid"
                            width="120">
                     </div>
-                    <div class="col-12"><h2
-                        class="text-bold-700 text-white">{{($data['capilaridade']->first()->nome)}}</h2>
+                    <div class="col-12">
+                      <h3 class="text-bold-700 text-white">{{($data['capilaridade']->first()->nome)}}</h3>
                     </div>
                   </div>
                 @endif
@@ -55,7 +55,7 @@
                      style="position: relative;margin-bottom: -50px">
                 {{--                <div class="font-large-2 text-white pull-right">--}}
                 {{--                    <i class="fa fa-share-alt"></i>--}}
-                {{--                </div>--}}
+                {{--                </div>--}}'
               </div>
             </div>
           </div>
@@ -70,13 +70,13 @@
                 @if(!empty($data['faturamento']))
                   <div class="row">
                     <div class="col-12">
-                      <img src="http://evolusom.test:8088/metatv37/v/{{$data['faturamento']->first()->codUsur}}.png"
+                      <img src="http://evolusom.com.br/metatv37/v/{{$data['faturamento']->first()->codUsur}}.png"
                            alt=""
                            class="img-fluid"
                            width="120">
                     </div>
-                    <div class="col-12"><h2
-                        class="text-bold-700 text-white">{{($data['faturamento']->first()->nome)}}</h2>
+                    <div class="col-12">
+                      <h3 class="text-bold-700 text-white">{{($data['faturamento']->first()->nome)}}</h3>
                     </div>
                   </div>
                 @endif
@@ -95,17 +95,19 @@
             <div class="card-content">
               <div class="card-body">
 
-                <h2 class="text-bold-700 text-white text-italic " style="border-bottom: 2px solid #ffffff69;">1º LUGAR PONTUAÇÃO</h2>
+                <h2 class="text-bold-700 text-white text-italic " style="border-bottom: 2px solid #ffffff69;">1º LUGAR
+                  PONTUAÇÃO</h2>
                 @if(!empty($data['pontuacao']))
                   <div class="row">
                     <div class="col-12">
-                      <img src="http://evolusom.test:8088/metatv37/v/{{$data['pontuacao']->first()->codUsur}}.png"
+                      <img src="http://evolusom.com.br/metatv37/v/{{$data['pontuacao']->first()->codUsur}}.png"
                            alt=""
                            class="img-fluid"
                            width="120">
                     </div>
-                    <div class="col-12"><h2
-                        class="text-bold-700 text-white">{{($data['pontuacao']->first()->nome)}}</h2>
+                    <div class="col-12">
+                      <h3 class="text-bold-700 text-white">{{($data['pontuacao']->first()->pontuacao)}}
+                        - {{($data['pontuacao']->first()->nome)}}</h3>
                     </div>
                   </div>
                 @endif
