@@ -22,7 +22,7 @@
                 <i class="fa fa-trophy text-info font-large-1 top-10-icon "></i>
               </div>
             </div>
-            Dashboard - Ranking Capilaridade da Semana ({{$dates['starts']}} á {{$dates['ends']}} )
+            Dashboard - Ranking Capilaridade do Mês ({{$dates['starts']}} á {{$dates['ends']}} )
           </h2>
           {{--                    <span class="content-header-title float-right mt-1">(<b>Atualização</b>: {{ \Helper::carbonize($data->first()->atualizacao)->diffForHumans() }})</span>--}}
 

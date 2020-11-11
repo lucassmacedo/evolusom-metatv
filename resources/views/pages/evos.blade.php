@@ -148,7 +148,7 @@
             <div class="card-header d-flex align-items-start p-0">
               <table class="table table-borderless text-white">
                 <tbody>
-                @if(!empty($data['pontuacao']))
+                @if(!empty($data['capilaridade']))
                   @foreach($data['capilaridade'] as $item)
                     @if($loop->iteration > 1)
                       <tr>
@@ -160,7 +160,16 @@
                         </td>
                       </tr>
                     @endif
+
                   @endforeach
+                  <tr>
+                    <td class="text-left" height="40">
+                      <span class="mb-0 font-medium-4 text-bold"><b>Total:</b></span>
+                    </td>
+                    <td class="text-left" height="40">
+                      <span class="mb-0 font-medium-3 text-bold-700">{{ $data['capilaridade']->sum('numCliAtendidos') }}</span>
+                    </td>
+                  </tr>
                 @endif
                 </tbody>
               </table>
@@ -196,6 +205,14 @@
                       </tr>
                     @endif
                   @endforeach
+                  <tr>
+                    <td class="text-left" height="40">
+                      <span class="mb-0 font-medium-4 text-bold"><b>Total:</b></span>
+                    </td>
+                    <td class="text-left" height="40">
+                      <span class="mb-0 font-medium-3 text-bold-700">{{ number_format($data['capilaridade']->sum('faturamentoEvus'),2,",",".")  }}</span>
+                    </td>
+                  </tr>
                 @endif
                 </tbody>
               </table>

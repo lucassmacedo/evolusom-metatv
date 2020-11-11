@@ -6,7 +6,8 @@
 
 @endsection
 @section('content')
-  <div class="content-header row" id="navTitle">
+  <div class="content-header row">
+    {{--  <div class="content-header row" id="navTitle">--}}
     <div class="content-header-left col-md-12 col-12 mb-2">
       <div class="row breadcrumbs-top">
         <div class="col-12">
@@ -21,7 +22,7 @@
                 <i class="fa fa-trophy text-info font-large-1 top-10-icon "></i>
               </div>
             </div>
-            <span style="margin-top: -100px!important;"> Dashboard - Ranking Vendedores da Semana ({{$dates['starts']}} á {{$dates['ends']}} )</span>
+            <span style="margin-top: -100px!important;"> Dashboard - Ranking de Faturamento do Mês ({{$dates['starts']}} á {{$dates['ends']}} )</span>
           </h2>
           {{--                    <span class="content-header-title float-right mt-1">(<b>Atualização</b>: {{ \Helper::carbonize($data->first()->atualizacao)->diffForHumans() }})</span>--}}
 
@@ -45,6 +46,7 @@
                       <tr>
                         <th></th>
                         <th>Nome</th>
+                        <th class="text-center">Projeção</th>
                         <th class="text-center">Atendimentos</th>
                         <th class="text-center">Obtido</th>
                       </tr>
@@ -59,14 +61,7 @@
                               <span style="font-size: 20px;font-width: bold;">{{$loop->iteration}}</span>
                             @endif
                           </td>
-                          {{--                                                    @if($loop->iteration <= 3)--}}
-                          {{--                                                        <td width="50">--}}
-                          {{--                                                            <div class="avatar">--}}
-                          {{--                                                                <img src="{{ asset('images/portrait/small/avatar-s-1.jpg') }}"--}}
-                          {{--                                                                     alt="avtar img holder" height="70" width="70">--}}
-                          {{--                                                            </div>--}}
-                          {{--                                                        </td>--}}
-                          {{--                                                    @endif--}}
+
                           {{--                                                    <td {{ $loop->iteration > 3 ? "colspan=2' " : '' }} class="text-left">--}}
                           <td class="text-left">
                             @if($loop->index < 3)
@@ -83,6 +78,15 @@
                                 <span
                                   class="btn btn-relief-{{ \App\Helpers\Helper::getClassProgressBar($item->atingido) }} waves-effect waves-light black text-bold-700 "
                                   style="{{ $loop->index > 3 ? "font-size:14px;padding: 0.6rem 1.2rem" : ''  }}">
+                                   {{ $item->atingido}} %
+                                  {{ $item->vlMeta }}
+                                  {{ $item->vlVenda }}
+                                </span>
+                          </td>
+                          <td class="text-center">
+                                <span
+                                  class="btn btn-relief-{{ \App\Helpers\Helper::getClassProgressBar($item->atingido) }} waves-effect waves-light black text-bold-700 "
+                                  style="{{ $loop->index > 3 ? "font-size:14px;padding: 0.6rem 1.2rem" : ''  }}">
                                    {{ $item->numCliAtendidos }} / {{ round($item->numCliPrev )}}
                                 </span>
                           </td>
@@ -90,7 +94,7 @@
                             <span
                               class="btn btn-relief-{{ \App\Helpers\Helper::getClassProgressBar($item->atingido) }} waves-effect waves-light black text-bold-700"
                               style="{{ $loop->index > 3 ? "font-size:14px;padding: 0.6rem 1.2rem" : ''  }}">
-                              {{ $item->vlVenda > 0  && $item->vlMeta > 0 ? round(($item->vlVenda / $item->vlMeta) * 100,2) : 0 }}
+                              {{ $item->atingido }}
                               %</span>
                           </td>
                         </tr>

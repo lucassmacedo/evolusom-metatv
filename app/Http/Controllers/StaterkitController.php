@@ -53,7 +53,9 @@ class StaterkitController extends Controller
       $data['porcentagem'] = $response->map(function ($item) {
         $item->atingido = $item->vlVenda > 0 && $item->vlMeta > 0 ? round(($item->vlVenda / $item->vlMeta) * 100, 2) : 0;
         return $item;
-      })->sortByDesc('atingido');
+      })->where('vlMeta', '<>', 0)
+        ->take(50)
+        ->sortByDesc('atingido');
 
 
       $data['vendas'] = $response->map(function ($item) {
