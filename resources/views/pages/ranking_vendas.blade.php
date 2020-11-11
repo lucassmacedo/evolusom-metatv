@@ -65,7 +65,11 @@
                           {{--                                                    <td {{ $loop->iteration > 3 ? "colspan=2' " : '' }} class="text-left">--}}
                           <td class="text-left">
                             @if($loop->index < 3)
-                              <h3 class="mb-0 text-bold-700">{{ $item->nome }}</h3>
+                              <h3 class="mb-0 text-bold-700">
+
+                                <img src="http://evolusom.test:8088/metatv37/v/{{$item->codUsur}}.png"
+                                     alt="avtar img holder" height="70" width="70">
+                                {{ $item->nome }}</h3>
                             @else
                               <h5 class="mb-0">{{ $item->nome }}</h5>
                             @endif

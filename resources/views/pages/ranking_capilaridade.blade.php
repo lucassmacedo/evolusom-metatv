@@ -62,7 +62,7 @@
                             @endif
                           </td>
                           <td class="text-left">
-                 
+
                             @if($loop->index < 3)
                               <h3 class="mb-0 text-bold-700">
 
