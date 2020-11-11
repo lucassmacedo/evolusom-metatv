@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8dbf150c-df37-4a71-b9c6-07fec63d7bc5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/scripts/components.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/scripts/components.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/logo/evus-01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/panels/horizontalMenu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/panels/horizontalMenu.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +188,7 @@
       <workItem from="1604940351150" duration="6774000" />
       <workItem from="1605005935176" duration="9728000" />
       <workItem from="1605029908438" duration="10514000" />
-      <workItem from="1605092738908" duration="7809000" />
+      <workItem from="1605092738908" duration="8430000" />
     </task>
     <servers />
   </component>
