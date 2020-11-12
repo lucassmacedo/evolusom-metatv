@@ -207,7 +207,11 @@ class StaterkitController extends Controller
       ];
 
       $response = $this->client->get('metatvevus', $query);
-      $response = collect(json_decode($response->getBody()->getContents()));
+      $response = collect(json_decode($response->getBody()->getContents()))->map(function ($item) {
+        $item->avatar = sprintf("http://www.evolusom.com.br/metatv37/v/%s.png", $item->codUsur);
+        return $item;
+      });
+
 
       $data['capilaridade'] = $response->sortByDesc('numCliAtendidos')->whereNotIn('codUsur', [1])->take(10);
 

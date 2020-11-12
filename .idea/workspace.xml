@@ -8,7 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StaterkitController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StaterkitController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/pages/evos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/evos.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/ranking_vendas.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/ranking_vendas.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +191,7 @@
       <workItem from="1605029908438" duration="10514000" />
       <workItem from="1605092738908" duration="13818000" />
       <workItem from="1605124976440" duration="3323000" />
-      <workItem from="1605178006487" duration="4697000" />
+      <workItem from="1605178006487" duration="6397000" />
     </task>
     <servers />
   </component>
@@ -253,6 +252,15 @@
             <option name="methodName" value="ranking_vendas" />
           </properties>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php-line-method">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/StaterkitController.php</url>
+          <line>101</line>
+          <properties>
+            <option name="className" value="\App\Http\Controllers\StaterkitController" />
+            <option name="methodName" value="ranking_capilaridade" />
+          </properties>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

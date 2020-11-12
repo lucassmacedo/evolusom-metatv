@@ -46,8 +46,9 @@
                 @if(!empty($data['capilaridade']))
                   <div class="row">
                     <div class="col-12">
-                      <img src="http://evolusom.com.br/metatv37/v/{{$data['capilaridade']->first()->codUsur}}.png"
+                      <img src="{{$data['capilaridade']->first()->avatar}}"
                            alt=""
+                           onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"
                            class="img-fluid"
                            width="120">
                     </div>
@@ -77,10 +78,14 @@
                 @if(!empty($data['faturamento']))
                   <div class="row">
                     <div class="col-12">
-                      <img src="http://evolusom.com.br/metatv37/v/{{$data['faturamento']->first()->codUsur}}.png"
-                           alt=""
-                           class="img-fluid"
-                           width="120">
+                        <img src="{{$data['faturamento']->first()->avatar}}"
+                             alt=""
+                             class="img-fluid"
+                             onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"
+                             width="120">
+
+
+
                     </div>
                     <div class="col-12">
                       <h3 class="text-bold-700 text-white">{{($data['faturamento']->first()->nome)}}</h3>
@@ -108,9 +113,10 @@
                 @if(!empty($data['pontuacao']))
                   <div class="row">
                     <div class="col-12">
-                      <img src="http://evolusom.com.br/metatv37/v/{{$data['pontuacao']->first()->codUsur}}.png"
+                      <img src="{{$data['pontuacao']->first()->avatar}}"
                            alt=""
                            class="img-fluid"
+                           onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"
                            width="120">
                     </div>
                     <div class="col-12">
