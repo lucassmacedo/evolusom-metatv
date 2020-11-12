@@ -216,7 +216,7 @@
                       <span class="mb-0 font-medium-4 text-bold"><b>Total:</b></span>
                     </td>
                     <td class="text-left" height="40">
-                      <span class="mb-0 font-medium-3 text-bold-700">{{ number_format($data['capilaridade']->sum('faturamentoEvus'),2,",",".")  }}</span>
+                      <span class="mb-0 font-medium-3 text-bold-700">{{ number_format($data['faturamento']->sum('faturamentoEvus'),2,",",".")  }}</span>
                     </td>
                   </tr>
                 @endif
