@@ -213,11 +213,17 @@ class StaterkitController extends Controller
       });
 
 
-      $data['capilaridade'] = $response->sortByDesc('numCliAtendidos')->whereNotIn('codUsur', [1])->take(10);
+      $data['capilaridade'] = $response->sortByDesc('numCliAtendidos')
+//        ->whereNotIn('codUsur', [1])
+        ->take(10);
 
-      $data['faturamento'] = $response->sortByDesc('faturamentoEvus')->whereNotIn('codUsur', [1])->take(10);
+      $data['faturamento'] = $response->sortByDesc('faturamentoEvus')
+//        ->whereNotIn('codUsur', [1])
+        ->take(10);
 
-      $data['pontuacao'] = $response->sortByDesc('pontuacao')->whereNotIn('codUsur', [1])->take(10);
+      $data['pontuacao'] = $response->sortByDesc('pontuacao')
+//        ->whereNotIn('codUsur', [1])
+        ->take(10);
 
     } catch (Exception $exception) {
       dd($exception->getMessage());
