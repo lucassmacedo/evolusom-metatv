@@ -26,10 +26,6 @@ class StaterkitController extends Controller
   public function ranking_vendas()
   {
 
-    if (env('APP_ENV') <> 'local') {
-      abort(404);
-    }
-
     $theme = 'evolusom';
     $next = route('capilaridade');
 
@@ -82,9 +78,6 @@ class StaterkitController extends Controller
   // Fixed Layout
   public function ranking_capilaridade()
   {
-    if (env('APP_ENV') <> 'local') {
-      abort(404);
-    }
     $next = route('evus');
 
     $theme = 'evolusom';
