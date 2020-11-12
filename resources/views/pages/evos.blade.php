@@ -89,7 +89,7 @@
                     </div>
                     <div class="col-12">
                       <h3 class="text-bold-700 text-white">{{($data['faturamento']->first()->nome)}}</h3>
-                      <h2 ><span class="mb-0 text-white font-medium-3 text-bold-700">Total Geral : {{ number_format($data['capilaridade']->sum('faturamentoEvus'),2,",",".")  }}</span></h2>
+                      <h2 ><span class="mb-0 text-white font-medium-3 text-bold-700">Total Geral : {{ number_format($data['faturamento']->sum('faturamentoEvus'),2,",",".")  }}</span></h2>
                     </div>
                   </div>
                 @endif

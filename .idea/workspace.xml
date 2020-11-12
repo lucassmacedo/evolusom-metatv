@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8dbf150c-df37-4a71-b9c6-07fec63d7bc5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StaterkitController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StaterkitController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/evos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/evos.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,7 +192,7 @@
       <workItem from="1605092738908" duration="13818000" />
       <workItem from="1605124976440" duration="3323000" />
       <workItem from="1605178006487" duration="6397000" />
-      <workItem from="1605188708044" duration="41000" />
+      <workItem from="1605188708044" duration="679000" />
     </task>
     <servers />
   </component>

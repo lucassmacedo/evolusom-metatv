@@ -221,6 +221,7 @@ class StaterkitController extends Controller
 //        ->whereNotIn('codUsur', [1])
         ->take(10);
 
+
       $data['pontuacao'] = $response->sortByDesc('pontuacao')
 //        ->whereNotIn('codUsur', [1])
         ->take(10);
