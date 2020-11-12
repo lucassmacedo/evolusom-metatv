@@ -32,6 +32,7 @@ class StaterkitController extends Controller
 
     $theme = 'evolusom';
     $next = route('capilaridade');
+    $next = null;
 
     try {
       $dates = [
@@ -47,18 +48,26 @@ class StaterkitController extends Controller
         ]
       ];
 
-      $response = $this->client->get('metatvfaturamento', $query);
-      $response = collect(json_decode($response->getBody()->getContents()));
+      $response_month = $this->client->get('metatvfaturamento', $query);
+      $response_month = collect(json_decode($response_month->getBody()->getContents()));
 
-      $data['porcentagem'] = $response->map(function ($item) {
+      $query['query']['dataFinal'] = now()->format('d/m/Y');
+
+      $response_parcial = $this->client->get('metatvfaturamento', $query);
+      $response_parcial = collect(json_decode($response_parcial->getBody()->getContents()))->keyBy('codUsur');
+
+      $data['porcentagem'] = $response_month->map(function ($item) use ($response_parcial) {
         $item->atingido = $item->vlVenda > 0 && $item->vlMeta > 0 ? round(($item->vlVenda / $item->vlMeta) * 100, 2) : 0;
+        $parcial = $response_parcial[$item->codUsur];
+        $item->projetado = $parcial->vlVenda > 0 && $parcial->vlMeta > 0 ? round(($item->vlVenda / $parcial->vlMeta) * 100, 2) : 0;
         return $item;
       })->where('vlMeta', '<>', 0)
         ->take(50)
-        ->sortByDesc('atingido');
+        ->sortByDesc('atingido')
+        ->sortByDesc('projetado');
 
 
-      $data['vendas'] = $response->map(function ($item) {
+      $data['vendas'] = $response_month->map(function ($item) {
         $item->atingido = $item->vlVenda > 0 && $item->vlMeta > 0 ? round(($item->vlVenda / $item->vlMeta) * 100, 2) : 0;
         return $item;
       })->sortByDesc('vlVenda')

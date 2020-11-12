@@ -3,7 +3,11 @@
 @section('title', 'Ranking Vendas')
 
 @section('vendor-style')
-
+  <style>
+    #dashboard-analytics table td {
+      padding: 0.15rem!important;
+    }
+  </style>
 @endsection
 @section('content')
   <div class="content-header row">
@@ -35,7 +39,41 @@
     <!-- Dashboard Analytics Start -->
     <section id="dashboard-analytics">
       <div class="row">
-        <div class="col-md-8 col-12">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="row">
+            @foreach($data['vendas'] as $key => $item)
+
+              <div class="col-sm-4">
+                <div class="card bg-analytics text-white" style="min-height: 238px;">
+                  <div class="card-content">
+                    <div class="card-body text-center text-white">
+                      <img src="{{ asset('images/elements/decore-left.png') }}" class="img-left"
+                           alt="card-img-left">
+                      <img src="{{ asset('images/elements/decore-right.png') }}" class="img-right"
+                           alt="card-img-right">
+
+                      <div class="avatar avatar-xl shadow mt-0">
+                        <div class="avatar-content">
+                          <img src="http://evolusom.com.br/metatv37/v/{{$item->codUsur}}.png"
+                               alt="" width="100">
+                        </div>
+                      </div>
+                      <div class="text-center">
+                        <h2 class="mb-2 text-white"><b>{{$loop->iteration}} º Lugar</b></h2>
+                        <h1 class="mb-2 text-white"><b>{{$item->nome}}</b></h1>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            @endforeach
+          </div>
+
+        </div>
+
+        <div class="col-md-12 col-12">
           <div class="row">
             <div class="col-md-12 col-12">
               <div class="card">
@@ -64,51 +102,81 @@
 
                           {{--                                                    <td {{ $loop->iteration > 3 ? "colspan=2' " : '' }} class="text-left">--}}
                           <td class="text-left">
-                            @if($loop->index < 3)
-                              <h3 class="mb-0 text-bold-700">
+                            <div>
+                              @if($loop->index < 3)
 
-                                <img src="http://evolusom.com.br/metatv37/v/{{$item->codUsur}}.png"
-                                     alt="avtar img holder" height="70" width="70">
-                                {{ $item->nome }}</h3>
-                            @else
-                              <h5 class="mb-0">{{ $item->nome }}</h5>
-                            @endif
+                                <div class="row">
+                                  <div class="col-2">
+                                    <img src="http://evolusom.com.br/metatv37/v/{{$item->codUsur}}.png"
+                                         alt="avtar img holder" height="70" width="70">
+                                  </div>
+
+                                  <div class="col-10">
+                                    <h3 class="mt-1 text-bold-700">
+                                      {{ $item->nome }}
+
+                                    </h3>
+
+                                    <div
+                                      class="progress progress-xl progress-bar-{{ \App\Helpers\Helper::getClassProgressBar($item->atingido) }}"
+                                      style="margin-bottom: 15px;">
+                                      <div class="progress-bar progress-bar-striped"
+                                           role="progressbar"
+                                           aria-valuenow="{{$item->atingido}}"
+                                           aria-valuemin="0"
+                                           aria-valuemax="100" style="width:{{$item->atingido}}%;"></div>
+                                    </div>
+                                  </div>
+                                </div>
+                              @else
+                                <div class="row">
+
+                                  <div class="col-12">
+                                    <h4 class="mt-1 text-bold-700">
+                                      {{ $item->nome }}
+
+                                    </h4>
+
+                                    <div
+                                      class="progress progress-xl progress-bar-{{ \App\Helpers\Helper::getClassProgressBar($item->atingido) }}"
+                                      style="margin-bottom: 15px;">
+                                      <div class="progress-bar progress-bar-striped"
+                                           role="progressbar"
+                                           aria-valuenow="{{$item->atingido}}"
+                                           aria-valuemin="0"
+                                           aria-valuemax="100" style="width:{{$item->atingido}}%;"></div>
+                                    </div>
+                                  </div>
+                                </div>
+                              @endif
+
+                            </div>
+
+
                           </td>
                           <td class="text-center">
                                 <span
-                                  class="btn btn-relief-{{ \App\Helpers\Helper::getClassProgressBar($item->atingido) }} waves-effect waves-light black text-bold-700 "
+                                  class="btn btn-relief-{{ \App\Helpers\Helper::getClassProgressBar($item->projetado) }} waves-effect waves-light black text-bold-700 "
                                   style="{{ $loop->index > 3 ? "font-size:14px;padding: 0.6rem 1.2rem" : ''  }}">
-                                   {{ $item->atingido}} %
-                                  {{ $item->vlMeta }}
-                                  {{ $item->vlVenda }}
+                                   {{ $item->projetado}}%
                                 </span>
                           </td>
                           <td class="text-center">
                                 <span
                                   class="btn btn-relief-{{ \App\Helpers\Helper::getClassProgressBar($item->atingido) }} waves-effect waves-light black text-bold-700 "
                                   style="{{ $loop->index > 3 ? "font-size:14px;padding: 0.6rem 1.2rem" : ''  }}">
-                                   {{ $item->numCliAtendidos }} / {{ round($item->numCliPrev )}}
+                                   {{ $item->numCliAtendidos }}/{{ round($item->numCliPrev )}}
                                 </span>
                           </td>
                           <td class="text-center">
                             <span
                               class="btn btn-relief-{{ \App\Helpers\Helper::getClassProgressBar($item->atingido) }} waves-effect waves-light black text-bold-700"
                               style="{{ $loop->index > 3 ? "font-size:14px;padding: 0.6rem 1.2rem" : ''  }}">
-                              {{ $item->atingido }}
-                              %</span>
+                              {{ $item->atingido }}%</span>
                           </td>
                         </tr>
                         <tr>
                           <td colspan="6" class="text-center">
-                            <div
-                              class="progress progress-xl progress-bar-{{ \App\Helpers\Helper::getClassProgressBar($item->atingido) }}"
-                              style="margin-bottom: 15px;">
-                              <div class="progress-bar progress-bar-striped"
-                                   role="progressbar"
-                                   aria-valuenow="{{$item->atingido}}"
-                                   aria-valuemin="0"
-                                   aria-valuemax="100" style="width:{{$item->atingido}}%;"></div>
-                            </div>
                           </td>
                         </tr>
                       @endforeach
@@ -186,42 +254,7 @@
           </div>
         </div>
 
-        <div class="col-lg-4 col-md-12 col-sm-12">
-          <div class="row">
-            @foreach($data['vendas'] as $key => $item)
 
-              <div class="col-sm-12 ">
-                <div class="card bg-analytics text-white">
-                  <div class="card-content">
-                    <div class="card-body text-center text-white">
-                      <img src="{{ asset('images/elements/decore-left.png') }}" class="img-left"
-                           alt="card-img-left">
-                      <img src="{{ asset('images/elements/decore-right.png') }}" class="img-right"
-                           alt="card-img-right">
-
-                      <div class="avatar avatar-xl shadow mt-0">
-                        <div class="avatar-content">
-                          <img src="http://evolusom.com.br/metatv37/v/{{$item->codUsur}}.png"
-                               alt="" width="100">
-                        </div>
-                      </div>
-                      <div class="text-center">
-                        <h1 class="mb-2 text-white"><b>{{$item->nome}}</b></h1>
-                        <p class="m-auto">
-                          @if ($loop->first)
-                            Até o momento o vendedor com mais vendas.
-                          @endif
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            @endforeach
-          </div>
-
-        </div>
       </div>
     </section>
   </div>
