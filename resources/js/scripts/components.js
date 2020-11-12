@@ -85,7 +85,7 @@
   if (window.next !== undefined && navbar !== null) {
     function pageScroll() {
       window.scrollBy(0, 1);
-      scrolldelay = setTimeout(pageScroll, 100);
+      scrolldelay = setTimeout(pageScroll, 30);
     }
 
     $(window).scroll(function () {

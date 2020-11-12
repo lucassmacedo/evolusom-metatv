@@ -32,7 +32,6 @@ class StaterkitController extends Controller
 
     $theme = 'evolusom';
     $next = route('capilaridade');
-    $next = null;
 
     try {
       $dates = [
@@ -73,29 +72,11 @@ class StaterkitController extends Controller
       })->sortByDesc('vlVenda')
         ->take(3);
 
-      $label = array_column($data['vendas']->toArray(), 'nome');
-      $values = array_column($data['vendas']->toArray(), 'vlVenda');
-      $pieChart = [
-        'labels'   => $label,
-        'datasets' => [
-          [
-            'data' => $values,
-
-            'backgroundColor' => [
-              '#7367F0',
-              '#28C76F',
-              '#FF9F43',
-            ]
-          ]
-        ],
-      ];
-
-
     } catch (Exception $exception) {
       dd($exception->getMessage());
     }
 
-    return view('pages.ranking_vendas', compact('next', 'data', 'theme', 'pieChart', 'dates'));
+    return view('pages.ranking_vendas', compact('next', 'data', 'theme', 'dates'));
   }
 
   // Fixed Layout
@@ -129,7 +110,8 @@ class StaterkitController extends Controller
       $data = $response->map(function ($item) {
         $item->atingido = $item->numCliAtendidos > 0 && $item->numCliPrev > 0 ? round(($item->numCliAtendidos / $item->numCliPrev) * 100, 2) : 0;
         return $item;
-      })
+      })->where('vlMeta', '<>', 0)
+        ->take(50)
         ->sortByDesc('numCliAtendidos');
 
     } catch (Exception $exception) {
@@ -212,7 +194,7 @@ class StaterkitController extends Controller
         return $item;
       });
 
-      $data['geral'] = $response->sortByDesc('numCliAtendidos');
+        $data['geral'] = $response->sortByDesc('numCliAtendidos');
 
       $data['capilaridade'] = $response->sortByDesc('numCliAtendidos')
 //        ->whereNotIn('codUsur', [1])

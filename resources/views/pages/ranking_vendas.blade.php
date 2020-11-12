@@ -10,8 +10,8 @@
   </style>
 @endsection
 @section('content')
-  <div class="content-header row">
-    {{--  <div class="content-header row" id="navTitle">--}}
+{{--  <div class="content-header row">--}}
+      <div class="content-header row" id="navTitle">
     <div class="content-header-left col-md-12 col-12 mb-2">
       <div class="row breadcrumbs-top">
         <div class="col-12">
@@ -44,7 +44,7 @@
             @foreach($data['vendas'] as $key => $item)
 
               <div class="col-sm-4">
-                <div class="card bg-analytics text-white" style="min-height: 238px;">
+                <div class="card bg-analytics text-white" style="min-height: 228px;">
                   <div class="card-content">
                     <div class="card-body text-center text-white">
                       <img src="{{ asset('images/elements/decore-left.png') }}" class="img-left"
@@ -60,7 +60,7 @@
                       </div>
                       <div class="text-center">
                         <h2 class="mb-2 text-white"><b>{{$loop->iteration}} º Lugar</b></h2>
-                        <h1 class="mb-2 text-white"><b>{{$item->nome}}</b></h1>
+                        <h3 class="mb-2 text-white"><b>{{$item->nome}}</b></h3>
 
                       </div>
                     </div>
@@ -119,7 +119,7 @@
 
                                     <div
                                       class="progress progress-xl progress-bar-{{ \App\Helpers\Helper::getClassProgressBar($item->atingido) }}"
-                                      style="margin-bottom: 15px;">
+                                    >
                                       <div class="progress-bar progress-bar-striped"
                                            role="progressbar"
                                            aria-valuenow="{{$item->atingido}}"

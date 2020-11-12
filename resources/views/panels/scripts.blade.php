@@ -1,6 +1,5 @@
 <script>
   window.next = "{{ $next ?? null }}";
-  window.pieChart = {!! isset($pieChart) ? json_encode($pieChart) : json_encode([]) !!};
 </script>
 
 {{-- Vendor Scripts --}}

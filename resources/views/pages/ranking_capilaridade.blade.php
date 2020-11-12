@@ -17,6 +17,10 @@
       <div class="row breadcrumbs-top">
         <div class="col-12">
           <h2 class="content-header-title float-left mb-0">
+            <a href="{{ route('home') }}"><img
+                src="{{ str_contains(url()->full(), 'evus') ? asset('images/logo/evus-02.png') : asset('images/logo/evolusom-white.png') }}"
+                height="60"
+                alt=""></a>
             <div class="avatar header-title-avatar p-50">
               <div class="avatar-content">
                 <i class="fa fa-trophy text-info font-large-1 top-10-icon "></i>
@@ -70,7 +74,7 @@
                                      alt="avtar img holder" height="70" width="70">
                                 {{ $item->nome }}</h3>
                             @else
-                              <h5 class="mb-0">{{ $item->nome }}</h5>
+                              <h5 class="mb-0 text-bold-700">{{ $item->nome }}</h5>
                             @endif
                           </td>
                           <td class="text-center">
