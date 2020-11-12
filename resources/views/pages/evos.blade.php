@@ -54,7 +54,7 @@
                     </div>
                     <div class="col-12">
                       <h3 class="text-bold-700 text-white">{{($data['capilaridade']->first()->nome)}}</h3>
-                      <h2 ><span class="mb-0 text-white font-medium-3 text-bold-700">Total Geral : {{ $data['capilaridade']->sum('numCliAtendidos') }}</span></h2>
+                      <h2 ><span class="mb-0 text-white font-medium-3 text-bold-700">Total Geral : {{ $data['geral']->sum('numCliAtendidos') }}</span></h2>
                     </div>
                   </div>
                 @endif
@@ -89,7 +89,7 @@
                     </div>
                     <div class="col-12">
                       <h3 class="text-bold-700 text-white">{{($data['faturamento']->first()->nome)}}</h3>
-                      <h2 ><span class="mb-0 text-white font-medium-3 text-bold-700">Total Geral : {{ number_format($data['faturamento']->sum('faturamentoEvus'),2,",",".")  }}</span></h2>
+                      <h2 ><span class="mb-0 text-white font-medium-3 text-bold-700">Total Geral : {{ number_format($data['geral']->sum('faturamentoEvus'),2,",",".")  }}</span></h2>
                     </div>
                   </div>
                 @endif
@@ -122,7 +122,7 @@
                     <div class="col-12">
                       <h3 class="text-bold-700 text-white">{{($data['pontuacao']->first()->nome)}}</h3>
 
-                      <h4 class="text-bold-700 text-white">{{($data['pontuacao']->first()->pontuacao)}} Pontos</h4>
+                      <h4 class="text-bold-700 text-white">{{($data['geral']->first()->pontuacao)}} Pontos</h4>
                     </div>
                   </div>
                 @endif
@@ -173,7 +173,7 @@
                       <span class="mb-0 font-medium-4 text-bold"><b>Total:</b></span>
                     </td>
                     <td class="text-left" height="40">
-                      <span class="mb-0 font-medium-3 text-bold-700">{{ $data['capilaridade']->sum('numCliAtendidos') }}</span>
+                      <span class="mb-0 font-medium-3 text-bold-700">{{ $data['geral']->sum('numCliAtendidos') }}</span>
                     </td>
                   </tr>
                 @endif
@@ -216,7 +216,7 @@
                       <span class="mb-0 font-medium-4 text-bold"><b>Total:</b></span>
                     </td>
                     <td class="text-left" height="40">
-                      <span class="mb-0 font-medium-3 text-bold-700">{{ number_format($data['faturamento']->sum('faturamentoEvus'),2,",",".")  }}</span>
+                      <span class="mb-0 font-medium-3 text-bold-700">{{ number_format($data['geral']->sum('faturamentoEvus'),2,",",".")  }}</span>
                     </td>
                   </tr>
                 @endif
