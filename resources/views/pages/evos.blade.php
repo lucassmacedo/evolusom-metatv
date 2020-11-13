@@ -122,7 +122,7 @@
                     <div class="col-12">
                       <h3 class="text-bold-700 text-white">{{($data['pontuacao']->first()->nome)}}</h3>
 
-                      <h4 class="text-bold-700 text-white">{{($data['geral']->first()->pontuacao)}} Pontos</h4>
+                      <h4 class="text-bold-700 text-white">{{($data['pontuacao']->first()->pontuacao)}} Pontos</h4>
                     </div>
                   </div>
                 @endif

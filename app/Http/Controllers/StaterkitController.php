@@ -187,7 +187,7 @@ class StaterkitController extends Controller
         return $item;
       });
 
-        $data['geral'] = $response->sortByDesc('numCliAtendidos');
+     $data['geral'] = $response->sortByDesc('numCliAtendidos');
 
       $data['capilaridade'] = $response->sortByDesc('numCliAtendidos')
 //        ->whereNotIn('codUsur', [1])
