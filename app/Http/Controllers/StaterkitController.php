@@ -200,8 +200,8 @@ class StaterkitController extends Controller
     $title = "Meta Equipes";
     $next = route('home');
     $theme = 'evolusom';
-
-    $response = $this->client->get('equipes');
+    $client = new \GuzzleHttp\Client();
+    $response = $client->get('http://metatv.evolusom.com.br/api/equipes');
 
     $data['items'] = collect(json_decode($response->getBody()->getContents()));
 

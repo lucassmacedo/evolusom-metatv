@@ -227,72 +227,72 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //        ]
 //    ];
 //});
-//
-//Route::get('/equipes', function () {
-//
-//    return [
-//        [
-//            'codigo'             => 48,
-//            'nome'               => 'MARCOS',
-//            'faturado'           => 1560.00,
-//            'meta'               => 3600.00,
-//            'meta_clientes'      => 300,
-//            'clientes_atendidos' => 290,
-//            'percentual'         => 0.0667,
-//            'atualizacao'        => now()->toDateTimeString(),
-//        ],
-//        [
-//            'codigo'             => 69,
-//            'nome'               => 'VINICIUS',
-//            'faturado'           => 1160.00,
-//            'meta'               => 2600.00,
-//            'meta_clientes'      => 200,
-//            'clientes_atendidos' => 114,
-//            'percentual'         => 0.0167,
-//            'atualizacao'        => now()->toDateTimeString(),
-//        ],
-//        [
-//            'codigo'             => 69,
-//            'nome'               => 'VINICIUS',
-//            'faturado'           => 1160.00,
-//            'meta'               => 2600.00,
-//            'meta_clientes'      => 200,
-//            'clientes_atendidos' => 114,
-//            'percentual'         => 0.0167,
-//            'atualizacao'        => now()->toDateTimeString(),
-//        ],
-//        [
-//            'codigo'             => 69,
-//            'nome'               => 'VINICIUS',
-//            'faturado'           => 1160.00,
-//            'meta'               => 2600.00,
-//            'meta_clientes'      => 200,
-//            'clientes_atendidos' => 114,
-//            'percentual'         => 0.0167,
-//            'atualizacao'        => now()->toDateTimeString(),
-//        ],
-//        [
-//            'codigo'             => 69,
-//            'nome'               => 'VINICIUS',
-//            'faturado'           => 1160.00,
-//            'meta'               => 2600.00,
-//            'meta_clientes'      => 200,
-//            'clientes_atendidos' => 114,
-//            'percentual'         => 0.0167,
-//            'atualizacao'        => now()->toDateTimeString(),
-//        ],
-//        [
-//            'codigo'             => 69,
-//            'nome'               => 'VINICIUS',
-//            'faturado'           => 1160.00,
-//            'meta'               => 2600.00,
-//            'meta_clientes'      => 200,
-//            'clientes_atendidos' => 114,
-//            'percentual'         => 0.0167,
-//            'atualizacao'        => now()->toDateTimeString(),
-//        ]
-//    ];
-//});
+
+Route::get('/equipes', function () {
+
+    return [
+        [
+            'codigo'             => 48,
+            'nome'               => 'MARCOS',
+            'faturado'           => 1560.00,
+            'meta'               => 3600.00,
+            'meta_clientes'      => 300,
+            'clientes_atendidos' => 290,
+            'percentual'         => 0.0667,
+            'atualizacao'        => now()->toDateTimeString(),
+        ],
+        [
+            'codigo'             => 69,
+            'nome'               => 'VINICIUS',
+            'faturado'           => 1160.00,
+            'meta'               => 2600.00,
+            'meta_clientes'      => 200,
+            'clientes_atendidos' => 114,
+            'percentual'         => 0.0167,
+            'atualizacao'        => now()->toDateTimeString(),
+        ],
+        [
+            'codigo'             => 69,
+            'nome'               => 'VINICIUS',
+            'faturado'           => 1160.00,
+            'meta'               => 2600.00,
+            'meta_clientes'      => 200,
+            'clientes_atendidos' => 114,
+            'percentual'         => 0.0167,
+            'atualizacao'        => now()->toDateTimeString(),
+        ],
+        [
+            'codigo'             => 69,
+            'nome'               => 'VINICIUS',
+            'faturado'           => 1160.00,
+            'meta'               => 2600.00,
+            'meta_clientes'      => 200,
+            'clientes_atendidos' => 114,
+            'percentual'         => 0.0167,
+            'atualizacao'        => now()->toDateTimeString(),
+        ],
+        [
+            'codigo'             => 69,
+            'nome'               => 'VINICIUS',
+            'faturado'           => 1160.00,
+            'meta'               => 2600.00,
+            'meta_clientes'      => 200,
+            'clientes_atendidos' => 114,
+            'percentual'         => 0.0167,
+            'atualizacao'        => now()->toDateTimeString(),
+        ],
+        [
+            'codigo'             => 69,
+            'nome'               => 'VINICIUS',
+            'faturado'           => 1160.00,
+            'meta'               => 2600.00,
+            'meta_clientes'      => 200,
+            'clientes_atendidos' => 114,
+            'percentual'         => 0.0167,
+            'atualizacao'        => now()->toDateTimeString(),
+        ]
+    ];
+});
 //Route::get('/meta-fabricante', function () {
 //
 //    return [
