@@ -71,6 +71,7 @@
                               <h3 class="mb-0 text-bold-700">
 
                                 <img src="http://evolusom.com.br/metatv37/v/{{$item->codUsur}}.png"
+                                     onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"
                                      alt="avtar img holder" height="70" width="70">
                                 {{ $item->nome }}</h3>
                             @else
