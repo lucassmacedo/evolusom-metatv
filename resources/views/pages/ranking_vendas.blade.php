@@ -108,6 +108,7 @@
                                 <div class="row">
                                   <div class="col-2">
                                     <img src="http://evolusom.com.br/metatv37/v/{{$item->codUsur}}.png"
+                                         onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"
                                          alt="avtar img holder" height="70" width="70">
                                   </div>
 
