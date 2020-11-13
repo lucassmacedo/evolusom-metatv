@@ -43,6 +43,63 @@ class StaterkitController extends Controller
         ]
       ];
 
+      $usersToIgnore = [
+        32,
+        48,
+        55,
+        69,
+        3,
+        5,
+        9,
+        27,
+        31,
+        97,
+        6,
+        22,
+        50,
+        14,
+        26,
+        2,
+        4,
+        20,
+        24,
+        25,
+        28,
+        30,
+        37,
+        51,
+        52,
+        53,
+        54,
+        80,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        98,
+        99,
+        100,
+        101,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+      ];
+
       $response_month = $this->client->get('metatvfaturamento', $query);
       $response_month = collect(json_decode($response_month->getBody()->getContents()));
 
@@ -56,7 +113,9 @@ class StaterkitController extends Controller
         $parcial = $response_parcial[$item->codUsur];
         $item->projetado = $parcial->vlVenda > 0 && $parcial->vlMeta > 0 ? round(($item->vlVenda / $parcial->vlMeta) * 100, 2) : 0;
         return $item;
-      })->where('vlMeta', '<>', 0)
+      })
+        ->whereNotIn('codUsur', $usersToIgnore)
+        ->where('vlMeta', '<>', 0)
         ->take(50)
         ->sortByDesc('atingido')
         ->sortByDesc('projetado');
@@ -180,21 +239,75 @@ class StaterkitController extends Controller
           'dataFinal'   => $dates['ends']
         ]
       ];
+      // usuários a serem ignorados a pedido do Rodrigo Gonçalves
+      $usersToIgnoreGeral = [
+        3,
+        5,
+        9,
+        27,
+        31,
+        97,
+        6,
+        22,
+        50,
+        14,
+        26,
+        2,
+        4,
+        20,
+        24,
+        25,
+        28,
+        30,
+        37,
+        51,
+        52,
+        53,
+        54,
+        80,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        98,
+        99,
+        100,
+        101,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+      ];
 
       $response = $this->client->get('metatvevus', $query);
       $response = collect(json_decode($response->getBody()->getContents()))->map(function ($item) {
         $item->avatar = sprintf("http://www.evolusom.com.br/metatv37/v/%s.png", $item->codUsur);
         return $item;
-      });
+      })->whereNotIn('codUsur', $usersToIgnoreGeral);
 
-     $data['geral'] = $response->sortByDesc('numCliAtendidos');
+
+      $data['geral'] = $response->sortByDesc('numCliAtendidos');
+
 
       $data['capilaridade'] = $response->sortByDesc('numCliAtendidos')
 //        ->whereNotIn('codUsur', [1])
         ->take(10);
 
       $data['faturamento'] = $response->sortByDesc('faturamentoEvus')
-//        ->whereNotIn('codUsur', [1])
         ->take(10);
 
 

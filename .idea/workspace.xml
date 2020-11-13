@@ -7,7 +7,6 @@
     <list default="true" id="8dbf150c-df37-4a71-b9c6-07fec63d7bc5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StaterkitController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StaterkitController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/evos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/evos.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,7 +192,7 @@
       <workItem from="1605124976440" duration="3323000" />
       <workItem from="1605178006487" duration="6397000" />
       <workItem from="1605188708044" duration="9354000" />
-      <workItem from="1605270721623" duration="1751000" />
+      <workItem from="1605270721623" duration="6363000" />
     </task>
     <servers />
   </component>
@@ -218,10 +217,10 @@
     </state>
     <state x="398" y="136" width="621" height="522" key="find.popup/50.27.1316.741/1366.0.1366.768@50.27.1316.741" timestamp="1605116970432" />
     <state x="402" y="136" width="618" height="522" key="find.popup/56.27.1310.741/1366.0.1366.768@56.27.1310.741" timestamp="1603193617695" />
-    <state x="371" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1605270881014">
+    <state x="371" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1605276829776">
       <screen x="50" y="27" width="1316" height="741" />
     </state>
-    <state x="371" y="89" width="672" height="678" key="search.everywhere.popup/50.27.1316.741/1366.0.1366.768@50.27.1316.741" timestamp="1605270881014" />
+    <state x="371" y="89" width="672" height="678" key="search.everywhere.popup/50.27.1316.741/1366.0.1366.768@50.27.1316.741" timestamp="1605276829776" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -257,7 +256,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/StaterkitController.php</url>
-          <line>78</line>
+          <line>137</line>
           <properties>
             <option name="className" value="\App\Http\Controllers\StaterkitController" />
             <option name="methodName" value="ranking_capilaridade" />
@@ -266,7 +265,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/StaterkitController.php</url>
-          <line>118</line>
+          <line>177</line>
           <properties>
             <option name="className" value="\App\Http\Controllers\StaterkitController" />
             <option name="methodName" value="produtos_mes" />
@@ -275,7 +274,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/StaterkitController.php</url>
-          <line>128</line>
+          <line>187</line>
           <properties>
             <option name="className" value="\App\Http\Controllers\StaterkitController" />
             <option name="methodName" value="produtos_dia" />
