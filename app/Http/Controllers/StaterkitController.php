@@ -224,7 +224,7 @@ class StaterkitController extends Controller
     $theme = 'evus';
     $title = "Meta Evus";
     $next = route('home');
-    $next = null;
+    
     try {
 
       $dates = [
