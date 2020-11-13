@@ -1,6 +1,6 @@
 @extends('layouts.horizontalDetachedLayoutMaster')
 
-@section('title', 'Ranking EVOS')
+@section('title', 'Ranking EVUS')
 
 @section('vendor-style')
 
