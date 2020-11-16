@@ -142,7 +142,7 @@ class StaterkitController extends Controller
   // Fixed Layout
   public function ranking_capilaridade()
   {
-    $next = route('evus');
+    $next = route('meta_equipes');
 
     $theme = 'evolusom';
 
@@ -207,8 +207,7 @@ class StaterkitController extends Controller
   public function meta_equipes()
   {
     $title = "Meta Equipes";
-    $next = route('home');
-    $next = null;
+    $next = route('evus');
     $theme = 'evolusom';
 
     try {
