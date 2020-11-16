@@ -217,6 +217,15 @@ class StaterkitController extends Controller
           'dataFinal'   => $dates['ends']
         ]
       ];
+
+
+      $response_dias_uteis = $this->client->get('metatvdiasuteis', $query);
+      $response_dias_uteis = collect(json_decode($response_dias_uteis->getBody()->getContents()));
+      $data['dias_uteis'] = [
+        'expectativa' => (int)$response_dias_uteis->where('dia', '>', date('d'))->count() / (int)$response_dias_uteis->count() * 100
+      ];
+
+
       $response_month = $this->client->get('metatvequipe', $query);
       $response_month = collect(json_decode($response_month->getBody()->getContents()));
 

@@ -57,8 +57,8 @@
                     <i class="feather icon-check-circle text-warning font-medium-5"></i>
                   </div>
                 </div>
-                <h2 class="text-bold-700">{{ $data['geral']['projecao'] }}%</h2>
-                <p class="mb-0 line-ellipsis  text-bold-700">PROJEÇÃO</p>
+                <h2 class="text-bold-700">{{ $data['dias_uteis']['expectativa'] }}%</h2>
+                <p class="mb-0 line-ellipsis  text-bold-700">EXPECTATIVA</p>
               </div>
             </div>
           </div>
@@ -87,7 +87,8 @@
                     <i class="feather icon-shopping-bag text-danger font-medium-5"></i>
                   </div>
                 </div>
-                <h2 class="text-bold-700">{{ $data['geral']['clientes_atendidos'] }} / {{ $data['geral']['meta_clientes'] }}</h2>
+                <h2 class="text-bold-700">{{ $data['geral']['clientes_atendidos'] }}
+                  / {{ $data['geral']['meta_clientes'] }}</h2>
                 <p class="mb-0 line-ellipsis text-bold-700">CLIENTES x META </p>
               </div>
             </div>
