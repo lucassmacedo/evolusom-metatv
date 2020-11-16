@@ -40,6 +40,10 @@ class StaterkitController extends Controller
         'query' => [
           'dataInicial' => $dates['starts'],
           'dataFinal'   => $dates['ends']
+        ],
+        'auth'  => [
+          env('APP_API_USERNAME'),
+          env('APP_API_PASSWORD')
         ]
       ];
 
@@ -100,6 +104,7 @@ class StaterkitController extends Controller
         207,
       ];
 
+
       $response_month = $this->client->get('metatvfaturamento', $query);
       $response_month = collect(json_decode($response_month->getBody()->getContents()));
 
@@ -153,6 +158,10 @@ class StaterkitController extends Controller
         'query' => [
           'dataInicial' => $dates['starts'],
           'dataFinal'   => $dates['ends']
+        ],
+        'auth'  => [
+          env('APP_API_USERNAME'),
+          env('APP_API_PASSWORD')
         ]
       ];
 
@@ -215,6 +224,10 @@ class StaterkitController extends Controller
         'query' => [
           'dataInicial' => $dates['starts'],
           'dataFinal'   => $dates['ends']
+        ],
+        'auth'  => [
+          env('APP_API_USERNAME'),
+          env('APP_API_PASSWORD')
         ]
       ];
 
@@ -293,6 +306,10 @@ class StaterkitController extends Controller
         'query' => [
           'dataInicial' => $dates['starts'],
           'dataFinal'   => $dates['ends']
+        ],
+        'auth'  => [
+          env('APP_API_USERNAME'),
+          env('APP_API_PASSWORD')
         ]
       ];
       // usuários a serem ignorados a pedido do Rodrigo Gonçalves
