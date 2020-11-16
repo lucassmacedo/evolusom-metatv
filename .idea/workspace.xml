@@ -6,6 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="8dbf150c-df37-4a71-b9c6-07fec63d7bc5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
+=======
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StaterkitController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StaterkitController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/meta_equipes.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/meta_equipes.blade.php" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +197,7 @@
       <workItem from="1605124976440" duration="3323000" />
       <workItem from="1605178006487" duration="6397000" />
       <workItem from="1605188708044" duration="9354000" />
-      <workItem from="1605270721623" duration="6363000" />
+      <workItem from="1605270721623" duration="8739000" />
     </task>
     <servers />
   </component>
@@ -221,10 +226,10 @@
     </state>
     <state x="398" y="136" width="621" height="522" key="find.popup/50.27.1316.741/1366.0.1366.768@50.27.1316.741" timestamp="1605296944307" />
     <state x="402" y="136" width="618" height="522" key="find.popup/56.27.1310.741/1366.0.1366.768@56.27.1310.741" timestamp="1603193617695" />
-    <state x="371" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1605276829776">
+    <state x="371" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1605286899646">
       <screen x="50" y="27" width="1316" height="741" />
     </state>
-    <state x="371" y="89" width="672" height="678" key="search.everywhere.popup/50.27.1316.741/1366.0.1366.768@50.27.1316.741" timestamp="1605276829776" />
+    <state x="371" y="89" width="672" height="678" key="search.everywhere.popup/50.27.1316.741/1366.0.1366.768@50.27.1316.741" timestamp="1605286899646" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -244,6 +249,19 @@
           <line>429</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
+<<<<<<< Updated upstream
+=======
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/routes/api.php</url>
+          <line>295</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/pages/meta_equipes.blade.php</url>
+          <line>91</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+>>>>>>> Stashed changes
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/StaterkitController.php</url>
           <line>25</line>

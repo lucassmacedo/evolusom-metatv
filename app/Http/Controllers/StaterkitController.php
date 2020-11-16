@@ -199,20 +199,51 @@ class StaterkitController extends Controller
   {
     $title = "Meta Equipes";
     $next = route('home');
+    $next = null;
     $theme = 'evolusom';
-    $client = new \GuzzleHttp\Client();
-    $response = $client->get('http://metatv.evolusom.com.br/api/equipes');
 
-    $data['items'] = collect(json_decode($response->getBody()->getContents()));
+    try {
 
-    $data['geral'] = [
-      'faturado'           => $data['items']->sum('faturado'),
-      'meta'               => $data['items']->sum('meta'),
-      'meta_clientes'      => $data['items']->sum('meta_clientes'),
-      'clientes_atendidos' => $data['items']->sum('clientes_atendidos'),
-      'realizado'          => round($data['items']->sum('faturado') / $data['items']->sum('meta') * 100, 2),
-      'capilaridade'       => round($data['items']->sum('clientes_atendidos') / $data['items']->sum('meta_clientes') * 100, 2),
-    ];
+      $dates = [
+        'starts' => now()->startOfMonth()->format('d/m/Y'),
+        'ends'   => now()->format('d/m/Y')
+      ];
+
+
+      $query = [
+        'query' => [
+          'dataInicial' => $dates['starts'],
+          'dataFinal'   => $dates['ends']
+        ]
+      ];
+
+      $response = $this->client->get('metatvequipe', $query);
+      $response = collect(json_decode($response->getBody()->getContents()));
+
+      $data['geral'] = [
+        'faturado'           => $response->sum('vlVenda'),
+        'meta'               => $response->sum('vlMeta'),
+        'meta_clientes'      => round($response->sum('numCliPrev')),
+        'clientes_atendidos' => $response->sum('numCliAtendidos'),
+        'realizado'          => $response->sum('vlVenda') > 0 && $response->sum('vlMeta') > 0 ? round($response->sum('vlVenda') / $response->sum('vlMeta') * 100, 2) : 0,
+        'capilaridade'       => $response->sum('numCliAtendidos') > 0 && $response->sum('numCliPrev') > 0 ? round(round($response->sum('numCliPrev')) / $response->sum('numCliAtendidos') * 100, 2) : 0,
+      ];
+
+      $data['items'] = $response->map(function ($item) use ($response) {
+        $item->atingido = $item->vlVenda > 0 && $item->vlMeta > 0 ? round(($item->vlVenda / $item->vlMeta) * 100, 2) : 0;
+        $item->per_clientes = $item->numCliAtendidos > 0 && $item->numCliPrev > 0 ? round(($item->numCliAtendidos / $item->numCliPrev) * 100, 2) : 0;
+
+//        $parcial = $response_parcial[$item->codUsur];
+//        $item->projetado = $parcial->vlVenda > 0 && $parcial->vlMeta > 0 ? round(($item->vlVenda / $parcial->vlMeta) * 100, 2) : 0;
+        return $item;
+      })
+        ->where('vlMeta', '>', 0)
+        ->sortByDesc('vlVenda');
+
+
+    } catch (Exception $exception) {
+      dd($exception->getMessage());
+    }
 
 
     return view('pages.meta_equipes', compact('title', 'next', 'theme', 'data'));
@@ -232,6 +263,13 @@ class StaterkitController extends Controller
         'ends'   => now()->endOfWeek()->format('d/m/Y')
       ];
 
+
+      if (now()->toDateString() < '2020-11-20') {
+        $dates = [
+          'starts' => '08/11/2020',
+          'ends'   => '20/11/2020',
+        ];
+      }
 
       $query = [
         'query' => [
