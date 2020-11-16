@@ -111,7 +111,7 @@ class StaterkitController extends Controller
       $data['porcentagem'] = $response_month->map(function ($item) use ($response_parcial) {
         $item->atingido = $item->vlVenda > 0 && $item->vlMeta > 0 ? round(($item->vlVenda / $item->vlMeta) * 100, 2) : 0;
         $parcial = $response_parcial[$item->codUsur];
-        $item->projetado = $parcial->vlVenda > 0 && $parcial->vlMeta > 0 ? round(($item->vlVenda / $parcial->vlMeta) * 100, 2) : 0;
+        $item->projetado = $item->vlVenda > 0 && $parcial->vlMeta > 0 ? round(($item->vlVenda / $parcial->vlMeta) * 100, 2) : 0;
         return $item;
       })
         ->whereNotIn('codUsur', $usersToIgnore)
@@ -206,7 +206,8 @@ class StaterkitController extends Controller
 
       $dates = [
         'starts' => now()->startOfMonth()->format('d/m/Y'),
-        'ends'   => now()->format('d/m/Y')
+        'ends'   => now()->endOfMonth()->format('d/m/Y'),
+        //        'ends'   => now()->format('d/m/Y'),
       ];
 
 
@@ -216,20 +217,28 @@ class StaterkitController extends Controller
           'dataFinal'   => $dates['ends']
         ]
       ];
+      $response_month = $this->client->get('metatvequipe', $query);
+      $response_month = collect(json_decode($response_month->getBody()->getContents()));
 
-      $response = $this->client->get('metatvequipe', $query);
-      $response = collect(json_decode($response->getBody()->getContents()));
+      $query['query']['dataFinal'] = now()->format('d/m/Y');
+
+      $response_parcial = $this->client->get('metatvequipe', $query);
+      $response_parcial = collect(json_decode($response_parcial->getBody()->getContents()));
 
       $data['geral'] = [
-        'faturado'           => $response->sum('vlVenda'),
-        'meta'               => $response->sum('vlMeta'),
-        'meta_clientes'      => round($response->sum('numCliPrev')),
-        'clientes_atendidos' => $response->sum('numCliAtendidos'),
-        'realizado'          => $response->sum('vlVenda') > 0 && $response->sum('vlMeta') > 0 ? round($response->sum('vlVenda') / $response->sum('vlMeta') * 100, 2) : 0,
-        'capilaridade'       => $response->sum('numCliAtendidos') > 0 && $response->sum('numCliPrev') > 0 ? round(round($response->sum('numCliPrev')) / $response->sum('numCliAtendidos') * 100, 2) : 0,
+        'faturado'           => $response_month->sum('vlVenda'),
+        'faturado_parcial'   => $response_parcial->sum('vlVenda'),
+        'meta'               => $response_month->sum('vlMeta'),
+        'meta_parcial'       => $response_parcial->sum('vlMeta'),
+        'meta_clientes'      => round($response_month->sum('numCliPrev')),
+        'clientes_atendidos' => $response_month->sum('numCliAtendidos'),
+        'realizado'          => $response_month->sum('vlVenda') > 0 && $response_month->sum('vlMeta') > 0 ? round($response_month->sum('vlVenda') / $response_month->sum('vlMeta') * 100, 2) : 0,
+        'projecao'           => $response_month->sum('vlVenda') > 0 && $response_parcial->sum('vlMeta') > 0 ? round($response_month->sum('vlVenda') / $response_parcial->sum('vlMeta') * 100, 2) : 0,
+        'capilaridade'       => $response_month->sum('numCliAtendidos') > 0 && $response_month->sum('numCliPrev') > 0 ? round($response_month->sum('numCliAtendidos') / round($response_month->sum('numCliPrev')) * 100, 2) : 0,
       ];
 
-      $data['items'] = $response->map(function ($item) use ($response) {
+
+      $data['items'] = $response_month->map(function ($item) {
         $item->atingido = $item->vlVenda > 0 && $item->vlMeta > 0 ? round(($item->vlVenda / $item->vlMeta) * 100, 2) : 0;
         $item->per_clientes = $item->numCliAtendidos > 0 && $item->numCliPrev > 0 ? round(($item->numCliAtendidos / $item->numCliPrev) * 100, 2) : 0;
 

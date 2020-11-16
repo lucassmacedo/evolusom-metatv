@@ -52,8 +52,8 @@
                     <i class="feather icon-check-circle text-warning font-medium-5"></i>
                   </div>
                 </div>
-                <h2 class="text-bold-700">{{ $data['geral']['realizado'] }}%</h2>
-                <p class="mb-0 line-ellipsis  text-bold-700">META REALIZADA</p>
+                <h2 class="text-bold-700">{{ $data['geral']['projecao'] }}%</h2>
+                <p class="mb-0 line-ellipsis  text-bold-700">PROJEÇÃO</p>
               </div>
             </div>
           </div>
