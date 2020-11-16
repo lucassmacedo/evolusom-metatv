@@ -11,6 +11,11 @@
       <div class="row breadcrumbs-top">
         <div class="col-12">
           <h2 class="content-header-title float-left mb-0">
+            <a href="{{ route('home') }}"><img
+                src="{{ str_contains(url()->full(), 'evus') ? asset('images/logo/evus-02.png') : asset('images/logo/evolusom-white.png') }}"
+                height="60"
+                alt=""></a>
+
             <div class="avatar header-title-avatar p-50">
               <div class="avatar-content">
                 <i class="fa fa-trophy text-info font-large-1 top-10-icon "></i>

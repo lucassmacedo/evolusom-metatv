@@ -247,7 +247,7 @@ class StaterkitController extends Controller
         return $item;
       })
         ->where('vlMeta', '>', 0)
-        ->sortByDesc('vlVenda');
+        ->sortByDesc('atingido');
 
 
     } catch (Exception $exception) {
