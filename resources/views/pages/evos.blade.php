@@ -22,13 +22,14 @@
               </div>
             </div>
 
-            Dashboard - Meta Evus
+            Dashboard - Meta Evus  ({{$dates['starts']}} á {{$dates['ends']}} )
           </h2>
           {{--          <span class="content-header-title float-right mt-1">(Atualização 31/08/2020 20:00hs)</span>--}}
 
         </div>
 
       </div>
+
     </div>
 
   </div>

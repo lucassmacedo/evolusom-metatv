@@ -2,10 +2,12 @@
 
 namespace App\Console\Commands;
 
+use App\Mail\Relatorio;
 use App\MyScreenshot;
 use Illuminate\Console\Command;
 use Laravel\Dusk\Browser;
 use Laravel\Dusk\Dusk;
+use Illuminate\Support\Facades\Mail;
 
 class RelatorioSemanal extends Command
 {
@@ -43,6 +45,9 @@ class RelatorioSemanal extends Command
 
     $snap = new MyScreenshot();
     $url = $snap->screenshot("http://metatv.evolusom.com.br/evus");
-    dd($url);
+    if ($url) {
+      Mail::to(['ti6@evolusom.com.br','rodrigo@evolusom.com.br'])->send(new Relatorio($url));
+    }
+
   }
 }

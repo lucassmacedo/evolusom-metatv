@@ -395,7 +395,7 @@ class StaterkitController extends Controller
       dd($exception->getMessage());
     }
 
-    return view('pages.evos', compact('title', 'next', 'theme', 'data', 'timeout'));
+    return view('pages.evos', compact('title', 'next', 'theme', 'data', 'timeout','dates'));
   }
 
 }
