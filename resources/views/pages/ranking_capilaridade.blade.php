@@ -4,7 +4,8 @@
 
 @section('vendor-style')
   <style>
-    .avatar.avatar-xl .avatar-content {
+    .avatar.avatar-xl
+    .avatar-content {
       width: 100px;
       height: 100px;
     }

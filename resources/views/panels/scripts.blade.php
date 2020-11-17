@@ -1,5 +1,6 @@
 <script>
   window.next = "{{ $next ?? null }}";
+  window.nextTimeout = {{ $timeout ?? 30000 }};
 </script>
 
 {{-- Vendor Scripts --}}

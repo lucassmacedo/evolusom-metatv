@@ -28,8 +28,10 @@ class StaterkitController extends Controller
 
     $theme = 'evolusom';
     $next = route('capilaridade');
+    $timeout = 30000;
 
     try {
+
       $dates = [
         'starts' => now()->startOfMonth()->format('d/m/Y'),
         'ends'   => now()->endOfMonth()->format('d/m/Y')
@@ -136,14 +138,14 @@ class StaterkitController extends Controller
       dd($exception->getMessage());
     }
 
-    return view('pages.ranking_vendas', compact('next', 'data', 'theme', 'dates'));
+    return view('pages.ranking_vendas', compact('next', 'data', 'theme', 'dates', 'timeout'));
   }
 
   // Fixed Layout
   public function ranking_capilaridade()
   {
     $next = route('meta_equipes');
-
+    $timeout = 15000;
     $theme = 'evolusom';
 
     try {
@@ -180,27 +182,27 @@ class StaterkitController extends Controller
     }
 
 
-    return view('pages.ranking_capilaridade', compact('data', 'next', 'theme', 'dates'));
+    return view('pages.ranking_capilaridade', compact('data', 'next', 'theme', 'dates', 'timeout'));
   }
 
   // Fixed Layout
   public function produtos_mes()
   {
     $theme = 'evolusom';
-
+    $timeout = 15000;
     $title = "TOP 10 Produtos mais vendidos no Mês";
     $next = route('produtos-dia');
-    return view('pages.ranking_produtos', compact('title', 'next', 'theme'));
+    return view('pages.ranking_produtos', compact('title', 'next', 'theme', 'timeout'));
   }
 
   // Fixed Layout
   public function produtos_dia()
   {
     $theme = 'evolusom';
-
+    $timeout = 30000;
     $title = "TOP 10 Produtos mais vendidos no Dia";
     $next = route('meta_equipes');
-    return view('pages.ranking_produtos', compact('title', 'next', 'theme'));
+    return view('pages.ranking_produtos', compact('title', 'next', 'theme', 'timeout'));
   }
 
   // Fixed Layout
@@ -209,7 +211,7 @@ class StaterkitController extends Controller
     $title = "Meta Equipes";
     $next = route('evus');
     $theme = 'evolusom';
-
+    $timeout = 30000;
     try {
 
       $dates = [
@@ -275,16 +277,17 @@ class StaterkitController extends Controller
       dd($exception->getMessage());
     }
 
-
-    return view('pages.meta_equipes', compact('title', 'next', 'theme', 'data'));
+    return view('pages.meta_equipes', compact('title', 'next', 'theme', 'data', 'timeout'));
   }
 
   // Fixed Layout
   public function evos()
   {
+
     $theme = 'evus';
     $title = "Meta Evus";
     $next = route('home');
+    $timeout = 30000;
 
     try {
 
@@ -311,6 +314,7 @@ class StaterkitController extends Controller
           env('APP_API_PASSWORD')
         ]
       ];
+
       // usuários a serem ignorados a pedido do Rodrigo Gonçalves
       $usersToIgnoreGeral = [
         3,
@@ -391,8 +395,7 @@ class StaterkitController extends Controller
       dd($exception->getMessage());
     }
 
-
-    return view('pages.evos', compact('title', 'next', 'theme', 'data'));
+    return view('pages.evos', compact('title', 'next', 'theme', 'data', 'timeout'));
   }
 
 }

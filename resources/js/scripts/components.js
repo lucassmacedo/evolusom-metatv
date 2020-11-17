@@ -99,10 +99,12 @@
     setTimeout(() => {
       pageScroll();
     }, 2000)
-  } else {
+  }
+
+  if (window.next !== undefined) {
     setTimeout(() => {
       window.location.href = window.next;
-    }, 30000)
+    }, window.nextTimeout)
   }
 
   $(window).scroll(function () {
