@@ -33,7 +33,15 @@ class MyScreenshot
     //Make a chrome browser
     $process = (new ChromeProcess)->toProcess();
     $process->start();
-    $options = (new ChromeOptions)->addArguments(['--disable-gpu', '--headless']);
+
+    $options = (new ChromeOptions)->addArguments([
+      '--disable-gpu',
+      '--headless',
+      '--disable-dev-shm-usage',
+      '--no-sandbox',
+      '--window-size=1920,1080',
+    ]);
+
     $capabilities = DesiredCapabilities::chrome()->setCapability(ChromeOptions::CAPABILITY, $options);
     $driver = retry(5, function () use ($capabilities) {
       return RemoteWebDriver::create('http://localhost:9515', $capabilities);

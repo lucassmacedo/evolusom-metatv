@@ -42,7 +42,7 @@ class RelatorioSemanal extends Command
   {
 
     $snap = new MyScreenshot();
-    $url = $snap->screenshot("metatv.evolusom.com.br/evus");
+    $url = $snap->screenshot("http://metatv.evolusom.com.br/evus");
     dd($url);
   }
 }
