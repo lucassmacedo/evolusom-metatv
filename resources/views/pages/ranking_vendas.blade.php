@@ -55,6 +55,7 @@
                       <div class="avatar avatar-xl shadow mt-0">
                         <div class="avatar-content">
                           <img src="http://evolusom.com.br/metatv37/v/{{$item->codUsur}}.png"
+                               onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"
                                alt="" width="100">
                         </div>
                       </div>
