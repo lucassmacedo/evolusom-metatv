@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
    */
   protected function schedule(Schedule $schedule)
   {
-    $schedule->command('relatorio-semana')
+    $schedule->command('relatorio-semanal')
       ->fridays()
       ->hourlyAt('23:50');
   }

@@ -95,13 +95,21 @@
                         </tr>
                         <tr>
                           <td colspan="6" class="text-center">
-                            <div
-                              class="progress progress-bar-{{ \App\Helpers\Helper::getClassProgressBar($item->atingido) }} progress-xl"
-                              style="margin-bottom: 15px;">
-                              <div class="progress-bar progress-bar-striped"
-                                   role="progressbar" aria-valuenow="20"
-                                   aria-valuemin="20"
-                                   aria-valuemax="100" style="width:80%;"></div>
+
+                            <div class="row">
+                              <div class="col">
+                                <div
+                                  class="progress progress-bar-{{ \App\Helpers\Helper::getClassProgressBar($item->atingido) }} progress-xl">
+                                  <div class="progress-bar progress-bar-striped"
+                                       role="progressbar" aria-valuenow="{{$item->atingido}}"
+                                       aria-valuemin="0"
+                                       aria-valuemax="100" style="width:{{$item->atingido}}%;"></div>
+                                </div>
+                              </div>
+                              <div class="col-1 text-bold-700 font-medium-3 no-wrap text-right" style="margin-top: -5px">
+                                {{ $item->atingido  }}%
+                              </div>
+
                             </div>
                           </td>
                         </tr>

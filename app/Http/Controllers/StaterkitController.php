@@ -235,10 +235,16 @@ class StaterkitController extends Controller
 
       $response_dias_uteis = $this->client->get('metatvdiasuteis', $query);
       $response_dias_uteis = collect(json_decode($response_dias_uteis->getBody()->getContents()));
-      $data['dias_uteis'] = [
-        'expectativa' => (int)$response_dias_uteis->where('dia', '>', date('d'))->count() / (int)$response_dias_uteis->count() * 100
-      ];
 
+
+      $total = (int)$response_dias_uteis->count();
+      $restantes = (int)$response_dias_uteis->where('dia', '>', date('d'))->count();
+
+      $expectativa = $restantes > 1 ? ($total - $restantes) / $total : 0;
+
+      $data['dias_uteis'] = [
+        'expectativa' => $expectativa * 100
+      ];
 
       $response_month = $this->client->get('metatvequipe', $query);
       $response_month = collect(json_decode($response_month->getBody()->getContents()));
@@ -395,7 +401,7 @@ class StaterkitController extends Controller
       dd($exception->getMessage());
     }
 
-    return view('pages.evos', compact('title', 'next', 'theme', 'data', 'timeout','dates'));
+    return view('pages.evos', compact('title', 'next', 'theme', 'data', 'timeout', 'dates'));
   }
 
 }
