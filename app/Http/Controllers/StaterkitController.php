@@ -298,14 +298,14 @@ class StaterkitController extends Controller
     try {
 
       $dates = [
-        'starts' => now()->startOf()->format('d/m/Y'),
+        'starts' => now()->startOfWeek()->format('d/m/Y'),
         'ends'   => now()->endOfWeek()->format('d/m/Y')
       ];
 
 
-      if (now()->toDateString() <= '2020-11-20') {
+      if (now()->toDateString() < '2020-11-20') {
         $dates = [
-          'starts' => '09/11/2020',
+          'starts' => '08/11/2020',
           'ends'   => '20/11/2020',
         ];
       }
