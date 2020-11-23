@@ -302,14 +302,6 @@ class StaterkitController extends Controller
         'ends'   => now()->endOfWeek()->format('d/m/Y')
       ];
 
-
-      if (now()->toDateString() <= '2020-11-20') {
-        $dates = [
-          'starts' => '08/11/2020',
-          'ends'   => '20/11/2020',
-        ];
-      }
-
       $query = [
         'query' => [
           'dataInicial' => $dates['starts'],

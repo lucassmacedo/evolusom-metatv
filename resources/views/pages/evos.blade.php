@@ -22,7 +22,7 @@
               </div>
             </div>
 
-            Dashboard - Meta Evus  ({{$dates['starts']}} á {{$dates['ends']}} )
+            Dashboard - Meta Evus ({{$dates['starts']}} á {{$dates['ends']}} )
           </h2>
           {{--          <span class="content-header-title float-right mt-1">(Atualização 31/08/2020 20:00hs)</span>--}}
 
@@ -47,15 +47,22 @@
                 @if(!empty($data['capilaridade']))
                   <div class="row">
                     <div class="col-12">
-                      <img src="{{$data['capilaridade']->first()->avatar}}"
-                           alt=""
-                           onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"
-                           class="img-fluid"
-                           width="120">
+                      <div class="avatar">
+
+                        <img src="{{$data['capilaridade']->first()->avatar}}"
+                             alt=""
+                             onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"
+                             class="img-fluid"
+                             width="120">
+
+                      </div>
+
                     </div>
                     <div class="col-12">
                       <h3 class="text-bold-700 text-white">{{($data['capilaridade']->first()->nome)}}</h3>
-                      <h2 ><span class="mb-0 text-white font-medium-3 text-bold-700">Total Geral : {{ $data['geral']->sum('numCliAtendidos') }}</span></h2>
+                      <h2><span
+                          class="mb-0 text-white font-medium-3 text-bold-700">Total Geral : {{ $data['geral']->sum('numCliAtendidos') }}</span>
+                      </h2>
                     </div>
                   </div>
                 @endif
@@ -79,6 +86,7 @@
                 @if(!empty($data['faturamento']))
                   <div class="row">
                     <div class="col-12">
+                      <div class="avatar">
                         <img src="{{$data['faturamento']->first()->avatar}}"
                              alt=""
                              class="img-fluid"
@@ -86,11 +94,13 @@
                              width="120">
 
 
-
+                      </div>
                     </div>
                     <div class="col-12">
                       <h3 class="text-bold-700 text-white">{{($data['faturamento']->first()->nome)}}</h3>
-                      <h2 ><span class="mb-0 text-white font-medium-3 text-bold-700">Total Geral : {{ number_format($data['geral']->sum('faturamentoEvus'),2,",",".")  }}</span></h2>
+                      <h2><span
+                          class="mb-0 text-white font-medium-3 text-bold-700">Total Geral : {{ number_format($data['geral']->sum('faturamentoEvus'),2,",",".")  }}</span>
+                      </h2>
                     </div>
                   </div>
                 @endif
@@ -114,11 +124,13 @@
                 @if(!empty($data['pontuacao']))
                   <div class="row">
                     <div class="col-12">
-                      <img src="{{$data['pontuacao']->first()->avatar}}"
-                           alt=""
-                           class="img-fluid"
-                           onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"
-                           width="120">
+                      <div class="avatar">
+                        <img src="{{$data['pontuacao']->first()->avatar}}"
+                             alt=""
+                             class="img-fluid"
+                             onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"
+                             width="120">
+                      </div>
                     </div>
                     <div class="col-12">
                       <h3 class="text-bold-700 text-white">{{($data['pontuacao']->first()->nome)}}</h3>
@@ -217,7 +229,8 @@
                       <span class="mb-0 font-medium-4 text-bold"><b>Total:</b></span>
                     </td>
                     <td class="text-left" height="40">
-                      <span class="mb-0 font-medium-3 text-bold-700">{{ number_format($data['geral']->sum('faturamentoEvus'),2,",",".")  }}</span>
+                      <span
+                        class="mb-0 font-medium-3 text-bold-700">{{ number_format($data['geral']->sum('faturamentoEvus'),2,",",".")  }}</span>
                     </td>
                   </tr>
                 @endif
