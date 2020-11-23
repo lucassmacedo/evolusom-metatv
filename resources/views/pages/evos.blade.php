@@ -52,7 +52,7 @@
                         <img src="{{$data['capilaridade']->first()->avatar}}"
                              alt=""
                              onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"
-                             class="img-fluid"
+
                              width="120"
                              height="120">
 
@@ -90,7 +90,7 @@
                       <div class="avatar">
                         <img src="{{$data['faturamento']->first()->avatar}}"
                              alt=""
-                             class="img-fluid"
+
                              onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"
                              width="120"
                              height="120">
@@ -129,7 +129,6 @@
                       <div class="avatar">
                         <img src="{{$data['pontuacao']->first()->avatar}}"
                              alt=""
-                             class="img-fluid"
                              onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"
                              width="120"
                              height="120">
