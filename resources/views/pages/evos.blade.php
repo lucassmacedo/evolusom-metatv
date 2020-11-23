@@ -53,7 +53,7 @@
                              alt=""
                              onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"
                              class="img-fluid"
-                             height="120"
+                             width="120"
                              width="120">
 
                       </div>
@@ -92,6 +92,7 @@
                              alt=""
                              class="img-fluid"
                              onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"
+                             width="120"
                              width="120">
 
 
@@ -130,6 +131,7 @@
                              alt=""
                              class="img-fluid"
                              onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"
+                             width="120"
                              width="120">
                       </div>
                     </div>
