@@ -53,6 +53,7 @@
                              alt=""
                              onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"
                              class="img-fluid"
+                             height="120"
                              width="120">
 
                       </div>
