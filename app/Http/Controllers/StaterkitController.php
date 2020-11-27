@@ -240,10 +240,10 @@ class StaterkitController extends Controller
       $total = (int)$response_dias_uteis->count();
       $restantes = (int)$response_dias_uteis->where('dia', '>', date('d'))->count();
 
-      $expectativa = $restantes > 1 ? ($total - $restantes) / $total : 0;
+      $expectativa = $restantes > 0 ? (($total - $restantes) / $total) * 100 : 100;
 
       $data['dias_uteis'] = [
-        'expectativa' => $expectativa * 100
+        'expectativa' => $expectativa
       ];
 
       $response_month = $this->client->get('metatvequipe', $query);
