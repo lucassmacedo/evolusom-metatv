@@ -299,7 +299,7 @@ class StaterkitController extends Controller
 
       $dates = [
         'starts' => now()->startOfWeek()->format('d/m/Y'),
-        'ends'   => now()->endOfWeek()->format('d/m/Y')
+        'ends'   => now()->endOfWeek()->subDay(1)->format('d/m/Y')
       ];
 
       $query = [

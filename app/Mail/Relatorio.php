@@ -33,9 +33,16 @@ class Relatorio extends Mailable
    */
   public function build()
   {
+
+    $dates = [
+      'starts' => now()->startOfWeek()->format('d/m/Y'),
+      'ends'   => now()->endOfWeek()->subDay(1)->format('d/m/Y')
+    ];
+
+
     return $this
       ->from('metatv@evolusom.com.br', 'Meta TV')
-      ->subject('Ranking Evus - Resultado Semanal')
+      ->subject(sprintf('Ranking Evus - Resultado Semanal (%s - %s)- Errata', $dates['starts'], $dates['ends']))
       ->view('emails.relatorio')
       ->with(['imageUrl' => $this->imageUrl]);
   }

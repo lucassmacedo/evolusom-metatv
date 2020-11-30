@@ -73,6 +73,7 @@ class MyScreenshot
 
     $image = $browser->driver->TakeScreenshot(); //$image is now the image data in PNG format
 
+    $browser->driver->quit();
     //save the image somewhere useful
     $filename = date('Y-m-d-H-i-s') . '.png';
     file_put_contents(storage_path('app/public/evus_relatorio/') . $filename, $image);
