@@ -21,7 +21,7 @@
                 <i class="fa fa-trophy text-info font-large-1 top-10-icon "></i>
               </div>
             </div>
-            <i>Dashboard - META EQUIPES</i>
+            <i>Dashboard - META EQUIPES ({{$dates['starts']}} á {{$dates['ends']}} )</i>
           </h2>
         </div>
       </div>

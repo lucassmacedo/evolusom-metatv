@@ -322,7 +322,6 @@ class StaterkitController extends Controller
         'capilaridade'       => $response_month->sum('numCliAtendidos') > 0 && $response_month->sum('numCliPrev') > 0 ? round($response_month->sum('numCliAtendidos') / round($response_month->sum('numCliPrev')) * 100, 2) : 0,
       ];
 
-
       $data['items'] = $response_month->map(function ($item) {
         $item->atingido = $item->vlVenda > 0 && $item->vlMeta > 0 ? round(($item->vlVenda / $item->vlMeta) * 100, 2) : 0;
         $item->per_clientes = $item->numCliAtendidos > 0 && $item->numCliPrev > 0 ? round(($item->numCliAtendidos / $item->numCliPrev) * 100, 2) : 0;
@@ -339,7 +338,7 @@ class StaterkitController extends Controller
       dd($exception->getMessage());
     }
 
-    return view('pages.meta_equipes', compact('title', 'next', 'theme', 'data', 'timeout'));
+    return view('pages.meta_equipes', compact('title', 'next', 'theme', 'data', 'timeout', 'dates'));
   }
 
   // Fixed Layout
