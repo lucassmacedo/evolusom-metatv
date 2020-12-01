@@ -294,7 +294,7 @@ class StaterkitController extends Controller
       });
 
       $total = (int)$response_dias_uteis->count();
-      $restantes = (int)$response_dias_uteis->where('data_raw', '>', date('Y1103'))->count();
+      $restantes = (int)$response_dias_uteis->where('data_raw', '>', date('Ymd'))->count();
 
       $expectativa = $restantes > 0 ? round((($total - $restantes) / $total) * 100, 2) : 100;
 
