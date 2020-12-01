@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use PHPUnit\Exception;
 use function foo\func;
@@ -13,6 +14,10 @@ class StaterkitController extends Controller
    * @var \GuzzleHttp\Client
    */
   private $client;
+  /**
+   * @var \Psr\Http\Message\ResponseInterface
+   */
+  private $dias_uteis;
 
   /**
    * StaterkitController constructor.
@@ -20,6 +25,36 @@ class StaterkitController extends Controller
   public function __construct()
   {
     $this->client = new \GuzzleHttp\Client(['base_uri' => env('APP_API_URL')]);
+
+
+    try {
+
+      $this->dias_uteis = cache()->remember('metatvdiasuteis', 0, function () {
+        $dates = [
+          'starts' => now()->startOfMonth()->format('d/m/Y'),
+          'ends'   => now()->endOfMonth()->format('d/m/Y')
+        ];
+
+        $query = [
+          'query' => [
+            'dataInicial' => $dates['starts'],
+            'dataFinal'   => $dates['ends']
+          ],
+          'auth'  => [
+            env('APP_API_USERNAME'),
+            env('APP_API_PASSWORD')
+          ]
+        ];
+        $dias_uteis = $this->client->get('metatvdiasuteis', $query);
+
+        return collect(json_decode($dias_uteis->getBody()->getContents()));
+      });
+//
+    } catch (\Exception $exception) {
+
+    }
+
+
   }
 
   // Fixed Layout
@@ -36,6 +71,14 @@ class StaterkitController extends Controller
         'starts' => now()->startOfMonth()->format('d/m/Y'),
         'ends'   => now()->endOfMonth()->format('d/m/Y')
       ];
+
+      // se for o primeiro dia útil do mês
+      if (Carbon::parse($this->dias_uteis->first()->data)->toDateString() == now()->toDateString()) {
+        $dates = [
+          'starts' => now()->subMonth(1)->startOfMonth()->format('d/m/Y'),
+          'ends'   => now()->subMonth(1)->endOfMonth()->format('d/m/Y')
+        ];
+      }
 
 
       $query = [
@@ -154,7 +197,13 @@ class StaterkitController extends Controller
         'starts' => now()->startOfMonth()->format('d/m/Y'),
         'ends'   => now()->endOfMonth()->format('d/m/Y')
       ];
-
+      // se for o primeiro dia útil do mês
+      if (Carbon::parse($this->dias_uteis->first()->data)->toDateString() == now()->toDateString()) {
+        $dates = [
+          'starts' => now()->subMonth(1)->startOfMonth()->format('d/m/Y'),
+          'ends'   => now()->subMonth(1)->endOfMonth()->format('d/m/Y')
+        ];
+      }
 
       $query = [
         'query' => [
@@ -216,10 +265,15 @@ class StaterkitController extends Controller
 
       $dates = [
         'starts' => now()->startOfMonth()->format('d/m/Y'),
-        'ends'   => now()->endOfMonth()->format('d/m/Y'),
-        //        'ends'   => now()->format('d/m/Y'),
+        'ends'   => now()->endOfMonth()->format('d/m/Y')
       ];
-
+      // se for o primeiro dia útil do mês
+      if (Carbon::parse($this->dias_uteis->first()->data)->toDateString() == now()->toDateString()) {
+        $dates = [
+          'starts' => now()->subMonth(1)->startOfMonth()->format('d/m/Y'),
+          'ends'   => now()->subMonth(1)->endOfMonth()->format('d/m/Y')
+        ];
+      }
 
       $query = [
         'query' => [
@@ -234,11 +288,13 @@ class StaterkitController extends Controller
 
 
       $response_dias_uteis = $this->client->get('metatvdiasuteis', $query);
-      $response_dias_uteis = collect(json_decode($response_dias_uteis->getBody()->getContents()));
-
+      $response_dias_uteis = collect(json_decode($response_dias_uteis->getBody()->getContents()))->map(function ($item) {
+        $item->data_raw = Carbon::parse($item->data)->format('Ymd');
+        return $item;
+      });
 
       $total = (int)$response_dias_uteis->count();
-      $restantes = (int)$response_dias_uteis->where('dia', '>', date('d'))->count();
+      $restantes = (int)$response_dias_uteis->where('data_raw', '>', date('Y1103'))->count();
 
       $expectativa = $restantes > 0 ? round((($total - $restantes) / $total) * 100, 2) : 100;
 
