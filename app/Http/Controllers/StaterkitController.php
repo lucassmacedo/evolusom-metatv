@@ -153,7 +153,12 @@ class StaterkitController extends Controller
       $response_month = $this->client->get('metatvfaturamento', $query);
       $response_month = collect(json_decode($response_month->getBody()->getContents()));
 
-      $query['query']['dataFinal'] = now()->format('d/m/Y');
+
+      // se não for o primeiro dia útil do mês
+      if (Carbon::parse($this->dias_uteis->first()->data)->toDateString() <> now()->toDateString()) {
+        $query['query']['dataFinal'] = now()->format('d/m/Y');
+      }
+
 
       $response_parcial = $this->client->get('metatvfaturamento', $query);
       $response_parcial = collect(json_decode($response_parcial->getBody()->getContents()))->keyBy('codUsur');
