@@ -298,6 +298,7 @@ class StaterkitController extends Controller
         return $item;
       });
 
+
       $total = (int)$response_dias_uteis->count();
       $restantes = (int)$response_dias_uteis->where('data_raw', '>', date('Ymd'))->count();
 
@@ -307,6 +308,7 @@ class StaterkitController extends Controller
         'expectativa' => $expectativa
       ];
 
+
       $response_month = $this->client->get('metatvequipe', $query);
       $response_month = collect(json_decode($response_month->getBody()->getContents()));
 
@@ -315,16 +317,27 @@ class StaterkitController extends Controller
       $response_parcial = $this->client->get('metatvequipe', $query);
       $response_parcial = collect(json_decode($response_parcial->getBody()->getContents()));
 
+
+      $vlVendaGeral = $response_month->where('vlMeta', '>', 0)->sum('vlVenda');
+      $vlMetaGeral = $response_month->sum('vlMeta');
+      $numCliAtendidos = $response_month->sum('numCliAtendidos');
+      $numCliPrev = $response_month->sum('numCliPrev');
+
+      
+      $vlVendaParcial = $response_parcial->where('vlMeta', '>', 0)->sum('vlVenda');
+      $vlMetaParcial = $response_parcial->sum('vlMeta');
+
+
       $data['geral'] = [
-        'faturado'           => $response_month->sum('vlVenda'),
-        'faturado_parcial'   => $response_parcial->sum('vlVenda'),
-        'meta'               => $response_month->sum('vlMeta'),
-        'meta_parcial'       => $response_parcial->sum('vlMeta'),
+        'faturado'           => $vlVendaGeral,
+        'faturado_parcial'   => $vlVendaParcial,
+        'meta'               => $vlMetaGeral,
+        'meta_parcial'       => $vlMetaParcial,
         'meta_clientes'      => round($response_month->sum('numCliPrev')),
         'clientes_atendidos' => $response_month->sum('numCliAtendidos'),
-        'realizado'          => $response_month->sum('vlVenda') > 0 && $response_month->sum('vlMeta') > 0 ? round($response_month->sum('vlVenda') / $response_month->sum('vlMeta') * 100, 2) : 0,
-        'projecao'           => $response_month->sum('vlVenda') > 0 && $response_parcial->sum('vlMeta') > 0 ? round($response_month->sum('vlVenda') / $response_parcial->sum('vlMeta') * 100, 2) : 0,
-        'capilaridade'       => $response_month->sum('numCliAtendidos') > 0 && $response_month->sum('numCliPrev') > 0 ? round($response_month->sum('numCliAtendidos') / round($response_month->sum('numCliPrev')) * 100, 2) : 0,
+        'realizado'          => $vlVendaGeral > 0 && $vlMetaGeral > 0 ? round($vlVendaGeral / $vlMetaGeral * 100, 2) : 0,
+        'projecao'           => $vlVendaGeral > 0 && $vlMetaParcial > 0 ? round($vlVendaGeral / $vlMetaParcial * 100, 2) : 0,
+        'capilaridade'       => $numCliAtendidos > 0 && $numCliPrev > 0 ? round($numCliAtendidos / round($numCliPrev) * 100, 2) : 0,
       ];
 
       $data['items'] = $response_month->map(function ($item) {
