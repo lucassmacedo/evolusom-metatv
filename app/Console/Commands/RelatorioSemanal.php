@@ -42,13 +42,21 @@ class RelatorioSemanal extends Command
    */
   public function handle()
   {
+    $count = 0;
+    do {
+      $this->info("Tentaiva $count");
+      try {
+        $snap = new MyScreenshot();
+        $url = $snap->screenshot("http://metatv.evolusom.com.br/evus");
 
-    $snap = new MyScreenshot();
-    $url = $snap->screenshot("http://metatv.evolusom.com.br/evus");
+        if ($url) {
+          Mail::to(['ti6@evolusom.com.br'])->send(new Relatorio($url));
+        }
 
-    if ($url) {
-      Mail::to(['ti6@evolusom.com.br'])->send(new Relatorio($url));
-    }
-
+        break;
+      } catch (\Exception $exception) {
+        $count++;
+      }
+    } while ($count < 10);
   }
 }
