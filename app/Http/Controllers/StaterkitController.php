@@ -323,7 +323,7 @@ class StaterkitController extends Controller
       $numCliAtendidos = $response_month->sum('numCliAtendidos');
       $numCliPrev = $response_month->sum('numCliPrev');
 
-      
+
       $vlVendaParcial = $response_parcial->where('vlMeta', '>', 0)->sum('vlVenda');
       $vlMetaParcial = $response_parcial->sum('vlMeta');
 

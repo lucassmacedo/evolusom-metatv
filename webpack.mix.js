@@ -72,7 +72,7 @@ mix.sass('resources/sass/bootstrap.scss', 'public/css')
   .sass('resources/sass/custom-rtl.scss', 'public/css')
   .sass('resources/sass/custom-laravel.scss', 'public/css');
 
-mix.then(() => {
+mix.then(() =>  {
   if (process.env.MIX_CONTENT_DIRECTION === "rtl") {
     let command = `node ${path.resolve('node_modules/rtlcss/bin/rtlcss.js')} -d -e ".css" ./public/css/ ./public/css/`;
     exec(command, function (err, stdout, stderr) {

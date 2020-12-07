@@ -47,7 +47,7 @@ class RelatorioSemanal extends Command
     $url = $snap->screenshot("http://metatv.evolusom.com.br/evus");
 
     if ($url) {
-      Mail::to(['ti6@evolusom.com.br', 'rodrigo@evolusom.com.br', 'vendedores@evolusom.com.br'])->send(new Relatorio($url));
+      Mail::to(['ti6@evolusom.com.br'])->send(new Relatorio($url));
     }
 
   }
