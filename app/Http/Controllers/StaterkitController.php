@@ -179,7 +179,9 @@ class StaterkitController extends Controller
       $data['vendas'] = $response_month->map(function ($item) {
         $item->atingido = $item->vlVenda > 0 && $item->vlMeta > 0 ? round(($item->vlVenda / $item->vlMeta) * 100, 2) : 0;
         return $item;
-      })->sortByDesc('vlVenda')
+      })
+        ->whereNotIn('codUsur', $usersToIgnore)
+        ->sortByDesc('vlVenda')
         ->take(3);
 
     } catch (Exception $exception) {

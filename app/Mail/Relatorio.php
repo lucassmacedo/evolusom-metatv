@@ -42,7 +42,7 @@ class Relatorio extends Mailable
 
     return $this
       ->from('metatv@evolusom.com.br', 'Meta TV')
-      ->subject(sprintf('Ranking Evus - Resultado Semanal (%s - %s)- Errata', $dates['starts'], $dates['ends']))
+      ->subject(sprintf('Ranking Evus - Resultado Semanal (%s - %s)', $dates['starts'], $dates['ends']))
       ->view('emails.relatorio')
       ->with(['imageUrl' => $this->imageUrl]);
   }
