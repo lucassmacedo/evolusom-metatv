@@ -46,8 +46,13 @@ class RelatorioSemanal extends Command
     do {
       $this->info("Tentaiva $count");
       try {
+
+        $starts = now()->startOfWeek()->format('d/m/Y');
+        $ends = now()->endOfWeek()->subDay(1)->format('d/m/Y');
+
+
         $snap = new MyScreenshot();
-        $url = $snap->screenshot("http://metatv.evolusom.com.br/evus");
+        $url = $snap->screenshot(sprintf("http://evolusom-metatv.test/evus?starts=%s&ends=%s", $starts, $ends));
 
         if ($url) {
           Mail::to(['ti6@evolusom.com.br', 'rodrigo@evolusom.com.br', 'vendedores@evolusom.com.br'])->send(new Relatorio($url));
@@ -55,6 +60,7 @@ class RelatorioSemanal extends Command
 
         break;
       } catch (\Exception $exception) {
+
         $count++;
       }
     } while ($count < 10);
