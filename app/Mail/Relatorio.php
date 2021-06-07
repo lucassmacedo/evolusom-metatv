@@ -17,13 +17,17 @@ class Relatorio extends Mailable
    * @return void
    */
   public $imageUrl;
+  private $starts;
+  private $ends;
 
   /**
    * Relatorio constructor.
    */
-  public function __construct($imageUrl)
+  public function __construct($imageUrl, $starts, $ends)
   {
     $this->imageUrl = $imageUrl;
+    $this->starts = $starts;
+    $this->ends = $ends;
   }
 
   /**
@@ -34,15 +38,9 @@ class Relatorio extends Mailable
   public function build()
   {
 
-    $dates = [
-      'starts' => now()->startOfWeek()->format('d/m/Y'),
-      'ends'   => now()->endOfWeek()->subDay(1)->format('d/m/Y')
-    ];
-
-
     return $this
       ->from('metatv@evolusom.com.br', 'Meta TV')
-      ->subject(sprintf('Ranking Evus - Resultado Semanal (%s - %s)', $dates['starts'], $dates['ends']))
+      ->subject(sprintf('Ranking Evus - Resultado Semanal (%s - %s)', $this->starts, $this->ends))
       ->view('emails.relatorio')
       ->with(['imageUrl' => $this->imageUrl]);
   }
