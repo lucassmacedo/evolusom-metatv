@@ -351,12 +351,14 @@ class StaterkitController extends Controller
         return $item;
       })
         ->where('vlMeta', '>', 0)
+        // Retirado Guilherme e Diversos a Pedido do Rodrigo
+        ->whereNotIn('codSupervisor',[4,8])
         ->sortByDesc('atingido');
-
 
     } catch (Exception $exception) {
       dd($exception->getMessage());
     }
+
 
     return view('pages.meta_equipes', compact('title', 'next', 'theme', 'data', 'timeout', 'dates'));
   }
