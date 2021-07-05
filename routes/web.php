@@ -17,5 +17,6 @@ Route::get('/produtos-mes', 'StaterkitController@produtos_mes')->name('produtos-
 Route::get('/produtos-dia', 'StaterkitController@produtos_dia')->name('produtos-mes');
 Route::get('/meta-equipes', 'StaterkitController@meta_equipes')->name('meta_equipes');
 Route::get('/evus', 'StaterkitController@evos')->name('evus');
+Route::get('/campanha-temporaria1', 'StaterkitController@temporario1')->name('campanha-temporaria1');
 //Route::get('/test', 'StaterkitController@test')->name('evus');
 

@@ -32,15 +32,15 @@ class StaterkitController extends Controller
       $this->dias_uteis = cache()->remember('metatvdiasuteis', 0, function () {
         $dates = [
           'starts' => now()->startOfMonth()->format('d/m/Y'),
-          'ends' => now()->endOfMonth()->format('d/m/Y')
+          'ends'   => now()->endOfMonth()->format('d/m/Y')
         ];
 
         $query = [
           'query' => [
             'dataInicial' => $dates['starts'],
-            'dataFinal' => $dates['ends']
+            'dataFinal'   => $dates['ends']
           ],
-          'auth' => [
+          'auth'  => [
             env('APP_API_USERNAME'),
             env('APP_API_PASSWORD')
           ]
@@ -69,14 +69,14 @@ class StaterkitController extends Controller
 
       $dates = [
         'starts' => now()->startOfMonth()->format('d/m/Y'),
-        'ends' => now()->endOfMonth()->format('d/m/Y')
+        'ends'   => now()->endOfMonth()->format('d/m/Y')
       ];
 
       // se for o primeiro dia útil do mês
       if (Carbon::parse($this->dias_uteis->first()->data)->toDateString() == now()->toDateString()) {
         $dates = [
           'starts' => now()->subMonth(1)->startOfMonth()->format('d/m/Y'),
-          'ends' => now()->subMonth(1)->endOfMonth()->format('d/m/Y')
+          'ends'   => now()->subMonth(1)->endOfMonth()->format('d/m/Y')
         ];
       }
 
@@ -84,9 +84,9 @@ class StaterkitController extends Controller
       $query = [
         'query' => [
           'dataInicial' => $dates['starts'],
-          'dataFinal' => $dates['ends']
+          'dataFinal'   => $dates['ends']
         ],
-        'auth' => [
+        'auth'  => [
           env('APP_API_USERNAME'),
           env('APP_API_PASSWORD')
         ]
@@ -202,22 +202,22 @@ class StaterkitController extends Controller
 
       $dates = [
         'starts' => now()->startOfMonth()->format('d/m/Y'),
-        'ends' => now()->endOfMonth()->format('d/m/Y')
+        'ends'   => now()->endOfMonth()->format('d/m/Y')
       ];
       // se for o primeiro dia útil do mês
       if (Carbon::parse($this->dias_uteis->first()->data)->toDateString() == now()->toDateString()) {
         $dates = [
           'starts' => now()->subMonth(1)->startOfMonth()->format('d/m/Y'),
-          'ends' => now()->subMonth(1)->endOfMonth()->format('d/m/Y')
+          'ends'   => now()->subMonth(1)->endOfMonth()->format('d/m/Y')
         ];
       }
 
       $query = [
         'query' => [
           'dataInicial' => $dates['starts'],
-          'dataFinal' => $dates['ends']
+          'dataFinal'   => $dates['ends']
         ],
-        'auth' => [
+        'auth'  => [
           env('APP_API_USERNAME'),
           env('APP_API_PASSWORD')
         ]
@@ -272,22 +272,22 @@ class StaterkitController extends Controller
 
       $dates = [
         'starts' => now()->startOfMonth()->format('d/m/Y'),
-        'ends' => now()->endOfMonth()->format('d/m/Y')
+        'ends'   => now()->endOfMonth()->format('d/m/Y')
       ];
       // se for o primeiro dia útil do mês
       if (Carbon::parse($this->dias_uteis->first()->data)->toDateString() == now()->toDateString()) {
         $dates = [
           'starts' => now()->subMonth(1)->startOfMonth()->format('d/m/Y'),
-          'ends' => now()->subMonth(1)->endOfMonth()->format('d/m/Y')
+          'ends'   => now()->subMonth(1)->endOfMonth()->format('d/m/Y')
         ];
       }
 
       $query = [
         'query' => [
           'dataInicial' => $dates['starts'],
-          'dataFinal' => $dates['ends']
+          'dataFinal'   => $dates['ends']
         ],
-        'auth' => [
+        'auth'  => [
           env('APP_API_USERNAME'),
           env('APP_API_PASSWORD')
         ]
@@ -331,15 +331,15 @@ class StaterkitController extends Controller
 
 
       $data['geral'] = [
-        'faturado' => $vlVendaGeral,
-        'faturado_parcial' => $vlVendaParcial,
-        'meta' => $vlMetaGeral,
-        'meta_parcial' => $vlMetaParcial,
-        'meta_clientes' => round($response_month->sum('numCliPrev')),
+        'faturado'           => $vlVendaGeral,
+        'faturado_parcial'   => $vlVendaParcial,
+        'meta'               => $vlMetaGeral,
+        'meta_parcial'       => $vlMetaParcial,
+        'meta_clientes'      => round($response_month->sum('numCliPrev')),
         'clientes_atendidos' => $response_month->sum('numCliAtendidos'),
-        'realizado' => $vlVendaGeral > 0 && $vlMetaGeral > 0 ? round($vlVendaGeral / $vlMetaGeral * 100, 2) : 0,
-        'projecao' => $vlVendaGeral > 0 && $vlMetaParcial > 0 ? round($vlVendaGeral / $vlMetaParcial * 100, 2) : 0,
-        'capilaridade' => $numCliAtendidos > 0 && $numCliPrev > 0 ? round($numCliAtendidos / round($numCliPrev) * 100, 2) : 0,
+        'realizado'          => $vlVendaGeral > 0 && $vlMetaGeral > 0 ? round($vlVendaGeral / $vlMetaGeral * 100, 2) : 0,
+        'projecao'           => $vlVendaGeral > 0 && $vlMetaParcial > 0 ? round($vlVendaGeral / $vlMetaParcial * 100, 2) : 0,
+        'capilaridade'       => $numCliAtendidos > 0 && $numCliPrev > 0 ? round($numCliAtendidos / round($numCliPrev) * 100, 2) : 0,
       ];
 
       $data['items'] = $response_month->map(function ($item) {
@@ -352,7 +352,7 @@ class StaterkitController extends Controller
       })
         ->where('vlMeta', '>', 0)
         // Retirado Guilherme e Diversos a Pedido do Rodrigo
-        ->whereNotIn('codSupervisor',[4,8])
+        ->whereNotIn('codSupervisor', [4, 8])
         ->sortByDesc('atingido');
 
     } catch (Exception $exception) {
@@ -369,7 +369,14 @@ class StaterkitController extends Controller
 
     $theme = 'evus';
     $title = "Meta Evus";
+
     $next = route('home');
+
+    if (Carbon::now()->lt(Carbon::parse("2021-07-31 00:00:00"))) {
+      $next = route('campanha-temporaria1');
+    }
+
+
     $timeout = 30000;
 
 
@@ -377,22 +384,22 @@ class StaterkitController extends Controller
 
       $dates = [
         'starts' => now()->startOfWeek()->format('d/m/Y'),
-        'ends' => now()->endOfWeek()->subDay(1)->format('d/m/Y')
+        'ends'   => now()->endOfWeek()->subDay(1)->format('d/m/Y')
       ];
 
       if (request()->has('starts') && request()->has('ends')) {
         $dates = [
           'starts' => request()->input('starts'),
-          'ends' => request()->input('ends')
+          'ends'   => request()->input('ends')
         ];
       }
 
       $query = [
         'query' => [
           'dataInicial' => $dates['starts'],
-          'dataFinal' => $dates['ends']
+          'dataFinal'   => $dates['ends']
         ],
-        'auth' => [
+        'auth'  => [
           env('APP_API_USERNAME'),
           env('APP_API_PASSWORD')
         ]
@@ -481,4 +488,11 @@ class StaterkitController extends Controller
     return view('pages.evos', compact('title', 'next', 'theme', 'data', 'timeout', 'dates'));
   }
 
+  public function temporario1()
+  {
+
+    $next = route('home');
+    $timeout = 30000;
+    return view('pages.campanha_temporaria1', compact('timeout', 'next'));
+  }
 }
