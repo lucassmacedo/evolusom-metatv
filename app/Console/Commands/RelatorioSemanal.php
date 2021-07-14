@@ -58,8 +58,8 @@ class RelatorioSemanal extends Command
         $url = $snap->screenshot(sprintf("http://metatv.evolusom.com.br/evus?starts=%s&ends=%s", $starts, $ends));
 
         if ($url) {
-          Mail::to(['ti6@evolusom.com.br'])->send(new Relatorio($url, $starts, $ends));
-//          Mail::to(['ti6@evolusom.com.br', 'rodrigo@evolusom.com.br', 'vendedores@evolusom.com.br'])->send(new Relatorio($url, $starts, $ends));
+//          Mail::to(['ti6@evolusom.com.br'])->send(new Relatorio($url, $starts, $ends));
+          Mail::to(['ti6@evolusom.com.br', 'rodrigo@evolusom.com.br', 'vendedores@evolusom.com.br'])->send(new Relatorio($url, $starts, $ends));
         }
 
         break;

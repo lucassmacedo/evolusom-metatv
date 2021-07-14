@@ -16,7 +16,7 @@
 @endsection
 @section('content')
   <div class="content-body">
-    <img src="{{ asset('images/campanhas/KV - Tv Corporativa 1920 x 1080.png') }}" alt="" class="img-fluid">
+    <img src="{{ $image }}" alt="" class="img-fluid">
   </div>
 @endsection
 @section('vendor-script')
