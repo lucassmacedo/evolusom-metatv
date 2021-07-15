@@ -19,5 +19,6 @@ Route::get('/meta-equipes', 'StaterkitController@meta_equipes')->name('meta_equi
 Route::get('/evus', 'StaterkitController@evos')->name('evus');
 Route::get('/campanha-temporaria1', 'StaterkitController@temporario1')->name('campanha-temporaria1');
 Route::get('/campanha-temporaria2', 'StaterkitController@temporario2')->name('campanha-temporaria2');
+Route::get('/campanha-temporaria3', 'StaterkitController@temporario3')->name('campanha-temporaria3');
 //Route::get('/test', 'StaterkitController@test')->name('evus');
 
