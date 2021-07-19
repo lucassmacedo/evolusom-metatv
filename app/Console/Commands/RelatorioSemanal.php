@@ -47,11 +47,11 @@ class RelatorioSemanal extends Command
       $this->info("Tentaiva $count");
       try {
 
-        $starts = now()->subWeek(1)->startOfWeek()->format('d/m/Y');
-        $ends = now()->subWeek(1)->endOfWeek()->subDay(1)->format('d/m/Y');
+//        $starts = now()->subWeek(1)->startOfWeek()->format('d/m/Y');
+//        $ends = now()->subWeek(1)->endOfWeek()->subDay(1)->format('d/m/Y');
 
-//        $starts = now()->startOfWeek()->format('d/m/Y');
-//        $ends = now()->endOfWeek()->subDay(1)->format('d/m/Y');
+        $starts = now()->startOfWeek()->format('d/m/Y');
+        $ends = now()->endOfWeek()->subDay(1)->format('d/m/Y');
 
 
         $snap = new MyScreenshot();
