@@ -499,17 +499,10 @@ class StaterkitController extends Controller
 
   public function temporario2()
   {
-    $next = route('campanha-temporaria3');
-    $timeout = 30000;
-    $image = asset('images/campanhas/Faturamento-Tv-Corporativa-1920-x-1080-13072.jpg');
-    return view('pages.campanha_temporaria1', compact('timeout', 'next', 'image'));
-  }
-  public function temporario3()
-  {
     $next = route('home');
     $timeout = 30000;
-    $image = asset('images/campanhas/Ranking-Tv-Corporativa-1920-x-1080-1307.jpg');
+    $image = asset('images/campanhas/Ranking-Tv-Corporativa-1920-x-1080-2007.jpg');
+
     return view('pages.campanha_temporaria1', compact('timeout', 'next', 'image'));
   }
-
 }
