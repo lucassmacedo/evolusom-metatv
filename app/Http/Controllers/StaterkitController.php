@@ -501,7 +501,7 @@ class StaterkitController extends Controller
   {
     $next = route('home');
     $timeout = 30000;
-    $image = asset('images/campanhas/Ranking-Tv-Corporativa-1920-x-1080-2007.jpg');
+    $image = asset('images/campanhas/Alerta-Tv-Corporativa-1920-x-1080.jpg');
 
     return view('pages.campanha_temporaria1', compact('timeout', 'next', 'image'));
   }
