@@ -372,7 +372,7 @@ class StaterkitController extends Controller
 
     $next = route('home');
 
-    if (Carbon::now()->lt(Carbon::parse("2021-07-31 00:00:00"))) {
+    if (Carbon::now()->lt(Carbon::parse("2021-08-31 00:00:00"))) {
       $next = route('campanha-temporaria1');
     }
 
@@ -490,19 +490,11 @@ class StaterkitController extends Controller
 
   public function temporario1()
   {
-    $next = route('campanha-temporaria2');
-
-    $timeout = 30000;
-    $image = asset('images/campanhas/KV - Tv Corporativa 1920 x 1080.png');
-    return view('pages.campanha_temporaria1', compact('timeout', 'next', 'image'));
-  }
-
-  public function temporario2()
-  {
     $next = route('home');
-    $timeout = 30000;
-    $image = asset('images/campanhas/Alerta-Tv-Corporativa-1920-x-1080.jpg');
 
+    $timeout = 30000;
+    $image = asset('images/campanhas/campanha-agosto.jpg');
     return view('pages.campanha_temporaria1', compact('timeout', 'next', 'image'));
   }
+
 }
