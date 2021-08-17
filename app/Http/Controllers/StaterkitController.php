@@ -481,6 +481,17 @@ class StaterkitController extends Controller
 //        ->whereNotIn('codUsur', [1])
         ->take(10);
 
+//      $text = '<table cellpadding="3px" border="1px" style="width: 90%;"><tbody>';
+//
+//      foreach ($data['pontuacao'] as $item) {
+//
+//        $text .= "<tr><td>" . $item->nome . "</td><td>" . $item->pontuacao . "</td><td>" . $item->faturamentoEvus . "</td></tr>" ;
+//      }
+//
+//      $text.="</tbody></table>";
+
+//      return $data['pontuacao'];
+
     } catch (Exception $exception) {
       dd($exception->getMessage());
     }

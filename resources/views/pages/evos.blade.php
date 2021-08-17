@@ -261,11 +261,12 @@
                   @foreach($data['pontuacao'] as $item)
                     @if($loop->iteration > 1)
                       <tr>
-                        <td class="text-left" height="40">
+                        <td class="text-left" height="38">
                           <span class="mb-0 font-medium-4 text-bold"><b>{{$loop->iteration}}º</b></span>
                         </td>
                         <td class="text-left" height="40">
-                          <span class="mb-0 font-medium-3 text-bold-700"> {{ $item->nome }}</span>
+                          <span class="mb-0 font-medium-2 text-bold-700">{{ $item->nome }} </span>
+                          <p class="mb-0 font-medium-2 text-bold-700">{{ $item->pontuacao }} Pontos </p>
                         </td>
                       </tr>
                     @endif
