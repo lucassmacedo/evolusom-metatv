@@ -320,15 +320,14 @@ class StaterkitController extends Controller
       $response_parcial = collect(json_decode($response_parcial->getBody()->getContents()));
 
 
+
       $vlVendaGeral = $response_month->where('vlMeta', '>', 0)->sum('vlVenda');
       $vlMetaGeral = $response_month->sum('vlMeta');
       $numCliAtendidos = $response_month->sum('numCliAtendidos');
       $numCliPrev = $response_month->sum('numCliPrev');
 
-
       $vlVendaParcial = $response_parcial->where('vlMeta', '>', 0)->sum('vlVenda');
       $vlMetaParcial = $response_parcial->sum('vlMeta');
-
 
       $data['geral'] = [
         'faturado'           => $vlVendaGeral,
@@ -342,7 +341,7 @@ class StaterkitController extends Controller
         'capilaridade'       => $numCliAtendidos > 0 && $numCliPrev > 0 ? round($numCliAtendidos / round($numCliPrev) * 100, 2) : 0,
       ];
 
-      $data['items'] = $response_month->map(function ($item) {
+        $data['items'] = $response_month->map(function ($item) {
         $item->atingido = $item->vlVenda > 0 && $item->vlMeta > 0 ? round(($item->vlVenda / $item->vlMeta) * 100, 2) : 0;
         $item->per_clientes = $item->numCliAtendidos > 0 && $item->numCliPrev > 0 ? round(($item->numCliAtendidos / $item->numCliPrev) * 100, 2) : 0;
 
@@ -504,7 +503,7 @@ class StaterkitController extends Controller
     $next = route('home');
 
     $timeout = 30000;
-    $image = asset('images/campanhas/campanha-agosto.jpg');
+    $image = asset('images/campanhas/campanha-setembro.jpg');
     return view('pages.campanha_temporaria1', compact('timeout', 'next', 'image'));
   }
 
