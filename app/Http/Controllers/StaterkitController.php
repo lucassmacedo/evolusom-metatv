@@ -371,7 +371,7 @@ class StaterkitController extends Controller
 
     $next = route('home');
 
-    if (Carbon::now()->lt(Carbon::parse("2021-08-31 00:00:00"))) {
+    if (Carbon::now()->lt(Carbon::parse("2021-09-30 00:00:00"))) {
       $next = route('campanha-temporaria1');
     }
 
