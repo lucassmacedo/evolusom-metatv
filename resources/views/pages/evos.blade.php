@@ -49,7 +49,7 @@
                     <div class="col-12">
                       <div class="avatar">
 
-                        <img src="{{asset('images/elements/icon-avatar-default.png')}}"
+                        <img src="{{$data['capilaridade']->first()->avatar}}"
                              alt=""
                              onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"
 
@@ -88,7 +88,7 @@
                   <div class="row">
                     <div class="col-12">
                       <div class="avatar">
-                        <img src="{{asset('images/elements/icon-avatar-default.png')}}"
+                        <img src="{{$data['faturamento']->first()->avatar}}"
                              alt=""
 
                              onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"
@@ -127,7 +127,7 @@
                   <div class="row">
                     <div class="col-12">
                       <div class="avatar">
-                        <img src="{{asset('images/elements/icon-avatar-default.png')}}"
+                        <img src="{{$data['pontuacao']->first()->avatar}}"
                              alt=""
                              onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"
                              width="120"

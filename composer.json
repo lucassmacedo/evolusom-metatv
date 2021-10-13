@@ -14,7 +14,8 @@
     "laravel/dusk": "^6.8",
     "laravel/framework": "^6.0",
     "laravel/passport": "^7.3",
-    "laravel/tinker": "^1.0"
+    "laravel/tinker": "^1.0",
+    "laravelcollective/html": "^6.2"
   },
   "require-dev": {
     "barryvdh/laravel-ide-helper": "^2.8",

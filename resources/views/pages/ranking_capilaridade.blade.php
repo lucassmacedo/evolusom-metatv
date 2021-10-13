@@ -70,14 +70,14 @@
 
                             @if($loop->index < 3)
                               <h3 class="mb-0 text-bold-700">
-
-                                <img src="{{asset('images/elements/icon-avatar-default.png')}}"
+                                <img src="/images/vendedores/{{$item->codUsur}}.png"
                                      onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"
                                      alt="avtar img holder" height="70" width="70">
                                 {{ $item->nome }}</h3>
                             @else
                               <h5 class="mb-0 text-bold-700">{{ $item->nome }}</h5>
                             @endif
+
                           </td>
                           <td class="text-center">
                                 <span class="btn btn-relief-success waves-effect waves-light black text-bold-700 "

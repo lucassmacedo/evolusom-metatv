@@ -320,7 +320,6 @@ class StaterkitController extends Controller
       $response_parcial = collect(json_decode($response_parcial->getBody()->getContents()));
 
 
-
       $vlVendaGeral = $response_month->where('vlMeta', '>', 0)->sum('vlVenda');
       $vlMetaGeral = $response_month->sum('vlMeta');
       $numCliAtendidos = $response_month->sum('numCliAtendidos');
@@ -341,7 +340,7 @@ class StaterkitController extends Controller
         'capilaridade'       => $numCliAtendidos > 0 && $numCliPrev > 0 ? round($numCliAtendidos / round($numCliPrev) * 100, 2) : 0,
       ];
 
-        $data['items'] = $response_month->map(function ($item) {
+      $data['items'] = $response_month->map(function ($item) {
         $item->atingido = $item->vlVenda > 0 && $item->vlMeta > 0 ? round(($item->vlVenda / $item->vlMeta) * 100, 2) : 0;
         $item->per_clientes = $item->numCliAtendidos > 0 && $item->numCliPrev > 0 ? round(($item->numCliAtendidos / $item->numCliPrev) * 100, 2) : 0;
 
@@ -458,7 +457,7 @@ class StaterkitController extends Controller
 
       $response = $this->client->get('metatvevus', $query);
       $response = collect(json_decode($response->getBody()->getContents()))->map(function ($item) {
-//        $item->avatar = sprintf("http://www.evolusom.com.br/metatv37/v/%s.png", $item->codUsur);
+        $item->avatar = sprintf("/images/vendedores/%s.png", $item->codUsur);
         return $item;
       })->whereNotIn('codUsur', $usersToIgnoreGeral);
 
