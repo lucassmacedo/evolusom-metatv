@@ -370,7 +370,7 @@ class StaterkitController extends Controller
 
     $next = route('home');
 
-    if (Carbon::now()->lt(Carbon::parse("2021-09-30 00:00:00"))) {
+    if (Carbon::now()->lt(Carbon::parse("2021-11-12 00:00:00"))) {
       $next = route('campanha-temporaria1');
     }
 
@@ -500,7 +500,7 @@ class StaterkitController extends Controller
     $next = route('home');
 
     $timeout = 30000;
-    $image = asset('images/campanhas/campanha-setembro.jpg');
+    $image = asset('images/campanhas/esquenta.jpg');
     return view('pages.campanha_temporaria1', compact('timeout', 'next', 'image'));
   }
 
