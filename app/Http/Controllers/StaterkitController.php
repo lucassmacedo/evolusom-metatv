@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AcompanhamentoMeta;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use PHPUnit\Exception;
@@ -176,19 +177,87 @@ class StaterkitController extends Controller
         ->sortByDesc('projetado');
 
 
-      $data['vendas'] = $response_month->map(function ($item) {
+      $vendas = $response_month->map(function ($item) {
+        $item->atendidos = $item->numCliAtendidos > 0 && $item->numCliPrev > 0 ? round(($item->numCliAtendidos / $item->numCliPrev) * 100, 2) : 0;
         $item->atingido = $item->vlVenda > 0 && $item->vlMeta > 0 ? round(($item->vlVenda / $item->vlMeta) * 100, 2) : 0;
         return $item;
       })
         ->whereNotIn('codUsur', $usersToIgnore)
-        ->sortByDesc('vlVenda')
-        ->take(3);
+        ->sortByDesc('vlVenda');
+
+      $data['vendas'] = $vendas->take(3);
+
+      $metas_atingidas = $vendas->where("atendidos", '>', 99.99)->where("atingido", '>', 99.99);
+      foreach ($metas_atingidas as $item) {
+        AcompanhamentoMeta::firstOrCreate([
+          "vendedor" => $item->codUsur,
+          "nome"     => $item->nome,
+          "mes"      => date('m'),
+          "ano"      => date('Y'),
+        ]);
+      }
+
+      if ($metas_atingidas) {
+        $next = route('meta_atingida');
+      }
 
     } catch (Exception $exception) {
       dd($exception->getMessage());
     }
 
     return view('pages.ranking_vendas', compact('next', 'data', 'theme', 'dates', 'timeout'));
+  }
+
+  // Fixed Layout
+  public function meta_atingida()
+  {
+
+    // pega proxima a ser mostrada depois da ultima mostrada
+    $ultima_mostrada = AcompanhamentoMeta::where('mes', date('m'))
+      ->where('ano', date('Y'))
+      ->where("ultima_mostrada", true)
+      ->first();
+
+    // pega proxima a ser mostrada depois da ultima mostrada
+    $metas_atingidas_mostrar = AcompanhamentoMeta::where('mes', date('m'))
+      ->where('ano', date('Y'));
+
+    $metas_atingidas_mostrar = AcompanhamentoMeta::where('mes', date('m'))
+      ->where('ano', date('Y'));
+
+    if (!is_null($ultima_mostrada)) {
+      $metas_atingidas_mostrar->where('id', '>', $ultima_mostrada->id);
+    }
+
+    $metas_atingidas_mostrar = $metas_atingidas_mostrar->orderBy('id', 'asc')->first();
+
+
+    if (is_null($metas_atingidas_mostrar)) {
+      $metas_atingidas_mostrar = AcompanhamentoMeta::where('mes', date('m'))
+        ->where('ano', date('Y'))
+        ->orderBy('id', 'asc')
+        ->first();
+    }
+
+    if ($metas_atingidas_mostrar) {
+      $metas_atingidas_mostrar->ultima_mostrada = true;
+      $metas_atingidas_mostrar->save();
+    }
+
+
+    if ($ultima_mostrada) {
+      $ultima_mostrada->ultima_mostrada = false;
+      $ultima_mostrada->save();
+    }
+
+    $max_date = Carbon::parse($metas_atingidas_mostrar->created_at)->addDay(1)->endOfDay();
+    $metas_atingidas_mostrar->passou = now()->gt($max_date);
+
+    $theme = 'evolusom';
+    $next = route('capilaridade');
+    $timeout = 30000;
+
+    return view('pages.acompanhamento_meta', compact('next', 'metas_atingidas_mostrar', 'theme', 'timeout'));
   }
 
   // Fixed Layout
@@ -477,7 +546,7 @@ class StaterkitController extends Controller
 //        ->whereNotIn('codUsur', [1])
         ->take(10);
 
-//      $text = '<table cellpadding="3px" border="1px" style="width: 90%;"><tbody>';
+//      $text = ' < table cellpadding = "3px" border = "1px" style = "width: 90%;" ><tbody > ';
 //
 //      foreach ($data['pontuacao'] as $item) {
 //

@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'StaterkitController@ranking_vendas')->name('home');
+Route::get('/meta-atingida', 'StaterkitController@meta_atingida')->name('meta_atingida');
 Route::get('/capilaridade', 'StaterkitController@ranking_capilaridade')->name('capilaridade');
 Route::get('/produtos-mes', 'StaterkitController@produtos_mes')->name('produtos-dia');
 Route::get('/produtos-dia', 'StaterkitController@produtos_dia')->name('produtos-mes');
