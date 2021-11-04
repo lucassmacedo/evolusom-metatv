@@ -31,6 +31,7 @@ class StaterkitController extends Controller
     try {
 
       $this->dias_uteis = cache()->remember('metatvdiasuteis', 0, function () {
+
         $dates = [
           'starts' => now()->startOfMonth()->format('d/m/Y'),
           'ends'   => now()->endOfMonth()->format('d/m/Y')
@@ -197,7 +198,7 @@ class StaterkitController extends Controller
         ]);
       }
 
-      if ($metas_atingidas) {
+      if ($metas_atingidas->isNotEmpty()) {
         $next = route('meta_atingida');
       }
 
@@ -219,9 +220,6 @@ class StaterkitController extends Controller
       ->first();
 
     // pega proxima a ser mostrada depois da ultima mostrada
-    $metas_atingidas_mostrar = AcompanhamentoMeta::where('mes', date('m'))
-      ->where('ano', date('Y'));
-
     $metas_atingidas_mostrar = AcompanhamentoMeta::where('mes', date('m'))
       ->where('ano', date('Y'));
 
@@ -448,8 +446,8 @@ class StaterkitController extends Controller
     try {
 
       $dates = [
-        'starts' => now()->startOfWeek()->format('d/m/Y'),
-        'ends'   => now()->endOfWeek()->subDay(1)->format('d/m/Y')
+        'starts' => now()->subWeek(1)->startOfWeek()->format('d/m/Y'),
+        'ends'   => now()->subWeek(1)->endOfWeek()->subDay(1)->format('d/m/Y')
       ];
 
       if (request()->has('starts') && request()->has('ends')) {
