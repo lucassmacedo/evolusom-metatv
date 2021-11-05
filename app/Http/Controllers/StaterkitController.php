@@ -446,8 +446,8 @@ class StaterkitController extends Controller
     try {
 
       $dates = [
-        'starts' => now()->subWeek(1)->startOfWeek()->format('d/m/Y'),
-        'ends'   => now()->subWeek(1)->endOfWeek()->subDay(1)->format('d/m/Y')
+        'starts' => now()->startOfWeek()->format('d/m/Y'),
+        'ends'   => now()->endOfWeek()->subDay(1)->format('d/m/Y')
       ];
 
       if (request()->has('starts') && request()->has('ends')) {
