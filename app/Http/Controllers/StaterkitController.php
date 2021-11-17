@@ -188,8 +188,8 @@ class StaterkitController extends Controller
 
       $data['vendas'] = $vendas->take(3);
 
-      $metas_atingidas = $vendas->where("atendidos", '>', 40.99)
-        ->where("atingido", '>', 40.99);
+      $metas_atingidas = $vendas->where("atendidos", '>', 99.99)
+        ->where("atingido", '>', 99.99);
       foreach ($metas_atingidas as $item) {
         AcompanhamentoMeta::firstOrCreate([
           "vendedor" => $item->codUsur,
