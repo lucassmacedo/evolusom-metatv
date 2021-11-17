@@ -188,7 +188,8 @@ class StaterkitController extends Controller
 
       $data['vendas'] = $vendas->take(3);
 
-      $metas_atingidas = $vendas->where("atendidos", '>', 99.99)->where("atingido", '>', 99.99);
+      $metas_atingidas = $vendas->where("atendidos", '>', 40.99)
+        ->where("atingido", '>', 40.99);
       foreach ($metas_atingidas as $item) {
         AcompanhamentoMeta::firstOrCreate([
           "vendedor" => $item->codUsur,
@@ -252,10 +253,29 @@ class StaterkitController extends Controller
     $metas_atingidas_mostrar->passou = now()->gt($max_date);
 
     $theme = 'evolusom';
-    $next = route('capilaridade');
+    $next = route('meta_atingida2');
     $timeout = 30000;
 
     return view('pages.acompanhamento_meta', compact('next', 'metas_atingidas_mostrar', 'theme', 'timeout'));
+  }
+
+  public function meta_atingida2()
+  {
+    // pega proxima a ser mostrada depois da ultima mostrada
+    $vendedores = AcompanhamentoMeta::where('mes', date('m'))
+      ->where('ano', date('Y'))
+      ->paginate(10);
+
+
+    if ($vendedores->currentPage() == $vendedores->lastPage()) {
+      $next = route('capilaridade');
+    } else {
+      $next = route('meta_atingida2', ['page' => $vendedores->currentPage() + 1]);
+    }
+    $theme = 'evolusom';
+    $timeout = 30000;
+
+    return view('pages.meta_atingida', compact('next', 'vendedores', 'theme', 'timeout'));
   }
 
   // Fixed Layout
