@@ -190,6 +190,7 @@ class StaterkitController extends Controller
 
       $metas_atingidas = $vendas->where("atendidos", '>', 99.99)
         ->where("atingido", '>', 99.99);
+
       foreach ($metas_atingidas as $item) {
         AcompanhamentoMeta::firstOrCreate([
           "vendedor" => $item->codUsur,
@@ -587,7 +588,7 @@ class StaterkitController extends Controller
     $next = route('home');
 
     $timeout = 30000;
-    $image = asset('images/campanhas/esquenta.jpg');
+    $image = asset('images/campanhas/Black-Friday-Evolusom---KV_V1-min.jpg');
     return view('pages.campanha_temporaria1', compact('timeout', 'next', 'image'));
   }
 
