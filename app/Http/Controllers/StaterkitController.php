@@ -458,7 +458,7 @@ class StaterkitController extends Controller
 
     $next = route('home');
 
-    if (Carbon::now()->lt(Carbon::parse("2021-11-12 00:00:00"))) {
+    if (Carbon::now()->lt(Carbon::parse("2021-11-27 00:00:00"))) {
       $next = route('campanha-temporaria1');
     }
 
@@ -588,7 +588,7 @@ class StaterkitController extends Controller
     $next = route('home');
 
     $timeout = 30000;
-    $image = asset('images/campanhas/Black-Friday-Evolusom---KV_V1-min.jpg');
+    $image = asset('images/campanhas/Black-Friday-Evolusom---KV_V1-min.j');
     return view('pages.campanha_temporaria1', compact('timeout', 'next', 'image'));
   }
 
