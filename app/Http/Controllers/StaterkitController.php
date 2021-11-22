@@ -588,7 +588,7 @@ class StaterkitController extends Controller
     $next = route('home');
 
     $timeout = 30000;
-    $image = asset('images/campanhas/Black-Friday-Evolusom---KV_V1-min.j');
+    $image = asset('images/campanhas/Black-Friday-Evolusom---KV_V1-min.jpg');
     return view('pages.campanha_temporaria1', compact('timeout', 'next', 'image'));
   }
 
