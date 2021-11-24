@@ -30,7 +30,7 @@ class StaterkitController extends Controller
 
     try {
 
-      $this->dias_uteis = cache()->remember('metatvdiasuteis', 0, function () {
+      $this->dias_uteis = cache()->remember('metatvdiasuteis', 60 * 60 * 24, function () {
 
         $dates = [
           'starts' => now()->startOfMonth()->format('d/m/Y'),
@@ -51,9 +51,9 @@ class StaterkitController extends Controller
 
         return collect(json_decode($dias_uteis->getBody()->getContents()));
       });
-//
-    } catch (\Exception $exception) {
 
+    } catch (\Exception $exception) {
+      cache()->forget('metatvdiasuteis');
     }
 
 
