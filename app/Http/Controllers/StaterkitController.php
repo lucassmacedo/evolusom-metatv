@@ -292,6 +292,7 @@ class StaterkitController extends Controller
         'starts' => now()->startOfMonth()->format('d/m/Y'),
         'ends'   => now()->endOfMonth()->format('d/m/Y')
       ];
+
       // se for o primeiro dia útil do mês
       if (Carbon::parse($this->dias_uteis->first()->data)->toDateString() == now()->toDateString()) {
         $dates = [
@@ -458,7 +459,7 @@ class StaterkitController extends Controller
 
     $next = route('home');
 
-    if (Carbon::now()->lt(Carbon::parse("2021-11-27 00:00:00"))) {
+    if (Carbon::now()->lt(Carbon::parse("2021-12-31 20:00:00"))) {
       $next = route('campanha-temporaria1');
     }
 
@@ -588,7 +589,7 @@ class StaterkitController extends Controller
     $next = route('home');
 
     $timeout = 30000;
-    $image = asset('images/campanhas/Black-Friday-Evolusom---KV_V1-min.jpg');
+    $image = asset('images/campanhas/Campanha_Natal_Evolusom_KV-min.png');
     return view('pages.campanha_temporaria1', compact('timeout', 'next', 'image'));
   }
 
