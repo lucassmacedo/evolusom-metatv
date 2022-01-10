@@ -459,7 +459,7 @@ class StaterkitController extends Controller
 
     $next = route('home');
 
-    if (Carbon::now()->lt(Carbon::parse("2021-12-31 20:00:00"))) {
+    if (Carbon::now()->lt(Carbon::parse("2022-04-30 00:00:00"))) {
       $next = route('campanha-temporaria1');
     }
 
@@ -584,12 +584,24 @@ class StaterkitController extends Controller
     return view('pages.evos', compact('title', 'next', 'theme', 'data', 'timeout', 'dates'));
   }
 
-  public function temporario1()
+  public function temporario2()
   {
     $next = route('home');
 
     $timeout = 30000;
-    $image = asset('images/campanhas/Campanha_Natal_Evolusom_KV-min.png');
+    $image = asset('images/campanhas/campanha2.jpg');
+    return view('pages.campanha_temporaria1', compact('timeout', 'next', 'image'));
+  }
+
+  public function temporario1()
+  {
+    $next = route('home');
+    if (Carbon::now()->lt(Carbon::parse("2022-01-31 20:00:00"))) {
+      $next = route('campanha-temporaria2');
+    }
+
+    $timeout = 30000;
+    $image = asset('images/campanhas/campanha1.png');
     return view('pages.campanha_temporaria1', compact('timeout', 'next', 'image'));
   }
 
