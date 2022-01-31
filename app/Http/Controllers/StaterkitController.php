@@ -382,7 +382,6 @@ class StaterkitController extends Controller
         ]
       ];
 
-
       $response_dias_uteis = $this->client->get('metatvdiasuteis', $query);
       $response_dias_uteis = collect(json_decode($response_dias_uteis->getBody()->getContents()))->map(function ($item) {
         $item->data_raw = Carbon::parse($item->data)->format('Ymd');

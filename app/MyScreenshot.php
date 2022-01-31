@@ -44,7 +44,7 @@ class MyScreenshot
 
     $capabilities = DesiredCapabilities::chrome()->setCapability(ChromeOptions::CAPABILITY, $options);
     $driver = retry(5, function () use ($capabilities) {
-      return RemoteWebDriver::create('http://selenium:4444', $capabilities);
+      return RemoteWebDriver::create('http://localhost:4444', $capabilities);
     }, 50);
     $browser = new Browser($driver);
 
