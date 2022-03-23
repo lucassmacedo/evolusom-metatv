@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\AcompanhamentoMeta;
 use Carbon\Carbon;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use PHPUnit\Exception;
 use function foo\func;
@@ -604,4 +605,78 @@ class StaterkitController extends Controller
     return view('pages.campanha_temporaria1', compact('timeout', 'next', 'image'));
   }
 
+
+  public function voice()
+  {
+
+    $voice = new Client();
+//    $voice = json_decode($voice->get("https://api.npoint.io/444ce9712a32891b4deb")->getBody()->getContents(), true);
+    $voice = json_decode($voice->get("http://192.168.1.160/dashboard/ajax/dados/getAsteriskAMI.php")->getBody()->getContents(), true);
+    $dados = collect($voice);
+
+    $channels = collect($dados['CoreShowChannelsAction'])->mapToGroups(function ($item) {
+      return ["{$item['linkedid']}" => $item];
+    });
+
+    $setores = $dados['setores'][13];
+
+    $ramais['disponiveis'] = count(array_filter($dados['DeviceStateListAction'], function ($item) use ($setores) {
+      $regex = preg_replace("/^.*\//", "", $item['device']);
+      return (in_array($regex, $setores)) and $item['state'] == "NOT_INUSE";
+    }));
+
+    $ramais['ocupados'] = count(array_filter($dados['DeviceStateListAction'], function ($item) use ($setores) {
+      $regex = preg_replace("/^.*\//", "", $item['device']);
+      return (in_array($regex, $setores)) and $item['state'] == "BUSY";
+    }));
+    $ramais['indisponiveis'] = count(array_filter($dados['DeviceStateListAction'], function ($item) use ($setores) {
+      $regex = preg_replace("/^.*\//", "", $item['device']);
+      return (in_array($regex, $setores)) and $item['state'] == "UNAVAILABLE";
+    }));
+
+
+    $ramais['efetuadas'] = 0;
+    $ramais['recebidas'] = 0;
+
+    $acEfetuadas = [2, 3, 4, 5, 6, 7];
+
+    $acRecebidas = [11, 12, 13, 14, 15];
+    $channels = $channels->sortKeys();
+
+    foreach ($channels as $key => $channel) {
+
+
+      $agente = 0;
+      $cliente = 0;
+
+      $channel = $channel->toArray();
+      // sort array by column
+      usort($channel, function ($a, $b) {
+        return $a['linkedid'] - $b['linkedid'];
+      });
+
+
+      if (in_array($channels[$key][0]['accountcode'], $acRecebidas)) {
+        $agente = $channels[$key][count($channels[$key]) - 1]['channel'];
+      } elseif (in_array($channels[$key][0]['accountcode'], $acEfetuadas)) {
+        $agente = count($channels[$key]) == 2 ? $channels[$key][0]['channel'] : $channels[$key][count($channels[$key]) - 1]['channel'];
+      } else {
+        $agente = 0;
+      }
+
+      $agente = preg_replace("/^.*\//", "", $agente);
+      $agente = preg_replace("/-.*$/", "", $agente);
+
+      if (in_array($agente, $dados['filas']["Vendas"])) {
+
+        if (in_array($channels[$key][0]['accountcode'], $acRecebidas)) {
+          $ramais['recebidas'] = $ramais['recebidas'] + 1;
+        } else {
+          $ramais['efetuadas'] = $ramais['efetuadas'] + 1;
+        }
+      }
+    }
+
+    return $ramais;
+  }
 }
