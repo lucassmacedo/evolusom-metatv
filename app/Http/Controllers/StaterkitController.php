@@ -218,13 +218,14 @@ class StaterkitController extends Controller
   {
 
     // pega proxima a ser mostrada depois da ultima mostrada
-    $ultima_mostrada = AcompanhamentoMeta::where('mes', date('m'))
+    $ultima_mostrada = AcompanhamentoMeta::whereMonth('created_at', date('m'))
       ->whereYear('created_at', date('Y'))
       ->where("ultima_mostrada", true)
       ->first();
 
+
     // pega proxima a ser mostrada depois da ultima mostrada
-    $metas_atingidas_mostrar = AcompanhamentoMeta::whereMonth('mes', date('m'))
+    $metas_atingidas_mostrar = AcompanhamentoMeta::whereMonth('created_at', date('m'))
       ->whereYear('created_at', date('Y'));
 
     if (!is_null($ultima_mostrada)) {
@@ -265,7 +266,7 @@ class StaterkitController extends Controller
   public function meta_atingida2()
   {
     // pega proxima a ser mostrada depois da ultima mostrada
-    $vendedores = AcompanhamentoMeta::whereMonth('mes', date('m'))
+    $vendedores = AcompanhamentoMeta::whereMonth('created_at', date('m'))
       ->whereYear('ano', date('Y'))
       ->paginate(10);
 
