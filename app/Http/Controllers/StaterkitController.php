@@ -192,6 +192,7 @@ class StaterkitController extends Controller
       $metas_atingidas = $vendas->where("atendidos", '>', 99.99)
         ->where("atingido", '>', 99.99);
 
+
       foreach ($metas_atingidas as $item) {
         AcompanhamentoMeta::firstOrCreate([
           "vendedor" => $item->codUsur,
@@ -218,13 +219,13 @@ class StaterkitController extends Controller
 
     // pega proxima a ser mostrada depois da ultima mostrada
     $ultima_mostrada = AcompanhamentoMeta::where('mes', date('m'))
-      ->where('ano', date('Y'))
+      ->whereYear('created_at', date('Y'))
       ->where("ultima_mostrada", true)
       ->first();
 
     // pega proxima a ser mostrada depois da ultima mostrada
-    $metas_atingidas_mostrar = AcompanhamentoMeta::where('mes', date('m'))
-      ->where('ano', date('Y'));
+    $metas_atingidas_mostrar = AcompanhamentoMeta::whereMonth('mes', date('m'))
+      ->whereYear('created_at', date('Y'));
 
     if (!is_null($ultima_mostrada)) {
       $metas_atingidas_mostrar->where('id', '>', $ultima_mostrada->id);
@@ -234,8 +235,8 @@ class StaterkitController extends Controller
 
 
     if (is_null($metas_atingidas_mostrar)) {
-      $metas_atingidas_mostrar = AcompanhamentoMeta::where('mes', date('m'))
-        ->where('ano', date('Y'))
+      $metas_atingidas_mostrar = AcompanhamentoMeta::whereMonth('created_at', date('m'))
+        ->whereYear('created_at', date('Y'))
         ->orderBy('id', 'asc')
         ->first();
     }
@@ -264,8 +265,8 @@ class StaterkitController extends Controller
   public function meta_atingida2()
   {
     // pega proxima a ser mostrada depois da ultima mostrada
-    $vendedores = AcompanhamentoMeta::where('mes', date('m'))
-      ->where('ano', date('Y'))
+    $vendedores = AcompanhamentoMeta::whereMonth('mes', date('m'))
+      ->whereYear('ano', date('Y'))
       ->paginate(10);
 
 
@@ -668,7 +669,6 @@ class StaterkitController extends Controller
       $agente = preg_replace("/-.*$/", "", $agente);
 
       if (in_array($agente, $dados['filas']["Vendas"])) {
-
         if (in_array($channels[$key][0]['accountcode'], $acRecebidas)) {
           $ramais['recebidas'] = $ramais['recebidas'] + 1;
         } else {
