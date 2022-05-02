@@ -410,12 +410,7 @@ class StaterkitController extends Controller
       $response_parcial = $this->client->get('metatvequipe', $query);
       $response_parcial = collect(json_decode($response_parcial->getBody()->getContents()));
 
-//
-//      $vlVendaGeral = $response_month->where('vlMeta', '>', 0)->sum('vlVenda');
-
-      $vlVendaGeral = $response_month->where('vlMeta', '>', 0)->sum('vlVenda') +
-        $response_month->where('codSupervisor', 9)->sum('vlVenda');
-
+      $vlVendaGeral = $response_month->where('vlMeta', '>', 0)->sum('vlVenda');
 
       $vlMetaGeral = $response_month->sum('vlMeta');
       $numCliAtendidos = $response_month->sum('numCliAtendidos');
