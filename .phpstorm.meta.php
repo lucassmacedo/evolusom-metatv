@@ -1449,7 +1449,7 @@ namespace PHPSTORM_META {
             'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
             'view.finder' => \Illuminate\View\FileViewFinder::class,
         ]));
-    override(\Psr\Container\ContainerInterface::get, map([
+    override(\Psr\Container\ContainerInterface::get(0), map([
         '' => '@',
             'Illuminate\Auth\Middleware\RequirePassword' => \Illuminate\Auth\Middleware\RequirePassword::class,
             'Illuminate\Broadcasting\BroadcastManager' => \Illuminate\Broadcasting\BroadcastManager::class,
