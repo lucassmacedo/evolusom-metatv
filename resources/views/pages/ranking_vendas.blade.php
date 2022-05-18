@@ -5,13 +5,13 @@
 @section('vendor-style')
   <style>
     #dashboard-analytics table td {
-      padding: 0.15rem!important;
+      padding: 0.15rem !important;
     }
   </style>
 @endsection
 @section('content')
-{{--  <div class="content-header row">--}}
-      <div class="content-header row" id="navTitle">
+  {{--  <div class="content-header row">--}}
+  <div class="content-header row" id="navTitle">
     <div class="content-header-left col-md-12 col-12 mb-2">
       <div class="row breadcrumbs-top">
         <div class="col-12">
@@ -260,8 +260,6 @@
       </div>
     </section>
   </div>
-
-
 @endsection
 @section('vendor-script')
   <!-- vendor files -->

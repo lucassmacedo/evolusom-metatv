@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AcompanhamentoMeta;
+use App\WinthorApi;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
@@ -463,8 +464,8 @@ class StaterkitController extends Controller
 
     $next = route('home');
 
-    if (Carbon::now()->lt(Carbon::parse("2022-04-30 00:00:00"))) {
-      $next = route('campanha-temporaria1');
+    if (Carbon::now()->lt(Carbon::parse("2022-10-04 00:00:00"))) {
+      $next = route('iberostart');
     }
 
     $timeout = 30000;
@@ -686,122 +687,37 @@ class StaterkitController extends Controller
   public function iberostart()
   {
 
-    $title = "Meta Equipes";
+    $title = "Ibero Star";
     $next = null;
     $theme = 'evolusom';
-    $timeout = 30000;
-
 
     // cache 30 mins
-    Cache::forget('iberostart');
-    $data = Cache::remember('iberostart', 60 * 10, function () {
-      $faturamento = collect(DB::connection('oracle')->select("
-    SELECT  PCPEDC.CODUSUR   AS CODIGO,
-            PCUSUARI.NOME        AS NOME,
-            SUM(CASE
-               WHEN NVL(PCPEDI.BONIFIC, 'N') = 'N' THEN
-                   DECODE(PCPEDC.CONDVENDA,
-                          5,
-                          0,
-                          6,
-                          0,
-                          11,
-                          0,
-                          12,
-                          0,
-                          NVL(PCPEDI.VLSUBTOTITEM,
-                              (DECODE(NVL(PCPEDI.TRUNCARITEM, 'N'),
-                                      'N',
-                                      ROUND((NVL(PCPEDI.QT, 0)) * (NVL(PCPEDI.PVENDA, 0)), 2),
-                                      TRUNC((NVL(PCPEDI.QT, 0)) * (NVL(PCPEDI.PVENDA, 0)), 2)))))
-               ELSE
-                   0
-           END)                        VLVENDA,
-       COUNT(DISTINCT (PCPEDC.CODCLI)) QTCLIPOS
-FROM PCPEDI,
-     PCPEDC,
-     PCUSUARI,
-     PCPRODUT,
-     PCDEPTO,
-     PCCLIENT,
-     PCPRACA,
-     PCSUPERV,
-     PCMARCA
-WHERE PCPEDI.NUMPED = PCPEDC.NUMPED
-  AND PCPEDC.CODUSUR = PCUSUARI.CODUSUR
-  AND PCPEDC.CODSUPERVISOR = PCSUPERV.CODSUPERVISOR
-  AND PCPEDI.CODPROD = PCPRODUT.CODPROD
-  AND PCPRODUT.CODEPTO = PCDEPTO.CODEPTO
-  AND PCPEDC.CODCLI = PCCLIENT.CODCLI
-  AND PCPEDC.CODPRACA = PCPRACA.CODPRACA
-  AND PCPEDC.DTCANCEL IS NULL
-  AND PCPEDC.DTFAT BETWEEN '2022-05-01' AND '2022-09-30'
-  AND PCPEDC.CODFILIAL IN (1, 2, 3, 4)
-  AND PCPEDC.POSICAO = 'F'
-  AND PCPEDC.CONDVENDA IN (1, 7)
-  AND PCPRODUT.CODMARCA = PCMARCA.CODMARCA
-  AND PCMARCA.CODMARCA = '381'
-  AND PCPEDC.CODUSUR NOT IN (200, 1)
-  AND PCPEDC.CODCOB <> 'VET'
-GROUP BY PCPEDC.CODUSUR, PCUSUARI.NOME
-ORDER BY VLVENDA DESC
-"))->take(8);
+    $winthor = new WinthorApi();
+    $data = json_decode($winthor->iberostar()->getBody()->getContents(), true);
 
-      $capilaridade = collect(DB::connection('oracle')->select("
-    SELECT  PCPEDC.CODUSUR   AS CODIGO,
-            PCUSUARI.NOME        AS NOME,
-            SUM(CASE
-               WHEN NVL(PCPEDI.BONIFIC, 'N') = 'N' THEN
-                   DECODE(PCPEDC.CONDVENDA,
-                          5,
-                          0,
-                          6,
-                          0,
-                          11,
-                          0,
-                          12,
-                          0,
-                          NVL(PCPEDI.VLSUBTOTITEM,
-                              (DECODE(NVL(PCPEDI.TRUNCARITEM, 'N'),
-                                      'N',
-                                      ROUND((NVL(PCPEDI.QT, 0)) * (NVL(PCPEDI.PVENDA, 0)), 2),
-                                      TRUNC((NVL(PCPEDI.QT, 0)) * (NVL(PCPEDI.PVENDA, 0)), 2)))))
-               ELSE
-                   0
-           END)                        VLVENDA,
-       COUNT(DISTINCT (PCPEDC.CODCLI)) QTCLIPOS
-FROM PCPEDI,
-     PCPEDC,
-     PCUSUARI,
-     PCPRODUT,
-     PCDEPTO,
-     PCCLIENT,
-     PCPRACA,
-     PCSUPERV,
-     PCMARCA
-WHERE PCPEDI.NUMPED = PCPEDC.NUMPED
-  AND PCPEDC.CODUSUR = PCUSUARI.CODUSUR
-  AND PCPEDC.CODSUPERVISOR = PCSUPERV.CODSUPERVISOR
-  AND PCPEDI.CODPROD = PCPRODUT.CODPROD
-  AND PCPRODUT.CODEPTO = PCDEPTO.CODEPTO
-  AND PCPEDC.CODCLI = PCCLIENT.CODCLI
-  AND PCPEDC.CODPRACA = PCPRACA.CODPRACA
-  AND PCPEDC.DTCANCEL IS NULL
-  AND PCPEDC.DTFAT BETWEEN '2022-05-01' AND '2022-09-30'
-  AND PCPEDC.CODFILIAL IN (1, 2, 3, 4)
-  AND PCPEDC.POSICAO = 'F'
-  AND PCPEDC.CONDVENDA IN (1, 7)
-  AND PCPRODUT.CODMARCA = PCMARCA.CODMARCA
-  AND PCMARCA.CODMARCA = '381'
-  AND PCPEDC.CODUSUR NOT IN (200, 1)
-  AND PCPEDC.CODCOB <> 'VET'
-GROUP BY PCPEDC.CODUSUR, PCUSUARI.NOME
-ORDER BY QTCLIPOS DESC, VLVENDA DESC
-"))->take(8);
+    $meta = 8000000;
 
-      return ['faturamento' => $faturamento, 'capilaridade' => $capilaridade];
-    });
+    $total = array_sum(array_column($data['faturamento'], 'vlvenda'));
+    $timeout = 15000;
 
-    return view('pages.iberostar', compact('data', 'title', 'next', 'theme', 'timeout'));
+    $limit = 10;
+    if ($total > 8000000) {
+      $meta = 10000000;
+      $timeout = 18000;
+    }
+
+    if ($total > 10000000) {
+      $meta = 12000000;
+      $limit = 12;
+      $timeout = 20000;
+    }
+
+
+    // limit the only 12 first item array
+    $atingido = (array_sum(array_column($data['faturamento'], 'vlvenda')) / $meta) * 100;
+
+    $data = array_slice($data['faturamento'], 0, $limit);
+
+    return view('pages.iberostar', compact('data', 'title', 'next', 'theme', 'timeout', 'atingido'));
   }
 }
