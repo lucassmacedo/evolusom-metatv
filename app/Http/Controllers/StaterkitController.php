@@ -692,7 +692,7 @@ class StaterkitController extends Controller
   {
 
     $title = "Ibero Star";
-    $next = null;
+    $next = route('home');
     $theme = 'evolusom';
 
     // cache 30 mins
