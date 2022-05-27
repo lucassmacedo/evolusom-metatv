@@ -274,9 +274,8 @@ class StaterkitController extends Controller
   {
     // pega proxima a ser mostrada depois da ultima mostrada
     $vendedores = AcompanhamentoMeta::whereMonth('created_at', date('m'))
-      ->whereYear('ano', date('Y'))
+      ->whereYear('created_at', date('Y'))
       ->paginate(10);
-
 
     if ($vendedores->currentPage() == $vendedores->lastPage()) {
       $next = route('capilaridade');
