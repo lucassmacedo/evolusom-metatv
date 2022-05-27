@@ -194,6 +194,11 @@ class StaterkitController extends Controller
       $metas_atingidas = $vendas->where("atendidos", '>', 99.99)
         ->where("atingido", '>', 99.99);
 
+      if ($meta_atingida_data = AcompanhamentoMeta::first()) {
+        if ($meta_atingida_data->created_at->format('Y-m') <> now()->format('Y-m')) {
+          AcompanhamentoMeta::whereRaw('1=1')->delete();
+        }
+      }
 
       foreach ($metas_atingidas as $item) {
         AcompanhamentoMeta::firstOrCreate([
@@ -688,17 +693,20 @@ class StaterkitController extends Controller
   {
 
     $title = "Ibero Star";
-    $next = route('home');
+    $next = null;
     $theme = 'evolusom';
 
     // cache 30 mins
-    $winthor = new WinthorApi();
-    $data = json_decode($winthor->iberostar()->getBody()->getContents(), true);
+
+    $data = Cache::remember('iberostart', 60 * 5, function () {
+      $winthor = new WinthorApi();
+      return json_decode($winthor->iberostar()->getBody()->getContents(), true);
+    });
 
     $meta = 8000000;
 
     $total = array_sum(array_column($data['faturamento'], 'vlvenda'));
-    $timeout = 15000;
+    $timeout = 20000;
 
     $limit = 10;
     if ($total > 8000000) {
