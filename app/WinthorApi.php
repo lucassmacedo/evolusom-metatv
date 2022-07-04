@@ -45,4 +45,14 @@ class WinthorApi
     ]);
   }
 
+  public function iberostar2()
+  {
+
+    return $this->client->get(config('api.winthor.url') . "metatv/iberostar2", [
+      'headers' => [
+        'Authorization' => 'Bearer ' . $this->token
+      ]
+    ]);
+  }
+
 }

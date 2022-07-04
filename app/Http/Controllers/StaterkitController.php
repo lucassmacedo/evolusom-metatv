@@ -292,6 +292,11 @@ class StaterkitController extends Controller
   public function ranking_capilaridade()
   {
     $next = route('meta_equipes');
+
+    if (Carbon::now()->lt(Carbon::parse("2022-12-02 00:00:00"))) {
+      $next = route('iberostar2');
+    }
+
     $timeout = 15000;
     $theme = 'evolusom';
 
@@ -469,7 +474,7 @@ class StaterkitController extends Controller
     $next = route('home');
 
     if (Carbon::now()->lt(Carbon::parse("2022-10-04 00:00:00"))) {
-      $next = route('iberostart');
+      $next = route('iberostar1');
     }
 
     $timeout = 30000;
@@ -688,7 +693,7 @@ class StaterkitController extends Controller
     return $ramais;
   }
 
-  public function iberostart()
+  public function iberostar()
   {
 
     $title = "Ibero Star";
@@ -706,7 +711,6 @@ class StaterkitController extends Controller
 
     $total = array_sum(array_column($data['faturamento'], 'vlvenda'));
     $timeout = 20000;
-
     $limit = 10;
     if ($total > 8000000) {
       $meta = 10000000;
@@ -726,5 +730,46 @@ class StaterkitController extends Controller
     $data = array_slice($data['faturamento'], 0, $limit);
 
     return view('pages.iberostar', compact('data', 'title', 'next', 'theme', 'timeout', 'atingido'));
+  }
+
+  public function iberostar2()
+  {
+
+    $title = "Partiu Férias - Ibero Star";
+    $next = route('meta_equipes');
+    $theme = 'evolusom';
+
+    // cache 30 mins
+
+    Cache::forget('iberostart2');
+    $data = Cache::remember('iberostart2', 60 * 5, function () {
+      $winthor = new WinthorApi();
+      return json_decode($winthor->iberostar2()->getBody()->getContents(), true);
+    });
+
+    $meta = 12500000;
+
+    $total = array_sum(array_column($data['faturamento'], 'vlvenda'));
+    $timeout = 20000;
+
+    $limit = 10;
+//    if ($total > 8000000) {
+//      $meta = 10000000;
+//      $timeout = 18000;
+//    }
+//
+//    if ($total > 10000000) {
+//      $meta = 12000000;
+//      $limit = 12;
+//      $timeout = 20000;
+//    }
+
+
+    // limit the only 12 first item array
+    $atingido = (array_sum(array_column($data['faturamento'], 'vlvenda')) / $meta) * 100;
+
+    $data = array_slice($data['faturamento'], 0, $limit);
+
+    return view('pages.iberostar2', compact('data', 'title', 'next', 'theme', 'timeout', 'atingido'));
   }
 }
