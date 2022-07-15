@@ -35,7 +35,7 @@
 @section('content')
 
   {{--  <div class="content-header row" id="" style="margin-top:260px;">--}}
-  <div class="content-header row" id="navTitle" style="margin-top:25rem;margin-bottom: 10rem;">
+  <div class="content-header row" id="navTitle" style="margin-top:32rem;margin-bottom: 10rem;">
     <div class="col-10 offset-2" style="min-height: 1020px;">
       <div class="row">
         <div class="col-10">
