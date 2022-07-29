@@ -194,10 +194,8 @@ class StaterkitController extends Controller
       $metas_atingidas = $vendas->where("atendidos", '>', 99.99)
         ->where("atingido", '>', 99.99);
 
-      if ($meta_atingida_data = AcompanhamentoMeta::first()) {
-        if ($meta_atingida_data->created_at->format('Y-m') <> now()->format('Y-m')) {
+      if (count($metas_atingidas) <> AcompanhamentoMeta::count()) {
           AcompanhamentoMeta::whereRaw('1=1')->delete();
-        }
       }
 
       foreach ($metas_atingidas as $item) {
@@ -227,8 +225,10 @@ class StaterkitController extends Controller
     // pega proxima a ser mostrada depois da ultima mostrada
     $ultima_mostrada = AcompanhamentoMeta::whereMonth('created_at', date('m'))
       ->whereYear('created_at', date('Y'))
-      ->where("ultima_mostrada", true)
-      ->first();
+//      ->where("ultima_mostrada", true)
+      ->get();
+
+    return $ultima_mostrada;
 
 
     // pega proxima a ser mostrada depois da ultima mostrada
