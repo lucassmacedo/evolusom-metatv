@@ -225,8 +225,8 @@ class StaterkitController extends Controller
     // pega proxima a ser mostrada depois da ultima mostrada
     $ultima_mostrada = AcompanhamentoMeta::whereMonth('created_at', date('m'))
       ->whereYear('created_at', date('Y'))
-//      ->where("ultima_mostrada", true)
-      ->get();
+      ->where("ultima_mostrada", true)
+      ->first();
 
 
     // pega proxima a ser mostrada depois da ultima mostrada
