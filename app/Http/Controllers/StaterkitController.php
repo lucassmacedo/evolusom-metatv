@@ -332,7 +332,7 @@ class StaterkitController extends Controller
         $item->atingido = $item->numCliAtendidos > 0 && $item->numCliPrev > 0 ? round(($item->numCliAtendidos / $item->numCliPrev) * 100, 2) : 0;
         return $item;
       })->where('vlMeta', '<>', 0)
-        ->whereNotIn('codUsur',[1])
+        ->whereNotIn('codUsur', [1])
         ->take(50)
         ->sortByDesc('numCliAtendidos');
     } catch (Exception $exception) {
@@ -421,13 +421,13 @@ class StaterkitController extends Controller
       $response_parcial = $this->client->get('metatvequipe', $query);
       $response_parcial = collect(json_decode($response_parcial->getBody()->getContents()));
 
-      $vlVendaGeral = $response_month->where('vlMeta', '>', 0)->sum('vlVenda');
+      $vlVendaGeral = $response_month->where('vlMeta', '>', 0)->whereNotIn('codSupervisor', [8])->sum('vlVenda');
 
-      $vlMetaGeral = $response_month->sum('vlMeta');
+      $vlMetaGeral = $response_month->whereNotIn('codSupervisor', [8])->sum('vlMeta');
       $numCliAtendidos = $response_month->sum('numCliAtendidos');
       $numCliPrev = $response_month->sum('numCliPrev');
 
-      $vlVendaParcial = $response_parcial->where('vlMeta', '>', 0)->sum('vlVenda');
+      $vlVendaParcial = $response_parcial->whereNotIn('codSupervisor', [8])->where('vlMeta', '>', 0)->sum('vlVenda');
       $vlMetaParcial = $response_parcial->sum('vlMeta');
 
       $data['geral'] = [
