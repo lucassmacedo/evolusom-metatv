@@ -98,6 +98,7 @@ class StaterkitController extends Controller
       ];
 
       $usersToIgnore = [
+        1,
         32,
         48,
         55,
@@ -195,7 +196,7 @@ class StaterkitController extends Controller
         ->where("atingido", '>', 99.99);
 
       if (count($metas_atingidas) <> AcompanhamentoMeta::count()) {
-          AcompanhamentoMeta::whereRaw('1=1')->delete();
+        AcompanhamentoMeta::whereRaw('1=1')->delete();
       }
 
       foreach ($metas_atingidas as $item) {
@@ -331,9 +332,9 @@ class StaterkitController extends Controller
         $item->atingido = $item->numCliAtendidos > 0 && $item->numCliPrev > 0 ? round(($item->numCliAtendidos / $item->numCliPrev) * 100, 2) : 0;
         return $item;
       })->where('vlMeta', '<>', 0)
+        ->whereNotIn('codUsur',[1])
         ->take(50)
         ->sortByDesc('numCliAtendidos');
-
     } catch (Exception $exception) {
       dd($exception->getMessage());
     }
@@ -504,6 +505,7 @@ class StaterkitController extends Controller
 
       // usuários a serem ignorados a pedido do Rodrigo Gonçalves
       $usersToIgnoreGeral = [
+        1,
         3,
         5,
         9,
