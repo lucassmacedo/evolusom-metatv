@@ -371,6 +371,10 @@ class StaterkitController extends Controller
     $theme = 'evolusom';
     $timeout = 30000;
 
+    if(now()->lt(Carbon::parse('2022-09-30'))){
+      $next = route('campanha-temporaria1');
+    }
+
     try {
 
       $dates = [
@@ -615,7 +619,7 @@ class StaterkitController extends Controller
     }
 
     $timeout = 30000;
-    $image = asset('images/campanhas/campanha1.png');
+    $image = asset('images/campanhas/campanha1.jpg');
     return view('pages.campanha_temporaria1', compact('timeout', 'next', 'image'));
   }
 
