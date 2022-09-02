@@ -613,7 +613,7 @@ class StaterkitController extends Controller
 
   public function temporario1()
   {
-    $next = route('home');
+    $next = route('evus');
     if (Carbon::now()->lt(Carbon::parse("2022-01-31 20:00:00"))) {
       $next = route('campanha-temporaria2');
     }
