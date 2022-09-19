@@ -717,10 +717,10 @@ class StaterkitController extends Controller
     $timeout = 20000;
     $limit = 10;
 
-    if ($total > 8000000) {
-      $meta = 10000000;
-      $timeout = 18000;
-    }
+//    if ($total > 8000000) {
+//      $meta = 10000000;
+//      $timeout = 18000;
+//    }
 
 //    if ($total > 10000000) {
 //      $meta = 12000000;
