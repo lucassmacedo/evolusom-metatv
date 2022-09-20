@@ -716,17 +716,16 @@ class StaterkitController extends Controller
     $total = array_sum(array_column($data['faturamento'], 'vlvenda'));
     $timeout = 20000;
     $limit = 10;
+    if ($total > 8000000) {
+      $meta = 10000000;
+      $timeout = 18000;
+    }
 
-//    if ($total > 8000000) {
-//      $meta = 10000000;
-//      $timeout = 18000;
-//    }
-
-//    if ($total > 10000000) {
-//      $meta = 12000000;
-//      $limit = 12;
-//      $timeout = 20000;
-//    }
+    if ($total > 10000000) {
+      $meta = 12000000;
+      $limit = 12;
+      $timeout = 20000;
+    }
 
 
     // limit the only 12 first item array
