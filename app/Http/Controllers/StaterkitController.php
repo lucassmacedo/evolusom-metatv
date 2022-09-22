@@ -705,7 +705,7 @@ class StaterkitController extends Controller
 
     // cache 30 mins
 
-    $data = Cache::remember('iberostart', 60 * 10, function () {
+    $data = Cache::remember('iberostart', 60 * 5, function () {
       $winthor = new WinthorApi();
       return json_decode($winthor->iberostar()->getBody()->getContents(), true);
     });
@@ -746,14 +746,13 @@ class StaterkitController extends Controller
 
     $data = Cache::remember('iberostart2', 60 * 10, function () {
       $winthor = new WinthorApi();
-      $data =  json_decode($winthor->iberostar2()->getBody()->getContents(), true);
+      return json_decode($winthor->iberostar2()->getBody()->getContents(), true);
     });
 
     $meta = 12500000;
     $timeout = 40000;
     $limit = 20;
-
-    //    if ($total > 8000000) {
+//    if ($total > 8000000) {
 //      $meta = 10000000;
 //      $timeout = 18000;
 //    }
