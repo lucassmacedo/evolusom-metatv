@@ -1,10 +1,30 @@
-version: "3"
+version: "3.8"
 #
 # Services definitions
 #
 services:
+  #
+  # App
+  #
+  app:
+    container_name: metatv-app
+    image: kooldev/php:7.4-oci8-nginx
+    ports:
+      - "${KOOL_APP_PORT:-80}:80"
+    environment:
+      ASUSER: "${KOOL_ASUSER:-0}"
+      UID: "${UID:-0}"
+    volumes:
+      - .:/app:delegated
+    depends_on:
+      - selenium
+    networks:
+      - metatv-network
+      - metatv-global
+
   selenium:
     image: 'selenium/standalone-chrome'
+    container_name: metatv-selenium
     volumes:
       - '/dev/shm:/dev/shm'
     environment:
@@ -12,5 +32,18 @@ services:
       - NODE_MAX_CONCURRENCY=10
       - NODE_MAX_SESSION=10
       - NODE_BROWSER_TIMEOUT=50000
-    ports:
-      - 4444:4444
+    networks:
+      - metatv-network
+#    ports:
+#      - 4444:4444
+#
+# Networks definitions
+#
+networks:
+  metatv-network:
+  metatv-global:
+    external: true
+    name: "${KOOL_GLOBAL_NETWORK:-metatv-global}"
+volumes:
+  cache:
+    driver: local

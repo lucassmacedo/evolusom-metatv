@@ -20,6 +20,7 @@ class WinthorApi
   {
     $this->client = new Client();
 
+
     $this->token = Cache::remember('token', 60 * 60 * 60, function () {
       $response = $this->client->post(config('api.winthor.url') . "v1/login", [
         'form_params' => [
