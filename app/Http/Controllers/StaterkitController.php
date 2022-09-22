@@ -602,15 +602,6 @@ class StaterkitController extends Controller
     return view('pages.evos', compact('title', 'next', 'theme', 'data', 'timeout', 'dates'));
   }
 
-  public function temporario2()
-  {
-    $next = route('home');
-
-    $timeout = 30000;
-    $image = asset('images/campanhas/campanha2.jpg');
-    return view('pages.campanha_temporaria1', compact('timeout', 'next', 'image'));
-  }
-
   public function temporario1()
   {
     $next = route('evus');
@@ -623,6 +614,14 @@ class StaterkitController extends Controller
     return view('pages.campanha_temporaria1', compact('timeout', 'next', 'image'));
   }
 
+  public function temporario2()
+  {
+    $next = route('home');
+
+    $timeout = 30000;
+    $image = asset('images/campanhas/campanha2.jpg');
+    return view('pages.campanha_temporaria1', compact('timeout', 'next', 'image'));
+  }
 
   public function voice()
   {
@@ -745,19 +744,16 @@ class StaterkitController extends Controller
 
     // cache 30 mins
 
-    Cache::forget('iberostart2');
-    $data = Cache::remember('iberostart2', 60 * 5, function () {
+    $data = Cache::remember('iberostart2', 60 * 10, function () {
       $winthor = new WinthorApi();
       return json_decode($winthor->iberostar2()->getBody()->getContents(), true);
     });
 
     $meta = 12500000;
-
-    $total = array_sum(array_column($data['faturamento'], 'vlvenda'));
     $timeout = 40000;
-
     $limit = 20;
-//    if ($total > 8000000) {
+
+    //    if ($total > 8000000) {
 //      $meta = 10000000;
 //      $timeout = 18000;
 //    }
