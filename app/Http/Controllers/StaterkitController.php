@@ -773,4 +773,3 @@ class StaterkitController extends Controller
     return view('pages.iberostar2', compact('data', 'title', 'next', 'theme', 'timeout', 'atingido'));
   }
 }
-gi
