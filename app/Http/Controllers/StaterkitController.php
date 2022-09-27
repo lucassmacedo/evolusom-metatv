@@ -700,7 +700,7 @@ class StaterkitController extends Controller
   {
 
     $title = "Ibero Star";
-    $next = route('home');
+    $next = route('evoluir');
     $theme = 'evolusom';
 
     // cache 30 mins
@@ -768,4 +768,88 @@ class StaterkitController extends Controller
 
     return view('pages.iberostar2', compact('data', 'title', 'next', 'theme', 'timeout', 'atingido'));
   }
+
+  public function evoluir()
+  {
+    $title = "Meta Equipes";
+    $next = route('home');
+    $theme = 'evolusom';
+    $timeout = 30000;
+
+    try {
+
+      $dates = [
+        'starts' => "01/09/2022",
+        'ends' => "30/09/2022"
+      ];
+
+      $query = [
+        'query' => [
+          'dataInicial' => $dates['starts'],
+          'dataFinal' => $dates['ends']
+        ],
+        'auth' => [
+          env('APP_API_USERNAME'),
+          env('APP_API_PASSWORD')
+        ]
+      ];
+
+
+      $response_month = $this->client->get('metatvequipe', $query);
+      $response_month = collect(json_decode($response_month->getBody()->getContents()));
+
+      $query['query']['dataFinal'] = now()->format('d/m/Y');
+
+      $response_parcial = $this->client->get('metatvequipe', $query);
+      $response_parcial = collect(json_decode($response_parcial->getBody()->getContents()));
+
+
+      $data['items'] = $response_month
+        ->where('vlMeta', '>', 0)
+        // Retirado Guilherme e Diversos a Pedido do Rodrigo
+        ->whereNotIn('codSupervisor', [4, 8])
+        ->map(function ($item) {
+          switch ($item->nome) {
+            case 'MARCOS 1':
+              $item->hist_fat = 90;
+              $item->hist_cap = 302;
+              break;
+            case 'GLAUCIA':
+              $item->hist_fat = 67;
+              $item->hist_cap = 244;
+              break;
+            case 'INGRID':
+              $item->hist_fat = 87;
+              $item->hist_cap = 354;
+              break;
+            case 'MARCOS VINICIUS':
+              $item->hist_fat = 89;
+              $item->hist_cap = 425;
+              break;
+            case 'KELLY':
+              $item->hist_fat = 89;
+              $item->hist_cap = 331;
+              break;
+          }
+
+          $item->atingido_meta = $item->vlVenda > 0 && $item->vlMeta > 0 ? round(($item->vlVenda / $item->vlMeta) * 100, 2) : 0;
+          $item->atingido_meta2 = ($item->atingido_meta - $item->hist_fat);
+          $item->per_clientes = $item->numCliAtendidos > 0 && $item->numCliPrev > 0 ? round(($item->numCliAtendidos / $item->numCliPrev) * 100, 2) : 0;
+          $item->per_clientes2 = round(($item->numCliAtendidos / $item->hist_cap) * 100, 2);
+
+//        $parcial = $response_parcial[$item->codUsur];
+//        $item->projetado = $parcial->vlVenda > 0 && $parcial->vlMeta > 0 ? round(($item->vlVenda / $parcial->vlMeta) * 100, 2) : 0;
+          return $item;
+        })
+        ->sortByDesc('atingido');
+
+    } catch (Exception $exception) {
+      dd($exception->getMessage());
+    }
+
+
+
+    return view('pages.evoluir', compact('title', 'next', 'theme', 'data', 'timeout', 'dates'));
+  }
+
 }

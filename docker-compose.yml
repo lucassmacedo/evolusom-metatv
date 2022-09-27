@@ -8,7 +8,7 @@ services:
   #
   app:
     container_name: metatv-app
-    image: kooldev/php:7.4-oci8-nginx
+    image: kooldev/php:7.4-nginx
     ports:
       - "${KOOL_APP_PORT:-80}:80"
     environment:

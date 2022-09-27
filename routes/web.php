@@ -25,4 +25,5 @@ Route::get('/campanha-temporaria3', 'StaterkitController@temporario3')->name('ca
 Route::get('/iberostar1', 'StaterkitController@iberostar')->name('iberostar1');
 Route::get('/iberostar2', 'StaterkitController@iberostar2')->name('iberostar2');
 Route::get('/voice', 'StaterkitController@voice')->name('voice');
+Route::get('/evoluir', 'StaterkitController@evoluir')->name('evoluir');
 
