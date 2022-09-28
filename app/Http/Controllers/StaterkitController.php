@@ -833,7 +833,7 @@ class StaterkitController extends Controller
           }
 
           $item->atingido_meta = $item->vlVenda > 0 && $item->vlMeta > 0 ? round(($item->vlVenda / $item->vlMeta) * 100, 2) : 0;
-          $item->atingido_meta2 = ($item->atingido_meta - $item->hist_fat);
+          $item->atingido_meta2 = round(($item->atingido_meta - $item->hist_fat), 2);
           $item->per_clientes = $item->numCliAtendidos > 0 && $item->numCliPrev > 0 ? round(($item->numCliAtendidos / $item->numCliPrev) * 100, 2) : 0;
           $item->per_clientes2 = round(($item->numCliAtendidos / $item->hist_cap) * 100, 2);
 
@@ -846,7 +846,6 @@ class StaterkitController extends Controller
     } catch (Exception $exception) {
       dd($exception->getMessage());
     }
-
 
 
     return view('pages.evoluir', compact('title', 'next', 'theme', 'data', 'timeout', 'dates'));
