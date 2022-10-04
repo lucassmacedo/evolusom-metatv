@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 use PHPUnit\Exception;
 use function foo\func;
 
-class StaterkitController extends Controller
+class   StaterkitController extends Controller
 {
 
   /**
@@ -219,7 +219,6 @@ class StaterkitController extends Controller
     return view('pages.ranking_vendas', compact('next', 'data', 'theme', 'dates', 'timeout'));
   }
 
-  // Fixed Layout
   public function meta_atingida()
   {
 
@@ -287,7 +286,6 @@ class StaterkitController extends Controller
     return view('pages.meta_atingida', compact('next', 'vendedores', 'theme', 'timeout'));
   }
 
-  // Fixed Layout
   public function ranking_capilaridade()
   {
     $next = route('meta_equipes');
@@ -343,7 +341,6 @@ class StaterkitController extends Controller
     return view('pages.ranking_capilaridade', compact('data', 'next', 'theme', 'dates', 'timeout'));
   }
 
-  // Fixed Layout
   public function produtos_mes()
   {
     $theme = 'evolusom';
@@ -353,7 +350,6 @@ class StaterkitController extends Controller
     return view('pages.ranking_produtos', compact('title', 'next', 'theme', 'timeout'));
   }
 
-  // Fixed Layout
   public function produtos_dia()
   {
     $theme = 'evolusom';
@@ -363,7 +359,6 @@ class StaterkitController extends Controller
     return view('pages.ranking_produtos', compact('title', 'next', 'theme', 'timeout'));
   }
 
-  // Fixed Layout
   public function meta_equipes()
   {
     $title = "Meta Equipes";
@@ -371,8 +366,8 @@ class StaterkitController extends Controller
     $theme = 'evolusom';
     $timeout = 30000;
 
-    if (now()->lt(Carbon::parse('2022-09-30'))) {
-      $next = route('campanha-temporaria1');
+    if (now()->lt(Carbon::parse('2022-10-14'))) {
+      $next = route('campanha-temporaria2');
     }
 
     try {
@@ -467,7 +462,6 @@ class StaterkitController extends Controller
     return view('pages.meta_equipes', compact('title', 'next', 'theme', 'data', 'timeout', 'dates'));
   }
 
-  // Fixed Layout
   public function evos()
   {
 
@@ -476,7 +470,7 @@ class StaterkitController extends Controller
 
     $next = route('home');
 
-    if (Carbon::now()->lt(Carbon::parse("2022-10-04 00:00:00"))) {
+    if (Carbon::now()->lt(Carbon::parse("2022-10-14 00:00:00"))) {
       $next = route('iberostar1');
     }
 
@@ -605,7 +599,7 @@ class StaterkitController extends Controller
   public function temporario1()
   {
     $next = route('evus');
-    if (Carbon::now()->lt(Carbon::parse("2022-01-31 20:00:00"))) {
+    if (Carbon::now()->lt(Carbon::parse("2022-10-14 20:00:00"))) {
       $next = route('campanha-temporaria2');
     }
 
@@ -616,91 +610,17 @@ class StaterkitController extends Controller
 
   public function temporario2()
   {
-    $next = route('home');
-
+    $next = route('evus');
     $timeout = 30000;
-    $image = asset('images/campanhas/campanha2.jpg');
+    $image = asset('images/campanhas/resultado_evoluir.jpg');
     return view('pages.campanha_temporaria1', compact('timeout', 'next', 'image'));
-  }
-
-  public function voice()
-  {
-
-    $voice = new Client();
-//    $voice = json_decode($voice->get("https://api.npoint.io/444ce9712a32891b4deb")->getBody()->getContents(), true);
-    $voice = json_decode($voice->get("http://192.168.1.160/dashboard/ajax/dados/getAsteriskAMI.php")->getBody()->getContents(), true);
-    $dados = collect($voice);
-
-    $channels = collect($dados['CoreShowChannelsAction'])->mapToGroups(function ($item) {
-      return ["{$item['linkedid']}" => $item];
-    });
-
-    $setores = $dados['setores'][13];
-
-    $ramais['disponiveis'] = count(array_filter($dados['DeviceStateListAction'], function ($item) use ($setores) {
-      $regex = preg_replace("/^.*\//", "", $item['device']);
-      return (in_array($regex, $setores)) and $item['state'] == "NOT_INUSE";
-    }));
-
-    $ramais['ocupados'] = count(array_filter($dados['DeviceStateListAction'], function ($item) use ($setores) {
-      $regex = preg_replace("/^.*\//", "", $item['device']);
-      return (in_array($regex, $setores)) and $item['state'] == "BUSY";
-    }));
-    $ramais['indisponiveis'] = count(array_filter($dados['DeviceStateListAction'], function ($item) use ($setores) {
-      $regex = preg_replace("/^.*\//", "", $item['device']);
-      return (in_array($regex, $setores)) and $item['state'] == "UNAVAILABLE";
-    }));
-
-
-    $ramais['efetuadas'] = 0;
-    $ramais['recebidas'] = 0;
-
-    $acEfetuadas = [2, 3, 4, 5, 6, 7];
-
-    $acRecebidas = [11, 12, 13, 14, 15];
-    $channels = $channels->sortKeys();
-
-    foreach ($channels as $key => $channel) {
-
-
-      $agente = 0;
-      $cliente = 0;
-
-      $channel = $channel->toArray();
-      // sort array by column
-      usort($channel, function ($a, $b) {
-        return $a['linkedid'] - $b['linkedid'];
-      });
-
-
-      if (in_array($channels[$key][0]['accountcode'], $acRecebidas)) {
-        $agente = $channels[$key][count($channels[$key]) - 1]['channel'];
-      } elseif (in_array($channels[$key][0]['accountcode'], $acEfetuadas)) {
-        $agente = count($channels[$key]) == 2 ? $channels[$key][0]['channel'] : $channels[$key][count($channels[$key]) - 1]['channel'];
-      } else {
-        $agente = 0;
-      }
-
-      $agente = preg_replace("/^.*\//", "", $agente);
-      $agente = preg_replace("/-.*$/", "", $agente);
-
-      if (in_array($agente, $dados['filas']["Vendas"])) {
-        if (in_array($channels[$key][0]['accountcode'], $acRecebidas)) {
-          $ramais['recebidas'] = $ramais['recebidas'] + 1;
-        } else {
-          $ramais['efetuadas'] = $ramais['efetuadas'] + 1;
-        }
-      }
-    }
-
-    return $ramais;
   }
 
   public function iberostar()
   {
 
     $title = "Ibero Star";
-    $next = route('evoluir');
+    $next = route('campanha-temporaria2');
     $theme = 'evolusom';
 
     // cache 30 mins
@@ -767,88 +687,6 @@ class StaterkitController extends Controller
     $data = array_slice($data['faturamento'], 0, $limit);
 
     return view('pages.iberostar2', compact('data', 'title', 'next', 'theme', 'timeout', 'atingido'));
-  }
-
-  public function evoluir()
-  {
-    $title = "Meta Equipes";
-    $next = route('home');
-    $theme = 'evolusom';
-    $timeout = 30000;
-
-    try {
-
-      $dates = [
-        'starts' => "01/09/2022",
-        'ends' => "30/09/2022"
-      ];
-
-      $query = [
-        'query' => [
-          'dataInicial' => $dates['starts'],
-          'dataFinal' => $dates['ends']
-        ],
-        'auth' => [
-          env('APP_API_USERNAME'),
-          env('APP_API_PASSWORD')
-        ]
-      ];
-
-
-      $response_month = $this->client->get('metatvequipe', $query);
-      $response_month = collect(json_decode($response_month->getBody()->getContents()));
-
-      $query['query']['dataFinal'] = now()->format('d/m/Y');
-
-      $response_parcial = $this->client->get('metatvequipe', $query);
-      $response_parcial = collect(json_decode($response_parcial->getBody()->getContents()));
-
-
-      $data['items'] = $response_month
-        ->where('vlMeta', '>', 0)
-        // Retirado Guilherme e Diversos a Pedido do Rodrigo
-        ->whereNotIn('codSupervisor', [4, 8])
-        ->map(function ($item) {
-          switch ($item->nome) {
-            case 'MARCOS 1':
-              $item->hist_fat = 90;
-              $item->hist_cap = 302;
-              break;
-            case 'GLAUCIA':
-              $item->hist_fat = 67;
-              $item->hist_cap = 244;
-              break;
-            case 'INGRID':
-              $item->hist_fat = 87;
-              $item->hist_cap = 354;
-              break;
-            case 'MARCOS VINICIUS':
-              $item->hist_fat = 89;
-              $item->hist_cap = 425;
-              break;
-            case 'KELLY':
-              $item->hist_fat = 89;
-              $item->hist_cap = 331;
-              break;
-          }
-
-          $item->atingido_meta = $item->vlVenda > 0 && $item->vlMeta > 0 ? round(($item->vlVenda / $item->vlMeta) * 100, 2) : 0;
-          $item->atingido_meta2 = round(($item->atingido_meta - $item->hist_fat), 2);
-          $item->per_clientes = $item->numCliAtendidos > 0 && $item->numCliPrev > 0 ? round(($item->numCliAtendidos / $item->numCliPrev) * 100, 2) : 0;
-          $item->per_clientes2 = round(($item->numCliAtendidos / $item->hist_cap) * 100, 2);
-
-//        $parcial = $response_parcial[$item->codUsur];
-//        $item->projetado = $parcial->vlVenda > 0 && $parcial->vlMeta > 0 ? round(($item->vlVenda / $parcial->vlMeta) * 100, 2) : 0;
-          return $item;
-        })
-        ->sortByDesc('atingido');
-
-    } catch (Exception $exception) {
-      dd($exception->getMessage());
-    }
-
-
-    return view('pages.evoluir', compact('title', 'next', 'theme', 'data', 'timeout', 'dates'));
   }
 
 }
