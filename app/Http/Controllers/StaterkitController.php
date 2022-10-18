@@ -291,7 +291,7 @@ class   StaterkitController extends Controller
         $next = route('meta_equipes');
 
         if (Carbon::now()->lt(Carbon::parse("2022-12-02 00:00:00"))) {
-            $next = route('iberostar1');
+            $next = route('iberostar2');
         }
 
         $timeout = 15000;
@@ -453,9 +453,6 @@ class   StaterkitController extends Controller
 
         $next = route('home');
 
-        if (Carbon::now()->lt(Carbon::parse("2022-10-14 00:00:00"))) {
-            $next = route('iberostar1');
-        }
 
         $timeout = 30000;
 
