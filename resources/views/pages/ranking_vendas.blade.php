@@ -54,7 +54,7 @@
 
                       <div class="avatar avatar-xl shadow mt-0">
                         <div class="avatar-content">
-                          <img src="/images/vendedores/{{$item->codUsur}}.png"
+                          <img src="{{ Helper::getFotoPortal($item->cpf) }}"
                                onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"
                                alt="" width="100">
                         </div>
@@ -108,7 +108,7 @@
 
                                 <div class="row">
                                   <div class="col-2">
-                                    <img src="/images/vendedores/{{$item->codUsur}}.png"
+                                    <img src="{{ Helper::getFotoPortal($item->cpf) }}"
                                          onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"
                                          alt="avtar img holder" height="70" width="70">
                                   </div>

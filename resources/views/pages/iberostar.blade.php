@@ -65,7 +65,7 @@
           <div class="col-1">
             <div class="avatar avatar-xl shadow mt-0">
               <div class="avatar-content">
-                <img src="/images/vendedores/{{$vendedor['codigo']}}.png"
+                <img src="{{ Helper::getFotoPortal($vendedor['cpf']) }}"
                      onerror="this.src='http://metatv.test/images/elements/icon-avatar-default.png'" alt="" width="50">
               </div>
             </div>

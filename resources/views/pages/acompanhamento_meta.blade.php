@@ -64,7 +64,7 @@
 
                     <div class="avatar">
                       <div>
-                        <img src="/images/vendedores/{{$metas_atingidas_mostrar->vendedor}}.png"
+                        <img src="{{ Helper::getFotoPortal($metas_atingidas_mostrar->cpf) }}"
                              height="500"
                              width="500"
                              onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"

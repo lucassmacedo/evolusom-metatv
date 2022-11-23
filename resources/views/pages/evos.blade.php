@@ -49,7 +49,8 @@
                     <div class="col-12">
                       <div class="avatar">
 
-                        <img src="{{$data['capilaridade']->first()->avatar}}"
+
+                        <img src="{{ Helper::getFotoPortal($data['capilaridade']->first()->cpf) }}"
                              alt=""
                              onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"
 
@@ -88,7 +89,7 @@
                   <div class="row">
                     <div class="col-12">
                       <div class="avatar">
-                        <img src="{{$data['faturamento']->first()->avatar}}"
+                        <img src="{{ Helper::getFotoPortal($data['faturamento']->first()->cpf) }}"
                              alt=""
 
                              onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"
@@ -127,7 +128,7 @@
                   <div class="row">
                     <div class="col-12">
                       <div class="avatar">
-                        <img src="{{$data['pontuacao']->first()->avatar}}"
+                        <img src="{{ Helper::getFotoPortal($data['pontuacao']->first()->cpf) }}"
                              alt=""
                              onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"
                              width="120"

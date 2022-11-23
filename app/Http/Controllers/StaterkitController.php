@@ -159,7 +159,6 @@ class   StaterkitController extends Controller
             $response_month = $this->client->get('metatvfaturamento', $query);
             $response_month = collect(json_decode($response_month->getBody()->getContents()));
 
-
             // se não for o primeiro dia útil do mês
             if (Carbon::parse($this->dias_uteis->first()->data)->toDateString() <> now()->toDateString()) {
                 $query['query']['dataFinal'] = now()->format('d/m/Y');
@@ -202,6 +201,7 @@ class   StaterkitController extends Controller
             foreach ($metas_atingidas as $item) {
                 AcompanhamentoMeta::firstOrCreate([
                     "vendedor" => $item->codUsur,
+                    "cpf"      => $item->cpf,
                     "nome"     => $item->nome,
                     "mes"      => date('m'),
                     "ano"      => date('Y'),
@@ -604,7 +604,6 @@ class   StaterkitController extends Controller
         $theme = 'evolusom';
 
         // cache 30 mins
-
         $winthor = new WinthorApi();
         $data    = json_decode($winthor->iberostar()->getBody()->getContents(), TRUE);
 

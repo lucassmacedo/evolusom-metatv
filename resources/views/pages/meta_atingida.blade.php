@@ -20,7 +20,7 @@
     <div class="col-8 offset-2" style="margin-top: 300px">
       @foreach($vendedores as $vendedor)
         <div class="avatar">
-          <img src="/images/vendedores/{{$vendedor->vendedor}}.png"
+          <img src="{{ Helper::getFotoPortal($vendedor->cpf) }}"
                onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"
                alt="avtar img holder" height="150" width="150">
         </div>

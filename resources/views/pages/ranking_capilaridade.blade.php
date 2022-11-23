@@ -70,7 +70,7 @@
 
                             @if($loop->index < 3)
                               <h3 class="mb-0 text-bold-700">
-                                <img src="/images/vendedores/{{$item->codUsur}}.png"
+                                <img src="{{ Helper::getFotoPortal($item->cpf) }}"
                                      onerror="this.src='{{asset('images/elements/icon-avatar-default.png')}}'"
                                      alt="avtar img holder" height="70" width="70">
                                 {{ $item->nome }}</h3>
