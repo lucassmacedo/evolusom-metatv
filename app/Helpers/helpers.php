@@ -172,7 +172,6 @@ class Helper
     {
         $cpf = preg_replace('/[^0-9]/', '', $cpf);
 
-        \Cache::forget('user_foto_' . $cpf);
         return \Cache::remember('user_foto_' . $cpf, 60 * 30, function () use ($cpf) {
             if ($data = @file_get_contents("https://portal.evolusom.com.br/storage/users/fotos/avatar_$cpf.png")) {
                 return "data:image/png;base64, " . base64_encode($data);
