@@ -175,6 +175,8 @@ class Helper
         return \Cache::remember('user_foto_' . $cpf, 60 * 30, function () use ($cpf) {
             if ($data = @file_get_contents("https://portal.evolusom.com.br/storage/users/fotos/avatar_$cpf.png")) {
                 return "data:image/png;base64, " . base64_encode($data);
+            }else if ($data = @file_get_contents("https://portal.evolusom.com.br/storage/users/fotos/avatar_$cpf.jpg")) {
+                return "data:image/png;base64, " . base64_encode($data);
             } else {
                 return NULL;
             }
